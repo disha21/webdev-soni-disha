@@ -1,7 +1,39 @@
-input.form-control {
-    margin-bottom: 5px;
+.input-group {
+    margin-bottom: 25px;
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 76px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
+.button-wrapper{
+    margin-bottom: 25px;
+}
+.space-right{
+    margin-right: 20px;
+}
+
+.top-buffer {
+    margin-top:20px;
+}
+
+.change-font{
+    font-size: 1.45em;
+}
+
+.brand-font{
+    font-size: 1.5em;
+
+}
+
+.form-font{
+    font-size: 1.2em;
+}
+.fa-black-color{
+    color:black;
+}
+.fa-blue-color{
+    color:#0066cc;
+}
+
