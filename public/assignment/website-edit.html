@@ -11,22 +11,21 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
-            <div class="navbar-brand brand-font" href="website-list.html">
-                <i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> &nbsp;&nbsp;Edit Website
-            </div>
-            <p class="navbar-text pull-right space-right">
-                <a href="website-list.html" class="navbar-link">
-          <span><i class="fa fa-check fa-fw fa-lg" aria-hidden="true"></i>
-          </span>
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <a class="navbar-text col-xs-1" href="profile.html">
+                    <span class="glyphicon glyphicon-chevron-left" ></span>
                 </a>
-            </p>
+                <p class="navbar-text col-xs-8" href="#">Websites</p>
+                <a class="navbar-text col-xs-2" href="profile.html">
+                    <span class="glyphicon glyphicon-ok" ></span>
+                </a>
+            </div>
         </div>
     </div>
 </nav>
 <div class="container">
-
     <form class="form-font">
         <div class="form-group">
             <label for="websitename">Name</label>
@@ -37,8 +36,8 @@
             <textarea type="text" rows="5" class="form-control" id="description" placeholder="Description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </textarea>
         </div>
-<br>
-        <a class="btn btn-danger  btn-block"
+
+        <a class="btn btn-danger button-buffer  btn-block"
            href="website-list.html">Delete</a>
 
     </form>
@@ -46,18 +45,20 @@
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom navbar-color">
     <div class="container">
-        <div class="row navbar-text">
-            <p class="pull-right space-right">
-                <a href="profile.html" class="navbar-link">
-          <span><i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-          </span>
+        <div class="row">
+            <div class="navbar-header">
+                <p class="navbar-text col-xs-9"></p>
+                <a class="navbar-text col-xs-2" href="profile.html">
+                    <span class="glyphicon glyphicon-user"></span>
                 </a>
-            </p>
+            </div>
         </div>
     </div>
+    </div>
 </nav>
+
 
 </body>
 </html>

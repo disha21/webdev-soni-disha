@@ -1,31 +1,44 @@
 .input-group {
-    margin-bottom: 25px;
+    margin-bottom: 2em;
 }
 
 body {
-    padding-top: 76px;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-top: 5em;
+    padding-bottom:5em;
+    font-size: 18px;
+
 }
-.button-wrapper{
-    margin-bottom: 25px;
+
+.text-header{
+    padding-top: 0.7em;
+}
+
+.header-padding{
+   padding-top: 1.5em;
+}
+
+
+
+.navbar-header{
+    width:100%;
+
 }
 .space-right{
-    margin-right: 20px;
+    margin-right: 1.5em;
 }
 
 .top-buffer {
-    margin-top:20px;
+    margin-top:1.5em;
+}
+
+.form-buffer {
+    margin-top:0.6em;
 }
 
 .change-font{
     font-size: 1.45em;
 }
 
-.brand-font{
-    font-size: 1.5em;
-
-}
 
 .form-font{
     font-size: 1.2em;
@@ -35,5 +48,16 @@ body {
 }
 .fa-blue-color{
     color:#0066cc;
+}
+.bottom-buffer{
+    margin-bottom: 1em;
+}
+
+.body-margins{
+    margin-left: 5em;
+    margin-right:1em;
+}
+.button-buffer{
+    margin-top: 2em;
 }
 
