@@ -6,9 +6,12 @@ body {
     padding-top: 5em;
     padding-bottom:5em;
     font-size: 18px;
+    height:100%;
 
 }
+.container-fluid{
 
+}
 .text-header{
     padding-top: 0.7em;
 }
@@ -23,9 +26,7 @@ body {
     width:100%;
 
 }
-.space-right{
-    margin-right: 1.5em;
-}
+
 
 .top-buffer {
     margin-top:1.5em;
@@ -40,8 +41,9 @@ body {
 }
 
 
-.form-font{
-    font-size: 1.2em;
+.v-divider{
+    border-right:1px solid gray;
+    height:100vh;
 }
 .fa-black-color{
     color:black;
@@ -53,11 +55,23 @@ body {
     margin-bottom: 1em;
 }
 
-.body-margins{
-    margin-left: 5em;
-    margin-right:1em;
-}
+
 .button-buffer{
     margin-top: 2em;
 }
+
+.img-fluid{
+    max-width: 100%;
+    height: auto;
+}
+
+.cog-img{
+    margin-right: 15px;
+    right:0;
+    top:0;
+    position: absolute;
+    z-index: 100000;
+
+}
+
 
