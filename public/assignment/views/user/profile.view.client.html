@@ -8,7 +8,7 @@
            Profile
         </div>
         <div class="col-xs-1  col-sm-1 col-md-1 text-header">
-            <a href="profile.view.client.html">
+            <a href="#/user/{{model.user._id}}">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -22,9 +22,9 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-username"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-username"
-                           value="dsoni">
+                    <span class="input-group-addon" id="username"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" ng-model="model.user.username" class="form-control" placeholder="Username" aria-describedby="username"
+                           value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
@@ -34,8 +34,8 @@
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="input-group">
                     <span class="input-group-addon" id="email"><i class="fa fa-key" aria-hidden="true"></i></span>
-                    <input type="email" class="form-control" placeholder="joe@gmail.com" aria-describedby="email"
-                           value="dsoni@gmail.com">
+                    <input type="email" ng-model="model.user.email" class="form-control" placeholder="joe@gmail.com" aria-describedby="email"
+                           value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
@@ -45,9 +45,9 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="input-group">
-                    <span class="input-group-addon" id="first-name"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="First Name" aria-describedby="first-name"
-                           value="Disha">
+                    <span class="input-group-addon" id="firstname"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" ng-model="model.user.firstName" class="form-control" placeholder="First Name" aria-describedby="firstname"
+                           value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
@@ -56,9 +56,9 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="input-group">
-                    <span class="input-group-addon" id="last-name"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="last-name"
-                           value="Soni">
+                    <span class="input-group-addon" id="lastname"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" ng-model="model.user.lastName" class="form-control" placeholder="Last Name" aria-describedby="lastname"
+                           value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
@@ -69,7 +69,7 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10" >
                 <a class="btn btn-primary btn-block"
-                   href="#/website">Websites</a>
+                   href="#/user/{{model.user._id}}/website">Websites</a>
                 <a class="btn btn-danger  btn-block"
                    href="#/login">Logout</a>
             </div>
@@ -86,7 +86,7 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-9 col-sm-10 col-md-10 text-header"></div>
             <div class="col-xs-1  col-sm-1 col-md-1 text-header">
-                <a href="profile.view.client.html">
+                <a href="#/user/{{model.user._id}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

@@ -1,5 +1,15 @@
-
 <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div ng-show="model.error" class="alert alert-danger col-xs-10">
+            {{model.error}}
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+
+
     <div class="row">
         <div class="col-xs-1"></div>
         <h1 class="bottom-buffer col-xs-10">Login</h1>
@@ -8,30 +18,33 @@
     <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-        <div class="input-group">
-            <span class="input-group-addon" id="username"><i class="fa fa-user" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" placeholder="Username" aria-describedby="username">
-        </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="username"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input type="text" ng-model="model.user.username" class="form-control" placeholder="Username"
+                       aria-describedby="username">
+            </div>
         </div>
         <div class="col-xs-1"></div>
     </div>
     <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-        <div class="input-group ">
-            <span class="input-group-addon" id="password"><i class="fa fa-key" aria-hidden="true"></i></span>
-            <input type="password" class="form-control" placeholder="Password" aria-describedby="password">
-        </div>
+            <div class="input-group ">
+                <span class="input-group-addon" id="password"><i class="fa fa-key" aria-hidden="true"></i></span>
+                <input type="password" ng-model="model.user.password" class="form-control" placeholder="Password"
+                       aria-describedby="password">
             </div>
+        </div>
         <div class="col-xs-1"></div>
 
     </div>
     <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-        <a class="btn btn-primary btn-block" href="#/profile">Login</a>
-        <a class="btn btn-success btn-block" href="#/register">Register</a>
-            </div>
+            <a class="btn btn-primary btn-block"
+               ng-click="model.login(model.user.username,model.user.password)">Login</a>
+            <a class="btn btn-success btn-block" href="#/register">Register</a>
+        </div>
         <div class="col-xs-1"></div>
     </div>
 

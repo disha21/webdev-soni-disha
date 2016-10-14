@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Website New</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
 <div class="clearfix"></div>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -17,19 +6,19 @@
         <!--Left Page-->
         <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs">
             <div class=" col-md-1 col-lg-1 hidden-sm"></div>
-            <div class=" col-sm-1 col-md-2 col-lg-2"><a href="website-list.view.client.html"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+            <div class=" col-sm-1 col-md-2 col-lg-2"><a href="#/user/{{model.website.developerId}}/website/"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
             <div class=" col-sm-8 col-md-6 col-lg-6"><div class="text header"><p>Websites</p></div></div>
-            <div class=" col-sm-2 col-md-2 col-lg-2 "><div class="pull-right"><a href="website-new.view.client.html"><span class="glyphicon glyphicon-plus"></span></a></div></div>
+            <div class=" col-sm-2 col-md-2 col-lg-2 "><div class="pull-right"><a href="#/user/{{model.website.developerId}}/website/new"><span class="glyphicon glyphicon-plus"></span></a></div></div>
             <div class=" col-md-1 col-lg-1 hidden-sm"></div>
         </div>
         <!--Right Page-->
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <!-- left margin -->
             <div class="col-sm-1 col-md-1 col-lg-1 hidden-xs"></div>
-            <div class="col-xs-1 hidden-sm hidden-md hidden-lg"><a href="website-list.view.client.html"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+            <div class="col-xs-1 hidden-sm hidden-md hidden-lg"><a href="#/user/{{model.website.developerId}}/website/"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
 
             <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><div class="text header"><p>Edit Website</p></div> </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><div class="pull-right"><a href="website-list.view.client.html"><span class="glyphicon glyphicon-ok"></span></a></div></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><div class="pull-right"><a href="#/user/{{model.website.developerId}}/website/"><span class="glyphicon glyphicon-ok"></span></a></div></div>
             <!-- right margin -->
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
         </div>
@@ -40,26 +29,11 @@
 <form>
     <div class="container-fluid ">
         <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs v-divider">
-            <div class="row top-buffer">
+            <div class="row top-buffer" ng-repeat="website in model.websites">
                 <a class="col-sm-1 col-md-1 col-lg-1"></a>
-                <a class="col-sm-8 col-md-8 col-lg-8">Address Book App</a>
-                <a class="col-sm-2 col-md-2 col-lg-2">  <span class="glyphicon glyphicon-cog"></span></a>
-            </div>
-
-            <div class="row top-buffer">
-                <a class="col-sm-1 col-md-1 col-lg-1"></a>
-                <a class="col-sm-8 col-md-8 col-lg-8">Blogger</a>
-                <a class="col-sm-2 col-md-2 col-lg-2 ">  <span class="glyphicon glyphicon-cog"></span></a>
-            </div>
-            <div class="row top-buffer">
-                <a class="col-sm-1 col-md-1 col-lg-1"></a>
-                <a class="col-sm-8 col-md-8 col-lg-8">Bloging App</a>
-                <a class="col-sm-2 col-md-2 col-lg-2">  <span class="glyphicon glyphicon-cog"></span></a>
-            </div>
-            <div class="row top-buffer">
-                <a class="col-sm-1 col-md-1 col-lg-1"></a>
-                <a class="col-sm-8 col-md-8 col-lg-8">Script Testing App</a>
-                <a class="col-sm-2 col-md-2 col-lg-2">  <span class="glyphicon glyphicon-cog"></span></a>
+                <a class="col-sm-8 col-md-8 col-lg-8"href="#/user/{{model.uid}}/website/{{website._id}}/page">
+                    {{website.name}}</a>
+                <a class="col-sm-2 col-md-2 col-lg-2"  ng-click="model.edit(website._id)"> <span class="glyphicon glyphicon-cog"></span></a>
             </div>
         </div>
 
@@ -68,8 +42,8 @@
                 <div class=" col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
                 <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="form-group">
-                        <label for="websitename">Website Name</label>
-                        <input type="text" class="form-control" id="websitename" placeholder="Name" value="Blogger">
+                        <label for="websitename"> Website Name</label>
+                        <input type="text"  class="form-control" id="websitename" placeholder="Name" value="{{model.website.name}}">
                     </div>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -88,8 +62,7 @@
             <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 button-buffer">
-                <a class="btn btn-danger  btn-block"
-                   href="website-list.view.client.html">Delete</a></div>
+                <a class="btn btn-danger  btn-block" ng-click="model.deleteWebsite(model.website._id)">Delete</a></div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
                 </div>
 
@@ -105,7 +78,7 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-9 col-sm-10 col-md-10 text-header"></div>
             <div class="col-xs-1  col-sm-1 col-md-1 text-header">
-                <a href="../user/profile.view.client.html">
+                <a href="#/user/{{model.uid}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
@@ -113,5 +86,3 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
