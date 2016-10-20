@@ -7,8 +7,6 @@ body {
     padding-bottom:5em;
     font-size: 18px;
     height:100%;
-
-
 }
 
 #background{
@@ -18,8 +16,6 @@ body {
     display:block;
     padding:0 !important;
     margin:0;
-
-
 }
 
 .text-header{
@@ -52,6 +48,7 @@ body {
     border-right:1px solid gray;
     height:100vh;
 }
+
 .fa-black-color{
     color:black;
 }

@@ -48,15 +48,21 @@
                 console.log(findUserByUsername(newUser.username));
                 if (findUserByUsername(newUser.username) !== null) {
                     console.log("User already registered");
-                    return false;
+                    return null;
                 } else {
                     console.log("1... " + users);
                     var lastUser = users[users.length - 1];
                     var user_id = lastUser._id +1;
-                    console.log(users);
-                    users.push(newUser);
-                    console.log(users);
-                    return true;
+                    console.log(user_id );
+                    var newUserObject =  {_id: user_id,
+                        username:newUser.username ,
+                        password: newUser.password,
+                        firstName: "",
+                        lastName: ""
+                    };
+                    console.log(newUserObject);
+                    users.push(newUserObject);
+                    return newUserObject;
                 }
 
             }

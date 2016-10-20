@@ -15,6 +15,7 @@
         var uid = $routeParams.uid;
         vm.uid =uid;
         vm.edit = edit;
+
         function init() {
             vm.pages = PageService.findPageByWebsiteId(wid);
         }
@@ -31,10 +32,26 @@
 
 
     }
-    function NewPageController() {
+    function NewPageController($routeParams,PageService,$location) {
         var vm = this;
+        var uid = $routeParams.uid;
+        vm.uid = uid;
+        var wid = $routeParams.wid;
+        vm.wid = wid;
+        console.log
+        vm.addPage = addPage;
+
+        function addPage(newPage){
+            console.log("In add page" + newPage);
+            vm.page = PageService.createPage(wid,newPage);
+            if(page)
+                $location.url("user/" + uid +"/website/"+ wid +"/page/");
+            console.log(vm.page);
+        }
 
     }
+
+
     function EditPageController($routeParams,PageService,$location) {
         var vm = this;
         var uid = $routeParams.uid;
@@ -61,8 +78,12 @@
             }
         }
 
-       
 
+        function updatePage(newPage){
+            console.log("in update");
+            PageService.updatePage(pid, newPage);
+
+        }
     }
 
 

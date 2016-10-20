@@ -26,7 +26,30 @@
         };
 
         return api;
-        function createPage(websiteId, page)  {
+        function createPage(websiteId, newPage)  {
+
+            var pageList =[];
+            console.log("pages"+ findPageByWebsiteId(websiteId));
+            var pageList = findPageByWebsiteId(websiteId);
+            console.log("pageList"+ pageList);
+            for(page in pageList){
+                if (page.name!== newPage.name) {
+                    var lastPage = pages[pages.length - 1];
+                    var page_id = lastPage._id +1;
+                    console.log(lastPage._id);
+                    var newPageObject =  {_id: page_id,
+                        name: newPage.name ,
+                        websiteId:websiteId
+                    };
+                    console.log(newPageObject);
+                    pages.push(newPageObject);
+                    console.log(pages);
+                    return newPageObject;
+                }else{
+                    return null;
+                }
+            }
+
 
         }
         function findPageByWebsiteId(websiteId) {
