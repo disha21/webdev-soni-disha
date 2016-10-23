@@ -55,11 +55,11 @@
             var widgetList = findWidgetsByPageId(pageId);
             console.log("widgetList"+ widgetList);
             for(widget in widgetList){
-                    var lastWidget = widgets[widget.length - 1];
-                    newWidget._id = lastWidget._id +1;
-                    console.log("Widget id"+ newWidget._id);
+                   // var lastWidget = widgets[widget.length - 1];
+                  //  newWidget._id = lastWidget._id +1;
+                   // console.log("Widget id"+ newWidget._id);
                     widgets.push(newWidget);
-                    console.log(widgets);
+                    console.log(newWidget);
                     return newWidget;
 
 
