@@ -53,14 +53,17 @@
 
         }
         function findPageByWebsiteId(websiteId) {
-            var pageLists =[];
+           /* var pageLists =[];
             for (var page in pages) {
                 if (pages[page].websiteId === websiteId) {
                     pageLists.push(pages[page]);
                 }
 
             }
-            return pageLists;
+            return pageLists;*/
+
+            var url = '/api/user/'+ userId + '/website' + websiteId +'/page' ;
+            return $http.get(url);
 
         }
         function findPageById(pageId){

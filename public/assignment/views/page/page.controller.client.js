@@ -16,9 +16,22 @@
         vm.uid =uid;
         vm.edit = edit;
 
+
+
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(wid);
+            PageService.findPageByWebsiteId(wid)
+                .success(function (page) {
+                    if (page != null) {
+                        console.log("in success");
+                        console.log(page);
+                        vm.pages = page;
+                    }
+                }).error(function () {
+                console.log("error in controller");
+
+            });
         }
+
         init();
 
         function edit(pageId){
