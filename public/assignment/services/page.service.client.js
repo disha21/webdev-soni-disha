@@ -7,13 +7,13 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
-        var pages = [
+    function PageService($http) {
+       /* var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456" },
             { "_id": "432", "name": "Post 2", "websiteId": "456" },
             { "_id": "543", "name": "Post 3", "websiteId": "456" },
             { "_id": "549", "name": "Post 4", "websiteId": "123" }
-        ];
+        ];*/
 
 
         var api = {
@@ -26,8 +26,8 @@
         };
 
         return api;
-        function createPage(websiteId, newPage)  {
-
+        function createPage(userId,websiteId, newPage)  {
+/*
             var pageList =[];
             console.log("pages"+ findPageByWebsiteId(websiteId));
             var pageList = findPageByWebsiteId(websiteId);
@@ -46,13 +46,22 @@
                     console.log(pages);
                     return newPageObject;
                 }else{
-                    return null;
+                    return null
                 }
             }
+*/
 
+            var page = {
+                name:newPage.name,
+                websiteId: websiteId
+            };
+
+            console.log("user"+userId+  "website"+ websiteId);
+
+            return $http.post('/api/user/'+ userId +'/website/' + websiteId +'/page',page);
 
         }
-        function findPageByWebsiteId(websiteId) {
+        function findPageByWebsiteId(userId ,websiteId) {
            /* var pageLists =[];
             for (var page in pages) {
                 if (pages[page].websiteId === websiteId) {
@@ -62,37 +71,54 @@
             }
             return pageLists;*/
 
-            var url = '/api/user/'+ userId + '/website' + websiteId +'/page' ;
+
+            var url = '/api/user/'+ userId + '/website/' + websiteId +'/page' ;
             return $http.get(url);
 
         }
-        function findPageById(pageId){
-            for (var page in pages) {
+        function findPageById(userId, websiteId ,pageId){
+          /*  for (var page in pages) {
                 if (pages[page]._id === pageId) {
                     return pages[page];
                 }
             }
-            return null;
+            return null;*/
+            console.log("In server" + userId + websiteId + pageId);
+            var url = '/api/user/'+ userId + '/website/' + websiteId +"/page/" +pageId ;
+            return $http.get(url);
         }
-        function updatePage(pageId, page)   {
-            for (var page in pages) {
+
+        function updatePage(userId,websiteId, updatedPage)   {
+         /*   for (var page in pages) {
                 if (pages[page]._id === pageId) {
                     pages[page].name = page.name;
                     return true;
                 }
             }
-            return false;
+            return false;*/
+
+            console.log("in service" +userId + websiteId + updatedPage._id);
+            var url = '/api/user/'+ userId +'/website/'+ websiteId + '/page/'+updatedPage._id;
+            console.log("in service" + url);
+
+            return $http.put(url,updatedPage);
 
         }
-        function deletePage(pageId) {
-            for (var page in pages) {
+        function deletePage(userId,websiteId,pageId) {
+            /*for (var page in pages) {
                 if (pages[page]._id === pageId) {
                     pages.splice(page, 1);
                     return pages;
 
 
                 }
-            }
+            }*/
+
+            console.log("in service" +userId +  websiteId + pageId);
+            var url = '/api/user/'+ userId +'/website/'+ websiteId +'/page/' +pageId;
+            return $http.delete(url);
+
+
         }
 
 
