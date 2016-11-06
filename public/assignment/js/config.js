@@ -4,7 +4,7 @@
 
 
 (function() {
-    angular.module("WebAppMaker",['ngRoute'])
+    angular.module("WebAppMaker",["ngRoute","Directives"])
         .config(Config);
     function Config($routeProvider) {
         $routeProvider
