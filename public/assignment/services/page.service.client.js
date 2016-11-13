@@ -30,25 +30,27 @@
 
             var pageList =[];
             console.log("pages"+ findPageByWebsiteId(websiteId));
+            console.log("websiteid"+ websiteId);
             var pageList = findPageByWebsiteId(websiteId);
             console.log("pageList"+ pageList);
-            for(page in pageList){
-                if (page.name!== newPage.name) {
-                    var lastPage = pages[pages.length - 1];
-                    var page_id = lastPage._id +1;
-                    console.log(lastPage._id);
-                    var newPageObject =  {_id: page_id,
-                        name: newPage.name ,
-                        websiteId:websiteId
-                    };
-                    console.log(newPageObject);
-                    pages.push(newPageObject);
-                    console.log(pages);
-                    return newPageObject;
-                }else{
+            for (page in pageList) {
+                if (pageList[page].name === newPage.name) {
                     return null;
                 }
             }
+
+            var page_id = (new Date()).getTime();
+            console.log(page_id);
+            var newPageObject = {
+                _id: page_id,
+                name: newPage.name,
+                websiteId: websiteId
+            };
+            console.log("newPageObject");
+            console.log(newPageObject);
+            pages.push(newPageObject);
+            console.log(pages);
+            return newPageObject;
 
 
         }
@@ -64,8 +66,13 @@
 
         }
         function findPageById(pageId){
+            console.log(pageId);
+            //var pageId = parseInt(pageId);
             for (var page in pages) {
-                if (pages[page]._id === pageId) {
+                console.log(pages[page]);
+                if (pages[page]._id == pageId) {
+                    console.log("pages[page]");
+                    console.log(pages[page]);
                     return pages[page];
                 }
             }

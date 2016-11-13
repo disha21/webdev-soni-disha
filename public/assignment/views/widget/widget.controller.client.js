@@ -28,6 +28,8 @@
         function init () {
 
              vm.widgets = WidgetService.findWidgetsByPageId(pid);
+            console.log("vm.widgets");
+            console.log(vm.widgets);
 
         }
         init();
@@ -72,42 +74,41 @@
                 "text": "sample"
             };
 
-            vm.widgetHeader = WidgetService.createWidget(pid, newWidgetHeader);
-            if (vm.widgetHeader) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHeader._id);
+            vm.widget = WidgetService.createWidget(pid, newWidgetHeader);
+            if (vm.widget) {
+                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
                 console.log($location.url);
-
-            }
-            console.log(vm.widgetHeader._id);
-        }
-
-        function addHtml() {
-
-            var newWidgetHtml =
-            { "_id": "11121", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"};
-
-
-            vm.widgetHtml = WidgetService.createWidget(pid, newWidgetHtml);
-            if (vm.widgetHtml) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHtml._id);
 
             }
             console.log(vm.widget);
         }
 
+        function addHtml() {
+
+            var newWidgetHtml =
+            { "_id": "11121", "widgetType": "HTML", "pageId": pid, "text": "<p>Lorem ipsum</p>"};
+
+
+            vm.widget = WidgetService.createWidget(pid, newWidgetHtml);
+            if ( vm.widget) {
+
+                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
+
+            }
+            console.log( vm.widget);
+        }
+
         function addImage() {
 
             var newWidgetImage =
-                { "_id": "345000", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+                { "_id": "345000", "widgetType": "IMAGE", "pageId": pid, "width": "100%",
                     "url": "http://lorempixel.com/400/200/"};
 
 
-            vm.widgetImage = WidgetService.createWidget(pid, newWidgetImage);
-            if (vm.widgetImage) {
+            vm.widget = WidgetService.createWidget(pid, newWidgetImage);
+            if (vm.widget) {
 
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetImage._id);
+                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
 
             }
             console.log(vm.widget);
@@ -116,13 +117,13 @@
         function addYoutube() {
 
             var newYoutube =
-                { "_id": "67800", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+                { "_id": "67800", "widgetType": "YOUTUBE", "pageId": pid, "width": "100%",
                     "url": "https://youtu.be/AM2Ivdi9c4E" };
 
-            vm.widgetYoutube = WidgetService.createWidget(pid, newYoutube);
-            if (vm.widgetYoutube) {
+            vm.widget = WidgetService.createWidget(pid, newYoutube);
+            if (vm.widget) {
 
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetYoutube._id);
+                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
             }
             console.log(vm.widget);
         }

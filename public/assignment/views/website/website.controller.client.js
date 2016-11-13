@@ -50,7 +50,7 @@
         function addWebsite(newWebsite){
             console.log("In add website" + newWebsite);
             vm.website = WebsiteService.createWebsite(uid,newWebsite);
-            if(website)
+            if(vm.website)
                 $location.url("user/" + uid +"/website/");
             console.log(vm.website);
         }

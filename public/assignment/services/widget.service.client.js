@@ -54,25 +54,30 @@
             console.log("widgets"+ findWidgetsByPageId(pageId));
             var widgetList = findWidgetsByPageId(pageId);
             console.log("widgetList"+ widgetList);
-            for(widget in widgetList){
+           // for(widget in widgetList){
                    // var lastWidget = widgets[widget.length - 1];
                   //  newWidget._id = lastWidget._id +1;
                    // console.log("Widget id"+ newWidget._id);
+                    newWidget._id = (new Date()).getTime().toString();
                     widgets.push(newWidget);
                     console.log(newWidget);
                     return newWidget;
 
 
 
-            }
+           // }
 
         }
         function findWidgetsByPageId(pageId) {
 
             var widgetLists =[];
             for (var widget in widgets) {
-                if (widgets[widget].pageId === pageId) {
+                console.log("widgets[widget]");
+                console.log(widgets[widget]);
+                if (widgets[widget].pageId == pageId) {
                     widgetLists.push( widgets[widget]);
+                }else{
+                    console.log("Not found");
                 }
             }
             return widgetLists;

@@ -29,6 +29,7 @@
         vm.uid = uid;
         function init() {
             vm.user = UserService.findUserById(uid);
+            console.log(vm.user);
 
         }
 

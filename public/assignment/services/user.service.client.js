@@ -52,7 +52,7 @@
                 } else {
                     console.log("1... " + users);
                     var lastUser = users[users.length - 1];
-                    var user_id = lastUser._id +1;
+                    var user_id = (new Date()).getTime();
                     console.log(user_id );
                     var newUserObject =  {_id: user_id,
                         username:newUser.username ,
@@ -60,6 +60,7 @@
                         firstName: "",
                         lastName: ""
                     };
+                    console.log("newUserObject");
                     console.log(newUserObject);
                     users.push(newUserObject);
                     return newUserObject;
@@ -69,7 +70,7 @@
 
          function findUserById(userid) {
              for (var user in users) {
-                 if (users[user]._id === userid) {
+                 if (users[user]._id == userid) {
                      return users[user];
                  }
              }

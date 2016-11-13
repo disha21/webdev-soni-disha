@@ -44,7 +44,8 @@
         function addPage(newPage){
             console.log("In add page" + newPage);
             vm.page = PageService.createPage(wid,newPage);
-            if(page)
+            console.log(vm.page);
+            if(vm.page)
                 $location.url("user/" + uid +"/website/"+ wid +"/page/");
             console.log(vm.page);
         }
@@ -61,9 +62,11 @@
         vm.wid=wid;
         vm.pid = pid;
         vm.deletePage = deletePage;
+
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(wid);
+           // vm.pages = PageService.findPageByWebsiteId(wid);
             vm.page = PageService.findPageById(pid);
+            console.log("vm.page" + pid);
             console.log(vm.page);
 
         }
