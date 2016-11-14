@@ -88,7 +88,7 @@
             var promise = WebsiteService.createWebsite(uid, newWebsite);
             promise
                 .success(function (website) {
-                    if (website) {
+                    if (vm.website) {
                         vm.website = website;
                         $location.url("user/" + uid + "/website/");
                         // console.log("/user/" + user._id);

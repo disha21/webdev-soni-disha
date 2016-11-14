@@ -48,28 +48,6 @@
         }
         init();
 
-        /*   function edit(widgetId){
-
-            console.log("in edit pagelist" +uid+ wid+ pid+ widgetId  );
-             vm.page = PageService.findPageById(pageId);
-             if(vm.page){
-             $location.url("user/" + uid +"/website/" + wid +"/page/" + pageId);
-             }
-             console.log(vm.page);
-            WidgetService
-                .findWidgetById(uid,wid,pid,widgetId)
-                .success(function (widget) {
-                    console.log("in success widget");
-                   // console.log(widget);
-                    vm.widget = widget;
-                    console.log( vm.widget);
-                    $location.url("user/" + uid +"/website/" + wid +"/page/" + pid + "/widget/" + widgetId);
-
-                }).error(function () {
-                console.log("error in controller");
-
-            });
-      }*/
 
 
        function checkSafeHtml(html) {
@@ -117,8 +95,8 @@
             promise
                 .success(function (widgetHeader) {
                     if (widgetHeader) {
-                        vm.widgetHeader = widgetHeader;
-                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHeader._id);
+                        vm.widget = widgetHeader;
+                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
                         // console.log("/user/" + user._id);
 
                     } else {
@@ -128,23 +106,12 @@
 
             });
 
-
-
-/*
-            vm.widgetHeader = WidgetService.createWidget(pid, newWidgetHeader);
-            if (vm.widgetHeader) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHeader._id);
-                console.log($location.url);
-
-            }
-            console.log(vm.widgetHeader._id);*/
         }
 
         function addHtml() {
 
             var newWidgetHtml =
-            {  "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"};
+            {  "widgetType": "HTML", "pageId": pid, "text": "<p>Lorem ipsum</p>"};
 
 
 
@@ -153,8 +120,8 @@
             promise
                 .success(function (widgetHtml) {
                     if (widgetHtml) {
-                        vm.widgetHtml= widgetHtml;
-                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHtml._id);
+                        vm.widget= widgetHtml;
+                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
                         // console.log("/user/" + user._id);
 
                     } else {
@@ -164,14 +131,6 @@
 
             });
 
-            /*
-            vm.widgetHtml = WidgetService.createWidget(pid, newWidgetHtml);
-            if (vm.widgetHtml) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetHtml._id);
-
-            }
-            console.log(vm.widget);*/
         }
 
         function addImage() {
@@ -184,8 +143,8 @@
             promise
                 .success(function (widgetImage) {
                     if (widgetImage) {
-                        vm.widgetImage= widgetImage;
-                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetImage._id);
+                        vm.widget= widgetImage;
+                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" +  vm.widget._id);
                         // console.log("/user/" + user._id);
 
                     } else {
@@ -195,21 +154,11 @@
 
             });
 
-
-
-           /*         vm.widgetImage = WidgetService.createWidget(pid, newWidgetImage);
-            if (vm.widgetImage) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetImage._id);
-
-            }
-            console.log(vm.widget);
-            console.log($location.url);*/
         }
         function addYoutube() {
 
             var newYoutube =
-                { "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+                { "widgetType": "YOUTUBE", "pageId": pid, "width": "100%",
                     "url": "https://youtu.be/AM2Ivdi9c4E" };
 
 
@@ -218,8 +167,8 @@
             promise
                 .success(function (widgetYoutube) {
                     if (widgetYoutube) {
-                        vm.widgetYoutube= widgetYoutube;
-                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetYoutube._id);
+                        vm.widget= widgetYoutube;
+                        $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" +  vm.widget._id);
                         // console.log("/user/" + user._id);
 
                     } else {
@@ -229,13 +178,6 @@
 
             });
 
-
-         /*   vm.widgetYoutube = WidgetService.createWidget(pid, newYoutube);
-            if (vm.widgetYoutube) {
-
-                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widgetYoutube._id);
-            }
-            console.log(vm.widget);*/
         }
     }
 
@@ -277,15 +219,6 @@
             $location.url("user/" + uid + "/website/" + wid +"/page/" +pid +"/widget/" );
 
         }
-
-       /* function editWidget(widgetId,updatedWidget){
-            console.log("in edit widgetedit" + widgetId);
-            vm.widget = WidgetService.updateWidget(wgid,updatedWidget);
-            if(vm.widget){
-                $location.url("user/" + uid +"/website/" + wid + "/page/" + pid + "/widget");
-            }
-            console.log(vm.widget);
-        }*/
 
         function deleteWidget() {
             console.log("In delete" + wgid);
