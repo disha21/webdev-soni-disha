@@ -12,17 +12,18 @@
 
     function WebsiteListController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
+        var uid = $routeParams.uid;
         vm.uid = uid;
         vm.edit = edit;
 
         function init() {
             WebsiteService.findWebsitesByUser(uid)
-                .success(function (website) {
-                    if (website != null) {
+                .success(function (user) {
+                    if (user.websites != null) {
                         console.log("in success");
-                        console.log(website);
-                        vm.websites = website;
+
+                        vm.websites = user.websites ;
+                        console.log(vm.websites);
                     }
                 }).error(function () {
                 console.log("error in controller");
@@ -57,33 +58,34 @@
 
     function NewWebsiteController(WebsiteService, $routeParams, $location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
+        var uid = ($routeParams.uid);
         vm.uid = uid;
         vm.addWebsite = addWebsite;
 
         function init() {
             WebsiteService.findWebsitesByUser(uid)
-                .success(function (website) {
-                    if (website != null) {
+                .success(function (user) {
+                    if (user.websites != null) {
                         console.log("in success");
-                        console.log(website);
-                        vm.websites = website;
+
+                        vm.websites = user.websites ;
+                        console.log(vm.websites);
                     }
                 }).error(function () {
                 console.log("error in controller");
 
-
-
             });
         }
-
 
         init();
 
 
 
+
+
         function addWebsite(newWebsite) {
-            console.log("In add website" + newWebsite);
+            console.log("In add website");
+            console.log(newWebsite);
 
             var promise = WebsiteService.createWebsite(uid, newWebsite);
             promise
@@ -104,8 +106,8 @@
 
     function EditWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
-        var wid = parseInt($routeParams.wid);
+        var uid = ($routeParams.uid);
+        var wid = ($routeParams.wid);
         vm.uid = uid;
         vm.wid = wid;
 
@@ -114,16 +116,17 @@
 
         function init() {
 
-            WebsiteService
-                .findWebsitesByUser(uid)
-                .success(function (website) {
-                    if (website != null) {
+            WebsiteService.findWebsitesByUser(uid)
+                .success(function (user) {
+                    if (user.websites != null) {
                         console.log("in success");
-                        console.log(website);
-                        vm.websites = website;
+
+                        vm.websites = user.websites ;
+                        console.log(vm.websites);
                     }
                 }).error(function () {
                 console.log("error in controller");
+
             });
 
 
@@ -157,8 +160,6 @@
             }).error(function () {
 
             });*/
-
-
 
 
         }

@@ -8,14 +8,6 @@
         .factory("PageService", PageService);
 
     function PageService($http) {
-       /* var pages = [
-            { "_id": "321", "name": "Post 1", "websiteId": "456" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456" },
-            { "_id": "549", "name": "Post 4", "websiteId": "123" }
-        ];*/
-
-
         var api = {
             "createPage"   : createPage,
             "findPageByWebsiteId" : findPageByWebsiteId,
@@ -27,32 +19,9 @@
 
         return api;
         function createPage(userId,websiteId, newPage)  {
-/*
-            var pageList =[];
-            console.log("pages"+ findPageByWebsiteId(websiteId));
-            var pageList = findPageByWebsiteId(websiteId);
-            console.log("pageList"+ pageList);
-            for(page in pageList){
-                if (page.name!== newPage.name) {
-                    var lastPage = pages[pages.length - 1];
-                    var page_id = lastPage._id +1;
-                    console.log(lastPage._id);
-                    var newPageObject =  {_id: page_id,
-                        name: newPage.name ,
-                        websiteId:websiteId
-                    };
-                    console.log(newPageObject);
-                    pages.push(newPageObject);
-                    console.log(pages);
-                    return newPageObject;
-                }else{
-                    return null
-                }
-            }
-*/
-
             var page = {
                 name:newPage.name,
+                title:newPage.title,
                 websiteId: websiteId
             };
 

@@ -10,9 +10,9 @@
 
     function PageListController($routeParams,PageService,$location) {
         var vm = this;
-        var wid = parseInt($routeParams.wid);
+        var wid = $routeParams.wid;
         vm.wid = wid;
-        var uid = parseInt($routeParams.uid);
+        var uid = $routeParams.uid;
         vm.uid =uid;
         vm.edit = edit;
 
@@ -20,11 +20,11 @@
 
         function init() {
             PageService.findPageByWebsiteId(uid,wid)
-                .success(function (page) {
-                    if (page != null) {
+                .success(function (website) {
+                    if (website.pages != null) {
                         console.log("in success");
                         console.log( "chevck" );
-                        vm.pages = page;
+                        vm.pages = website.pages;
                             console.log( vm.pages);
 
 
@@ -39,11 +39,7 @@
 
         function edit(pageId){
             console.log("in edit pagelist" +uid+ wid+ pageId  );
-          /*  vm.page = PageService.findPageById(pageId);
-            if(vm.page){
-                $location.url("user/" + uid +"/website/" + wid +"/page/" + pageId);
-            }
-            console.log(vm.page);*/
+
             PageService
                 .findPageById(uid,wid,pageId)
                 .success(function (page) {
@@ -62,19 +58,21 @@
     }
     function NewPageController($routeParams,PageService,$location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
+        var uid = $routeParams.uid;
         vm.uid = uid;
-        var wid = parseInt($routeParams.wid);
+        var wid = $routeParams.wid;
         vm.wid = wid;
 
         vm.addPage = addPage;
         function addPage(newPage) {
             console.log("In add page" + newPage);
-
+            console.log(uid + ":" + wid);
             var promise = PageService.createPage(uid,wid ,newPage);
             promise
-                .success(function (page) {
-                    if (page) {
+                .success(function(page) {
+                    if (vm.page) {
+                        console.log("In add page success" + page);
+                        console.log(page);
                         vm.page = page;
                         $location.url("user/" + uid + "/website/" + wid +"/page/");
                         // console.log("/user/" + user._id);
@@ -91,9 +89,9 @@
 
     function EditPageController($routeParams,PageService,$location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
-        var wid = parseInt($routeParams.wid);
-        var pid = parseInt($routeParams.pid);
+        var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
+        var pid = $routeParams.pid;
         vm.uid =uid;
         vm.wid=wid;
         vm.pid = pid;

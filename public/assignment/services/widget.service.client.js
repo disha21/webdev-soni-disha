@@ -22,8 +22,8 @@
 
         return api;
         
-        function sort(start,end) {
-            var url = '/api/user/:uid/website/:wid/page/:pid/widget?start=START&end=END';
+        function sort(start,end,pageId) {
+            var url = '/page/' + pageId +'widget?start=START&end=END';
             url = url.replace("START",start)
                      .replace("END",end);
             
@@ -33,8 +33,7 @@
             
         }
         function createWidget(userId,websiteId, pageId, newWidget)  {
-            console.log("user"+userId+  "website"+ websiteId + pageId);
-
+            console.log("user"+ userId+  "website"+ websiteId + pageId);
             return $http.post('/api/user/'+ userId +'/website/'+ websiteId +'/page/'+ pageId + '/widget',newWidget);
 
         }

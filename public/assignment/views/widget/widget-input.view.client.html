@@ -1,4 +1,5 @@
 
+
 <div class="clearfix"></div>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -24,10 +25,21 @@
     <form>
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
+            <div class="col-xs-9 col-sm-10 col-md-10">
+                <div class="form-group">
+                    <label for="widget-input-text">Text</label>
+                    <input type="text"  ng-model="model.widget.text" class="form-control" id="widget-input-text" placeholder="Text Input" value="">
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="form-group">
-                    <label for="widgetname">Name</label>
-                    <input type="text" class="form-control" id="widgetname" placeholder="Name" value=" ">
+                    <label for="widget-input-rows">Rows</label>
+                    <input type="text" ng-model="model.widget.rows" class="form-control" id="widget-input-rows" placeholder="Rows" value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
@@ -35,16 +47,25 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
-                <div ng-model="model.widget.text"
-                     text-angular
-                     ta-toolbar="[['h1','h2','h3','h4','h5','h6'],['bold','italics','underline','strikeThrough'],
-        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-        ['indent','outdent'],['html']]">
+                <div class="form-group ">
+                    <label for="widget-input-placeholder">Placeholder</label>
+                    <input type="text" ng-model="model.widget.placeholder" class="form-control" id="widget-input-placeholder" placeholder="Placeholder"
+                           value="">
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
         </div>
-
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10">
+                <div class="form-group">
+                    <label for="widget-youtube-formatted">Formatted</label>
+                    <input ng-model="model.widget.formatted" id ="widget-youtube-formatted" type="checkbox"/>
+                </div>
+                <a class="btn btn-danger button-buffer btn-block" ng-click="model.deleteWidget(model.widget._id)">Delete</a>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
+        </div>
     </form>
 
 
@@ -57,7 +78,7 @@
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-9 col-sm-10 col-md-10 text-header"></div>
             <div class="col-xs-1  col-sm-1 col-md-1 text-header">
-                <a href="#/user/{{model.uid}}/">
+                <a href="../user/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
@@ -65,3 +86,4 @@
         </div>
     </div>
 </nav>
+

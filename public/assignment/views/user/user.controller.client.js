@@ -13,18 +13,30 @@
         var vm = this;
         var uid = $routeParams.uid;
         vm.register = function (newUser) {
-            var promise = UserService.createUser(newUser);
-            promise
+            UserService
+                .findUserByUsername(newUser.username)
                 .success(function(user) {
-                    if (user) {
-                        $location.url("/user/" + user._id);
-                        console.log("/user/" + user._id);
+                    if (user!="0") {
+                        vm.error = "User already exists";
                     } else {
-                        vm.error = "User not created";
+                        UserService
+                            .createUser(newUser)
+                            .success(function(user) {
+                                if (user) {
+                                    $location.url("/user/" + user._id);
+                                    console.log("/user/" + user._id);
+                                } else {
+                                    vm.error = "User not created";
+                                }
+                            }).error(function() {
+
+                        });
                     }
                 }).error(function() {
 
             });
+
+
         }
     }
 
@@ -45,7 +57,7 @@
                         vm.user = user;
                     }
                 }).error(function(){
-                    console.log("error in controller");
+                    console.log("id not found");
 
             });
         }
@@ -68,6 +80,7 @@
                 }).error(function(){
                 console.log("error in controller");
 
+
             });
 
         }
@@ -85,12 +98,16 @@
             console.log(promise);
             promise
                 .success(function(user){
-                    console.log("User"+ user);
-                if (user == null) {
+                    console.log("User");
+                    console.log(user);
+                if (user === "0") {
                     vm.error = "User not found";
+                    console.log("User not found");
 
                 } else {
+
                     $location.url("/user/" + user._id);
+
                 }
             })
                 .error(function(nnn){

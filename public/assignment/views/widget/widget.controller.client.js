@@ -12,16 +12,13 @@
 
     function WidgetListController($routeParams, WidgetService,$location,$sce) {
         var vm = this;
-       // vm.edit = edit;
-
-
-        var uid = parseInt($routeParams.uid);
+        var uid = $routeParams.uid;
         vm.uid =uid;
-        var wid = parseInt($routeParams.wid);
+        var wid = $routeParams.wid;
         vm.wid =wid;
-        var pid = parseInt($routeParams.pid);
+        var pid = $routeParams.pid;
         vm.pid =pid;
-        var wgid = parseInt($routeParams.wgid);
+        var wgid = $routeParams.wgid;
         vm.wgid =wgid;
         vm.checkSafeHtml =checkSafeHtml;
         vm.checkSafeYoutubeUrl = checkSafeYoutubeUrl;
@@ -30,15 +27,18 @@
         function init() {
             console.log("in init");
             WidgetService.findWidgetsByPageId(uid,wid,pid)
-                .success(function (widget) {
-                    if (widget != null) {
+                .success(function (page) {
+                    console.log("page");
+                    console.log(page);
+                  //  if (page.widgets != null) {
                         console.log("in success");
                         console.log( "check" );
-                        vm.widgets = widget;
-                        console.log( vm.widgets);
+                        console.log( page.widgets);
+                        vm.widgets = page.widgets;
 
 
-                    }
+
+                  //  }
                 }).error(function () {
                 console.log("error in controller");
 
@@ -68,6 +68,7 @@
     }
 
     function NewWidgetController($routeParams, WidgetService,$location) {
+
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -80,6 +81,35 @@
         vm.addHtml = addHtml;
         vm.addImage = addImage;
         vm.addYoutube = addYoutube;
+        vm.addTextInput = addTextInput;
+
+
+        function addTextInput() {
+
+            var newTextInput= {
+                "widgetType": "INPUT",
+                "pageId": pid
+
+            };
+
+
+            var promise = WidgetService.createWidget(uid,wid, pid, newTextInput);
+            promise
+                .success(function (widget) {
+                    console.log("In add widget success" + widget);
+
+                    console.log("in success");
+
+                    console.log("widget ID:" + widget._id);
+                    vm.widget = widget;
+                    $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
+                    // console.log("/user/" + user._id);
+                }).error(function () {
+
+            });
+
+        }
+
 
         function addHeader() {
 
@@ -93,15 +123,15 @@
 
             var promise = WidgetService.createWidget(uid,wid, pid, newWidgetHeader);
             promise
-                .success(function (widgetHeader) {
-                    if (widgetHeader) {
-                        vm.widget = widgetHeader;
+                .success(function (widget) {
+                    console.log("In add widget success" + widget);
+
+                        console.log("in success");
+
+                        console.log("widget ID:" + widget._id);
+                        vm.widget = widget;
                         $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
                         // console.log("/user/" + user._id);
-
-                    } else {
-                        vm.error = "Widget not created";
-                    }
                 }).error(function () {
 
             });
@@ -111,9 +141,7 @@
         function addHtml() {
 
             var newWidgetHtml =
-            {  "widgetType": "HTML", "pageId": pid, "text": "<p>Lorem ipsum</p>"};
-
-
+            {  "widgetType": "HTML", "pageId": pid, "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."};
 
 
             var promise = WidgetService.createWidget(uid,wid, pid, newWidgetHtml);
@@ -122,7 +150,6 @@
                     if (widgetHtml) {
                         vm.widget= widgetHtml;
                         $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/" + vm.widget._id);
-                        // console.log("/user/" + user._id);
 
                     } else {
                         vm.error = "Widget not created";
@@ -183,24 +210,23 @@
 
     function EditWidgetController($routeParams, WidgetService,$location) {
         var vm = this;
-        var uid = parseInt($routeParams.uid);
-        var wid = parseInt($routeParams.wid);
-        var pid = parseInt($routeParams.pid);
-        var wgid = parseInt($routeParams.wgid);
+        var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
+        var pid = $routeParams.pid;
+        var wgid = $routeParams.wgid;
         vm.uid = uid;
         vm.wid = wid;
         vm.pid = pid;
         vm.wgid = wgid;
         vm.deleteWidget = deleteWidget;
-       // vm.editWidget = editWidget;
         vm.updateWidget = updateWidget;
+        console.log("widget id: " + vm.wgid);
 
         function init() {
             WidgetService
                 .findWidgetById(uid,wid,pid,wgid)
                 .success(function (widget) {
                     console.log("in success of edit");
-
                     vm.widget = widget;
                     console.log(vm.widget);
                     $location.url("user/" + uid +"/website/" + wid +"/page/" + pid + "/widget/" + wgid);
