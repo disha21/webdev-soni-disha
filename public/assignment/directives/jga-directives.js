@@ -14,6 +14,7 @@
             var start = -1;
             var end = -1;
 
+
             element
                 .sortable({
                     start:function (event,ui) {
@@ -23,6 +24,7 @@
                      end = ($(ui.item).index());
                         scope.SortableController.sort(start,end);
                     }
+
 
             });
         }
@@ -35,13 +37,16 @@
 
     }
 
-    function SortableController(WidgetService) {
+    function SortableController(PageService,$routeParams) {
        var vm = this;
         vm.sort = sort;
+        var pageId = $routeParams.pid;
+        var websiteId = $routeParams.wid;
+        var userId = $routeParams.uid;
 
         function sort(start, end) {
             console.log([start,end]);
-            WidgetService.sort(start,end);
+            PageService.sortWidgets(start,end,pageId,websiteId,userId);
 
         }
     }

@@ -13,11 +13,24 @@
             "findPageByWebsiteId" : findPageByWebsiteId,
             "findPageById":findPageById,
             "updatePage":updatePage,
-            "deletePage":deletePage
+            "deletePage":deletePage,
+            sortWidgets:sortWidgets
 
         };
 
         return api;
+
+
+        function sortWidgets(start,end,pageId,websiteId,userId) {
+            var url = '/api/user/'+ userId +'/website/'+ websiteId +'/page/' + pageId +'/widget?start=START&end=END';
+            url = url.replace("START",start)
+                .replace("END",end);
+
+
+
+            $http.put(url);
+
+        }
         function createPage(userId,websiteId, newPage)  {
             var page = {
                 name:newPage.name,

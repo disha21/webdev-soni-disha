@@ -15,23 +15,13 @@
             "findWidgetsByPageId" : findWidgetsByPageId,
             "findWidgetById":findWidgetById,
             "updateWidget":updateWidget,
-            "deleteWidget":deleteWidget,
-            "sort":sort
+            "deleteWidget":deleteWidget
+
 
         };
 
         return api;
-        
-        function sort(start,end,pageId) {
-            var url = '/page/' + pageId +'widget?start=START&end=END';
-            url = url.replace("START",start)
-                     .replace("END",end);
-            
 
-
-            $http.put(url);
-            
-        }
         function createWidget(userId,websiteId, pageId, newWidget)  {
             console.log("user"+ userId+  "website"+ websiteId + pageId);
             return $http.post('/api/user/'+ userId +'/website/'+ websiteId +'/page/'+ pageId + '/widget',newWidget);
