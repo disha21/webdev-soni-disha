@@ -30,15 +30,7 @@ module.exports =function () {
     }
 
 
-    function updateSortingWidget(pageId, start, end) {
-        return WidgetModel
 
-            .then (function (widgets) {
-
-    })
-    }
-
-    // 0 1 2 3 4 5 6 7 8 9
 
     function uploadImage(widgetId,imagefile,width){
         return WidgetModel.findById(widgetId)

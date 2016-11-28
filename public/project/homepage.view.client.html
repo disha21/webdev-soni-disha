@@ -1,0 +1,39 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
+        <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8 text-header ">
+            <b>Project Page</b>
+        </div>
+
+    </div>
+
+
+</nav>
+<div class="container">
+
+    <div class="row" style="padding-top: 160px">
+        <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+            <div class="input-group">
+                <input ng-model="itemName" type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+        <button class="btn btn-secondary" ng-click = "model.searchByItem(itemName)" type="button">Go!</button>
+      </span>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="row" ng-repeat="item in model.itemList">
+
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
+
+            <a class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.Title}}</a>
+            <div class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.ConvertedCurrentPrice.Value}}</div>
+            <img src="{{item.GalleryURL}}"  height="100px" class="col-xs-2 col-sm-2 col-md-2"/>
+            <a class="col-xs-1 col-sm-1 col-md-1 "></a>
+        </div>
+
+
+
+</div>

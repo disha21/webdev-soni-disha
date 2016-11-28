@@ -33,8 +33,6 @@ module.exports = function () {
                 console.log(pageObj.widgets);
                 return pageObj.save();
 
-
-
     });
     }
 
