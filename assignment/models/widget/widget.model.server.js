@@ -92,14 +92,35 @@ module.exports =function () {
         }
 
 
-        function deleteWidget(widgetId) {
+        function deleteWidget(widgetId,pageId) {
+            console.log("in delete");
+            console.log("widgetId" + widgetId);
+            console.log("pageId" + pageId);
             return WidgetModel.remove({
-                _id : widgetId
-            });
+                _id: widgetId
+            })
+                .then(function (widgetObj) {
+                    return model
+                        .pageModel
+                        .findPageById(pageId)
+                        .then(function (pageObj) {
+                            console.log("In findpage :pageObj");
+                            console.log(pageObj);
+                            for(w in pageObj.widgets ){
+                                //console.log("w "+ pageObj.widgets[w]);
+                              if(pageObj.widgets[w] == widgetId)  {
+                                  pageObj.widgets.splice(w, 1);
+                              }
+                            }
+                            console.log("pageObj");
+                            console.log(pageObj);
+                            return pageObj.save();
+
+                        });
+
+                });
+
 
         }
-
-
-
 
 };

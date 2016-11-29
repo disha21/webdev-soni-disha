@@ -121,9 +121,10 @@ module.exports = function (app, model) {
 
     function deleteWidget(req, res) {
         var widgetId = (req.params.widgetId);
+        var pageId = (req.params.pageId);
         model
             .widgetModel
-            .deleteWidget(widgetId)
+            .deleteWidget(widgetId,pageId)
             .then(function (status) {
                     res.send(200);
                 },function (error) {
