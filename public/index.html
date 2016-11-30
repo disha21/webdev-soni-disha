@@ -1,0 +1,379 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disha's Homepage</title>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+          rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Kong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- //for-mobile-apps -->
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- js -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smooth-scrolling -->
+
+</head>
+<body>
+<!-- banner -->
+<div class="banner" id="home">
+    <div class="container">
+        <div class="top-header row">
+            <script src="js/classie.js"></script>
+            <!--top-nav---->
+            <div class="top-nav">
+                <div class="menu_box_list">
+                    <ul>
+                        <li><a class="scroll" href="#about"><span>about</span></a></li>
+                        <li><a class="scroll" href="#education"><span>Education</span></a></li>
+                        <li><a class="scroll" href="#workExperience"><span>Work Experience</span></a></li>
+                        <li><a class="scroll" href="#skills"><span>Skills</span></a></li>
+                        <li><a class="scroll" href="#projects"><span>Projects</span></a></li>
+                        <li><a class="scroll" href="#contact"><span>Contact</span></a></li>
+                        <!--- add for project documentation link-->
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="banner-info">
+            <div class="banner-left">
+                <img src="images/myPic.jpg" class="img-circle" alt=""/>
+            </div>
+            <div class="banner-right">
+                <h1> Disha Soni</h1>
+                <div class="border"></div>
+                <h2>Software Developer</h2>
+                <a href="#">DownLoad My Resume</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--/header-banner-->
+<!--about-->
+<div class="about text-center" id="about">
+    <div class="container">
+        <h3>ABOUT ME</h3>
+        <div class="strip text-center"><img src="images/about.png" alt=" "/></div>
+        <p>I am a Computer Science Masters student at Northeastern University.I have done an internship at TARA.Inc,San Jose during summer 2016
+            using Front-End technologies and PHP Laravel framework.
+            Prior to my masters,I was working as a software engineer at Accenture for an insurance client. </p>
+        <ul>
+            <li><a class="fb" href="facebook.com/disha.soni.9"></a></li>
+            <li><a class="twit" href="#"></a></li>
+            <li><a class="in" href="https://www.linkedin.com/in/dishasoni"></a></li>
+        </ul>
+    </div>
+</div>
+<!--//about-->
+
+<!--my skill-->
+<div class="my-skills text-center" id="skills">
+    <div class="container">
+        <h3>MY SKILLS</h3>
+        <div class="strip text-center"><img src="images/skill.png" alt=" "/></div>
+        <div class="skill-grids">
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-1"></div>
+                <p>JAVA</p>
+            </div>
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-2"></div>
+                <p>Node.js</p>
+            </div>
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-3"></div>
+                <p>Angular</p>
+            </div>
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-4"></div>
+                <p>Html 5 / CSS 3</p>
+            </div>
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-5"></div>
+                <p>MapReduce</p>
+            </div>
+            <div class="col-md-2 skills-grid text-center">
+                <div class="circle" id="circles-6"></div>
+                <p>SQL</p>
+            </div>
+            <div class="clearfix"></div>
+            <script type="text/javascript" src="js/circles.js"></script>
+            <script>
+                var colors = [
+                    ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff']
+                ];
+                for (var i = 1; i < 7; i++) {
+                    var child = document.getElementById('circles-' + i),
+                            percentage = 30 + (i * 10);
+
+                    Circles.create({
+                        id: child.id,
+                        percentage: percentage,
+                        radius: 80,
+                        width: 10,
+                        number: percentage / 1,
+                        text: '%',
+                        colors: colors[i - 1]
+                    });
+                }
+
+            </script>
+        </div>
+    </div>
+</div>
+<!--//my skill-->
+<div class="my-skill-back"></div>
+<!--education-->
+<div class="education text-center" id="education">
+    <div class="container">
+        <div class="edu-info">
+            <h3>EDUCATION</h3>
+        </div>
+        <div class="strip text-center"><img src="images/edu.png" alt=" "/></div>
+        <div class="edu-grids">
+            <div class="col-md-6 edu-grid">
+                <p>2015 - Present</p><span>Pursuing</span>
+                <img src="images/arrow.png" alt=""/>
+                <div class="edu-border">
+                    <div class="edu-grid-master">
+                        <h3>MASTERS DEGREE IN COMPUTER SCIENCE</h3>
+                        <h4>Northeastern University,Boston</h4>
+                    </div>
+                    <div class="edu-grid-info">
+                        <h5>This is Photoshop's version Lorem Ipsum.
+                            Well, the way they make shows is, they make one show.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 edu-grid">
+                <p>2008 - 2012</p><span>Graduated</span>
+                <img src="images/arrow.png" alt=""/>
+                <div class="edu-border">
+                    <div class="edu-grid-master">
+                        <h3>BACHELORS DEGREE IN ELECTRONICS AND COMMUNICATION</h3>
+                        <h4>Jaypee University,India</h4>
+                    </div>
+                    <div class="edu-grid-info">
+                        <h5>This is Photoshop's version Lorem Ipsum.
+                            Well, the way they make shows is, they make one show.</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>
+<!--//education-->
+<div class="strip-border"><p></p></div>
+<!--work-->
+<div class="work-experience text-center" id="workExperience" >
+
+    <div class="container">
+        <div class="work-info">
+            <h3>WORK EXPERIENCE</h3>
+        </div>
+        <div class="strip text-center"><img src="images/work.png" alt=" "/></div>
+        <div class="work-grids text-center">
+            <div class="col-md-6 w-grid">
+                <div class="work-grid">
+                    <h3>June 2016 - August 2016</h3>
+                    <div class="work-grid-info">
+                        <h4>TARA Inc.</h4>
+                        <h5>Software Engineering Intern </h5>
+                        <p>Designed and implemented a job application dashboard for employers and contractors using HTML, CSS, jQuery, Semantic Ui,
+                            JavaScript, Laravel PHP framework and gulp build tool.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 w-grid">
+                <div class="work-grid">
+                    <h3>2013 - 2015</h3>
+                    <div class="work-grid-info">
+                        <h4>Accenture</h4>
+                        <h5>Software Engineer</h5>
+                        <p>Developed and maintained a client server based distributed application for an insurance client
+                            using ASP .NET framework with SQL server 2005 as the data store.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="project" id="projects">
+    <div class="container">
+        <div class="project-info text-center">
+            <h3>PROJECTS</h3>
+            <div class="strip text-center"><img src="images/blog.png" alt=" "/></div>
+        </div>
+        <div class="project-grids">
+            <div class="col-md-4 project-text-info">
+                <div class="project-grid">
+                    <a href="single.html"><img src="images/a.jpg" alt=""/></a>
+                    <div class="project-text">
+                        <a href="single.html">Nature is lethal but it doesn't hold a candle to man.</a>
+                        <div class="stripa"></div>
+                        <p>Your bones don't break, mine do. That's clear. Your cells react to bacteria
+                            and viruses differently than mine. You don't get sick, I do.</p>
+                    </div>
+
+                    <div class="project-para">
+                        <ul>
+                            <li><a href="#">3 Comments</a></li>
+                            <li><a href="#">8 Share</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-pos">
+                        <p>5<span>May</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 project-text-info">
+                <div class="project-grid">
+                    <a href="single.html"><img src="images/a.jpg" alt=""/></a>
+                    <div class="project-text">
+                        <a href="single.html">Nature is lethal but it doesn't hold a candle to man.</a>
+                        <div class="stripa"></div>
+                        <p>Your bones don't break, mine do. That's clear. Your cells react to bacteria
+                            and viruses differently than mine. You don't get sick, I do.</p>
+                    </div>
+
+                    <div class="project-para">
+                        <ul>
+                            <li><a href="#">3 Comments</a></li>
+                            <li><a href="#">8 Share</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-pos">
+                        <p>5<span>May</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 project-text-info">
+                <div class="project-grid">
+                    <a href="single.html"><img src="images/a.jpg" alt=""/></a>
+                    <div class="project-text">
+                        <a href="single.html">Nature is lethal but it doesn't hold a candle to man.</a>
+                        <div class="stripa"></div>
+                        <p>Your bones don't break, mine do. That's clear. Your cells react to bacteria
+                            and viruses differently than mine. You don't get sick, I do.</p>
+                    </div>
+
+                    <div class="project-para">
+                        <ul>
+                            <li><a href="#">3 Comments</a></li>
+                            <li><a href="#">8 Share</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-pos">
+                        <p>5<span>May</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--//project-->
+<div class="contact-back"></div>
+<!--contact-->
+<div class="contact" id="contact">
+    <div class="container">
+        <div class="contact-info text-center">
+            <h3>CONTACT</h3>
+            <div class="strip text-center"><img src="images/con1.png" alt=" "/></div>
+        </div>
+        <div class="contact-grids">
+            <div class="col-md-5 contact-left">
+                <h3>Say Hi to Me</h3>
+                <div class="stripb"></div>
+                <ul>
+                    <li><a href="mailto:info@example.com">soni.di@husky.neu.edu</a></li>
+                </ul>
+            </div>
+            <div class="col-md-7 contact-right">
+                <h3>Drop Me A Line</h3>
+                <div class="stripb"></div>
+                <form>
+                    <input type="text" value="Name" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                    <input type="text" value="E-mail" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = 'E-mail';}" required="">
+                    <textarea type="text" onfocus="this.value = '';"
+                              onblur="if (this.value == '') {this.value = 'Message';}" required="">Message</textarea>
+                    <input type="submit" value="SEND">
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--//contact-->
+<div class="footer-top"></div>
+<!--resume-->
+<div class="resume text-center">
+    <div class="container">
+        <div class="strip text-center"><a href="#"><img src="images/down.png" alt=" "/></a></div>
+        <div class="down"><a href="#">Download My Resume</a></div>
+    </div>
+</div>
+<!--//resume-->
+
+<!--footer-->
+<div class="footer">
+    <div class="container">
+        <p>Copyright &copy; 2015 Kong. Template by <a href="http://w3layouts.com/"> W3layouts</a></p>
+    </div>
+</div>
+<!--//footer-->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+</body>
+</html>

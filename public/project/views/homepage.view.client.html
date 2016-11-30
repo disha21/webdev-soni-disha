@@ -3,15 +3,17 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row">
         <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8 text-header ">
-            <b>Project Page</b>
+            <b >Project Page</b>
         </div>
-
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 pull-right">
+            <a type="button" class="btn btn-success navbar-btn" href="#/login">Login</a>
+            <a type="button" class="btn btn-primary navbar-btn" href="#/register">Register</a>
+        </div>
     </div>
-
-
 </nav>
-<div class="container">
 
+
+<div class="container">
     <div class="row" style="padding-top: 160px">
         <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
             <div class="input-group">
@@ -30,7 +32,7 @@
 
             <a class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.Title}}</a>
             <div class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.ConvertedCurrentPrice.Value}}</div>
-            <img src="{{item.GalleryURL}}"  height="100px" class="col-xs-2 col-sm-2 col-md-2"/>
+            <img ng-src="{{item.GalleryURL}}"  height="100px" class="col-xs-2 col-sm-2 col-md-2"/>
             <a class="col-xs-1 col-sm-1 col-md-1 "></a>
         </div>
 

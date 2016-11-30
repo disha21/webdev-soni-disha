@@ -7,7 +7,7 @@
         .controller("HomePageController", HomePageController)
 
 
-    function HomePageController(HomepageService) {
+    function HomePageController(HomepageService,$location) {
         console.log("in HomePageController");
         var vm = this;
         vm.searchByItem = searchByItem;
@@ -19,6 +19,7 @@
                 .success(function (itemList) {
                     console.log(itemList);
                     vm.itemList = itemList;
+                    $location.url("/searchResults");
                 }).error(function () {
                     console.log("error in controller");
 
