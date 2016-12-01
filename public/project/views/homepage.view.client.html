@@ -1,9 +1,7 @@
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row">
         <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8 text-header ">
-            <b >Project Page</b>
+            <b>Project Page</b>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 pull-right">
             <a type="button" class="btn btn-success navbar-btn" href="#/login">Login</a>
@@ -19,23 +17,39 @@
             <div class="input-group">
                 <input ng-model="itemName" type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
-        <button class="btn btn-secondary" ng-click = "model.searchByItem(itemName)" type="button">Go!</button>
+        <button class="btn btn-secondary" ng-click="model.searchByItem(itemName)" type="button">Go!</button>
       </span>
             </div>
         </div>
 
     </div>
 
-        <div class="row" ng-repeat="item in model.itemList">
 
-            <div class="col-xs-1 col-sm-1 col-md-1"></div>
-
-            <a class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.Title}}</a>
-            <div class="col-xs-3 col-sm-3 col-md-3" href="#">{{item.ConvertedCurrentPrice.Value}}</div>
-            <img ng-src="{{item.GalleryURL}}"  height="100px" class="col-xs-2 col-sm-2 col-md-2"/>
-            <a class="col-xs-1 col-sm-1 col-md-1 "></a>
+    <div class="block block-container col-xs-4" ng-repeat="item in model.ebayItems" >
+        <div class="row">
+            <img ng-src="{{item.GalleryURL}}" class="img-fluid"/>
         </div>
+        <div class="row">
+            {{item.Title}}
+        </div>
+        <div class="row">
+            <button class="btn">Track Price</button>
+            <button class="btn" ng-click="showAdvanced($event,item)">More Details</button>
+        </div>
+    </div>
 
+    <div class="block block-container col-xs-4" ng-repeat="item in model.amazonItems" >
+        <div class="row">
+            <img ng-src="{{item.SmallImage[0].URL[0]}}" class="img-responsive img-fluid">
+        </div>
+        <div class="row">
+            {{item.ItemAttributes[0].Title[0]}}
+        </div>
+        <div class="row">
+            <button class="btn ">Track Price</button>
+            <button class="btn">More Details</button>
+        </div>
+    </div>
 
 
 </div>
