@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="card card-container ">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.username" class="form-control" placeholder="Username"
+                           required autofocus aria-describedby="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="password" ng-model="model.user.password" id="password" class="form-control"
+                           placeholder="Password"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="remember" class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                            ng-click="model.login(model.user.username,model.user.password)">Sign in
+                    </button>
+                </div>
+            </div>
+        </form><!-- /form -->
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="#" class="forgot-password">
+                    Forgot the password?
+                </a>
+            </div>
+        </div>
+    </div><!-- /card-container -->
+</div><!-- /container -->
+

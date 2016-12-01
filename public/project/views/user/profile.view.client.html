@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="card card-container ">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.name" class="form-control" placeholder="Name"
+                           required autofocus id="name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.dob" class="form-control datepicker" placeholder="DOB"
+                           required autofocus id="datepicker">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="email" ng-model="model.user.email" id="email" class="form-control"
+                           placeholder="Email Address"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.phone" id="phone" class="form-control"
+                           placeholder="Phone Number"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.address" id="address" class="form-control"
+                           placeholder="Home Address"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                            ng-click="model.updateUser()">Update Profile
+                    </button>
+                    <button class="btn btn-lg btn-danger btn-block " type="submit"
+                            ng-click="model.logout()">Logout
+                    </button>
+                </div>
+            </div>
+        </form><!-- /form -->
+
+    </div><!-- /card-container -->
+</div><!-- /container -->
+

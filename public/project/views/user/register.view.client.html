@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="card card-container ">
+        <form class="form-signin">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" ng-model="model.user.username" class="form-control" placeholder="Username"
+                           required autofocus id="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="email" ng-model="model.user.email" class="form-control" placeholder="Email Address"
+                           required autofocus id="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="password" ng-model="model.user.password" id="password" class="form-control"
+                           placeholder="Password"
+                           required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="password" ng-model="model.user.confirmPassword" id="confirmPassword" class="form-control"
+                           placeholder="Confirm Password"
+                           required>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                            ng-click="model.register(model.user)">Sign up
+                    </button>
+                </div>
+            </div>
+        </form><!-- /form -->
+
+    </div><!-- /card-container -->
+</div><!-- /container -->
+
