@@ -2,20 +2,30 @@ module.exports = function (app) {
 
     console.log("hello from homepage service");
 
+    var cron = require('node-cron');
 
     app.get('/api/search/:item', searchItem);
+    app.post('/api/user/:uid/:itemId', createProductRecord);
+
     var http = require('http');
     var amazon = require('amazon-product-api');
 
     var client = amazon.createClient({
-        awsId: "AKIAIETNH5QK5TPBIJJQ",
-        awsSecret: "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",
-        awsTag: "awsTag"
+        awsId: "",
+        awsSecret: "",
+        awsTag: ""
     });
 
 
+
+
+    cron.schedule('0 * * * *', function(){
+        console.log('running a task every day' + Date.now());
+    });
+
     function searchItem(req, res) {
         var item = req.params.item;
+       // var item ="ipod";
         searchItemEbay(item)
             .then(function (ebayResponse) {
                 searchItemAmazon(item).then(function (amazonResponse) {
@@ -23,13 +33,12 @@ module.exports = function (app) {
                         ebay: ebayResponse,
                         amazon: amazonResponse
                     };
+                    console.log(searchResponse);
                     res.json(searchResponse);
                 });
 
 
             });
-
-
     }
 
     function searchItemEbay(item) {
@@ -37,7 +46,7 @@ module.exports = function (app) {
             function (resolve, reject) {
                 http.get({
                     host: "open.api.ebay.com",
-                    path: "/shopping?version=713&appid=DishaSon-PriceCom-PRD-c45f64428-9125085e&callname=FindPopularItems&QueryKeywords=" + item + "&ResponseEncodingType=JSON"
+                    path: "/shopping?version=713&appid=e&callname=FindPopularItems&QueryKeywords=" + item + "&ResponseEncodingType=JSON"
                 }, function (response) {
                     var body = '';
                     response.on('data', function (d) {
@@ -80,5 +89,11 @@ module.exports = function (app) {
         });
     }
 
+    function createProductRecord(req,res) {
+        console.log("createProductRecord");
+        console.log(req.query.itemId);
+        console.log(req.body);
+
+    }
 
 };
