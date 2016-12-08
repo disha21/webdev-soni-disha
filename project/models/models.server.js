@@ -5,16 +5,19 @@ module.exports =function () {
     mongoose.connect('mongodb://localhost/webdevProject-fall-2016');
 
     var userModel =require("./user/user.model.server")();
+    var productModel =require("./product/product.model.server")();
 
 
 
 
    var model ={
-       userModel:userModel
+       userModel:userModel,
+      productModel:productModel
 
    };
 
     userModel.setModel(model);
+    productModel.setModel(model);
 
     return model;
 

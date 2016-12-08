@@ -1,0 +1,76 @@
+<h1>Dashboard</h1>
+{{model.products}}
+
+
+
+<div class="row">
+<div class="col-lg-12"  ng-if='model.products'>
+
+<ul ng-repeat="product in model.products">
+    <li>{{ product.productTitle }}</li>
+    <li>{{product.productProvider}}</li>
+        <ul ng-repeat="prodDeatils in product.productDetails">
+            <li >{{ prodDeatils.price }}</li>
+            <li>{{prodDeatils.dateCreated}}</li>
+        </ul>
+    </li>
+</ul>
+</div>
+
+
+<div class="row table-responsive">
+
+    <div class="col-lg-12"  ng-if='model.products'>
+
+        <table class="table table-bordered " id="productData">
+            <thead>
+            <tr>
+                <th>Product Title</th>
+                <th>Product Provider</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in model.products" class="info">
+                <td>{{ product.productTitle }}</td>
+                <td>{{product.productProvider}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!--div class="row table-responsive">
+
+    <div class="col-lg-12"  ng-if='model.products'>
+
+        <table class="table table-bordered " id="productDetailsData">
+            <thead>
+            <tr>
+                <th>Product Price</th>
+                <th> Date Tracked</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="details in model.products.productDetails" class="info">
+                <td>{{ details.price }}</td>
+                <td>{{details.dateCreated}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div-->
+
+
+</div>
+
+
+<canvas id="bar" class="chart chart-bar"
+        chart-data="data" chart-labels="labels" chart-series="series">
+</canvas>

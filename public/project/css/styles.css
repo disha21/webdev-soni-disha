@@ -4,7 +4,7 @@
 }
 
 
-body, html {
+/*body, html {
     background-repeat: no-repeat;
     background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
     background-size: cover;
@@ -12,10 +12,22 @@ body, html {
     -moz-background-size: cover;
     -o-background-size: cover;
      min-height:1000px;
+}*/
+
+
+.background{
+    padding-top: 100px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    min-height:1000px;
 }
 
 .card-container.card {
-    max-width: 450px;
+    max-width: 600px;
     padding: 40px 40px;
 
 }

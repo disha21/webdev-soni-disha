@@ -118,13 +118,18 @@
                 .success(function(user){
                     console.log("User");
                     console.log(user);
+                    console.log(user.role);
                 if (user === "0") {
                     vm.error = "User not found";
                     console.log("User not found");
 
-                } else {
+                } else if(user.role === "admin"){
+                    console.log("admin");
+                    $location.url("/user/" + user._id + "/adminDashboard");
+                }
+                else {
 
-                    $location.url("/user/" + user._id);
+                    $location.url("/user/" + user._id + "/search");
 
                 }
             })

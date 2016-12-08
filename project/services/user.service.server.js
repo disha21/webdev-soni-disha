@@ -26,6 +26,7 @@ module.exports = function(app,model) {
         req.logout();
         res.send(200);
     }
+
     function checkLoggedin(req,res){
         res.send(req.isAuthenticated() ? req.user : '0');
 

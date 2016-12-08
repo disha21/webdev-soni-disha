@@ -12,6 +12,7 @@
                 templateUrl: "views/homepage.view.client.html",
                 controller:"HomePageController",
                 controllerAs: "model"
+
             })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -30,6 +31,23 @@
                 resolve: { checkLoggedin: checkLoggedin }
 
             })
+            .when("/user/:uid/search", {
+            templateUrl: "views/homepage.view.client.html",
+            controller:"HomePageController",
+            controllerAs: "model"
+        })
+            .when("/user/:uid/dashboard", {
+                templateUrl: "views/dashboard.view.client.html",
+                controller:"DashboardController",
+                controllerAs: "model"
+            })
+
+            .when("/user/:uid/adminDashboard", {
+                templateUrl: "views/adminDashboard.view.client.html",
+                controller:"AdminDashboardController",
+                controllerAs: "model"
+            })
+
             .otherwise({
                 redirectTo:"/"
             })
@@ -51,6 +69,10 @@
         }
 
 
+
+
     }
+
+
 })();
 

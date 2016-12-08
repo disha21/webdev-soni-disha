@@ -12,7 +12,7 @@ module.exports = function () {
         dateCreated: {type: Date, default: Date.now}
 
 
-    },{collection:"website"});
+    },{collection:"web  site"});
 
     return WebsiteSchema;
 };

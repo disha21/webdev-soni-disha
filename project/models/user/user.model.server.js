@@ -15,11 +15,19 @@ module.exports =function () {
          findUserByCredentials:findUserByCredentials,
          deleteUser : deleteUser,
          findUserByUsername :findUserByUsername,
-         findAllWebsitesForUser:findAllWebsitesForUser,
-         setModel:setModel
+         findProductsTrackedByUser:findProductsTrackedByUser,
+         setModel:setModel,
+         findAllUsers:findAllUsers,
+        findProductTrackerByUserAndProductId:findProductTrackerByUserAndProductId
     };
 
     return api;
+
+    function findAllUsers(){
+        // return ProductModel.find().distinct('productId','productProvider');
+         return UserModel.find({});
+
+    }
 
 
     function setModel(_model) {
@@ -27,11 +35,23 @@ module.exports =function () {
     }
 
 
-    function findAllWebsitesForUser(userId) {
+    function findProductsTrackedByUser(userId) {
         console.log( "userId:"+ userId);
         return UserModel.findById(userId)
-            .populate("websites","name")
+            .populate("products")
             .exec();
+    }
+
+
+    function findProductTrackerByUserAndProductId(userId, productId) {
+        console.log( "findProductTrackerByUserAndProductId:"+ userId);
+
+        return UserModel.find({
+            _id : userId,
+            products: { $in: [productId] }
+        });
+
+
     }
 
 

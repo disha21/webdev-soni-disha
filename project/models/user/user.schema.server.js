@@ -12,7 +12,7 @@ module.exports = function () {
         email :String,
         phone :String,
         address:String,
-        dob: {type: Date},
+        products :[{type: mongoose.Schema.Types.ObjectId,ref:'ProductModel'}],
         dateCreated: {type: Date, default: Date.now}
 
     },{collection:"user"});
