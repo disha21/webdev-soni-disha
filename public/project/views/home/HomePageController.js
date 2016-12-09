@@ -18,6 +18,18 @@
         vm.logout = logout;
 
 
+        function init(){
+            UserService.checkLoggedin()
+                .then(function(user){
+                    vm.user = user;
+                    console.log("getcurrentuser");
+                    console.log(user);
+
+                })
+        }
+        init();
+
+
         function logout() {
             console.log("in logout");
             UserService.logout()
@@ -33,24 +45,24 @@
 
 
 
-        function startTrackingItemPriceEbay(itemId, itemPrice,pTitle) {
+        function startTrackingItemPriceEbay(itemId, itemPrice,pTitle,imageUrl) {
             console.log("startTrackingItemPriceEbay");
             var productProvider = "ebay";
             console.log(productProvider);
-            startTrackingItemPrice(itemId, itemPrice, productProvider,pTitle);
+            startTrackingItemPrice(itemId, itemPrice, productProvider,pTitle,imageUrl);
         }
 
-        function startTrackingItemPriceAmazon(itemId, itemPrice,pTitle) {
+        function startTrackingItemPriceAmazon(itemId, itemPrice,pTitle,imageUrl) {
             var productProvider = "amazon";
             console.log(productProvider);
-            startTrackingItemPrice(itemId, itemPrice,productProvider,pTitle)
+            startTrackingItemPrice(itemId, itemPrice,productProvider,pTitle,imageUrl)
         }
 
-        function startTrackingItemPrice(itemId, itemPrice,productProvider,pTitle) {
+        function startTrackingItemPrice(itemId, itemPrice,productProvider,pTitle,imageUrl) {
 
             console.log("In startTrackingItemPrice");
             console.log(productProvider);
-            console.log("startTrackingItemPrice" +itemId + itemPrice  + productProvider + pTitle );
+            console.log("startTrackingItemPrice" +itemId + itemPrice  + productProvider + pTitle +imageUrl );
 
             UserService.checkLoggedin()
                 .success(function (user) {
@@ -58,9 +70,10 @@
                         console.log("user id");
                         console.log(user._id);
 
-                       ProductService.startTrackingItemPrice(user._id, itemId, itemPrice, productProvider, pTitle)
+                       ProductService.startTrackingItemPrice(user._id, itemId, itemPrice, productProvider, pTitle,imageUrl)
                            .success(function (msg) {
                              vm.success = msg.msg;
+                               alert("Here's a message");
                                $location.url("/user/" + user._id + "/dashboard")
                            }).error(function (error) {
                            console.log(error);
@@ -107,7 +120,7 @@
             console.log(selectedItem);
             $mdDialog.show({
                 controller: ModalController,
-                templateUrl: 'views/modalContent.html',
+                templateUrl: 'views/home/modalContent.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,

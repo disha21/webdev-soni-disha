@@ -32,7 +32,7 @@ module.exports = function (app,model) {
     };
 
 
-   /* cron.schedule('* * * * *', function(){
+ /*   cron.schedule('* * * * *', function(){
         console.log('running a task every minute' + Date.now());
         model
             .productModel
@@ -53,12 +53,16 @@ module.exports = function (app,model) {
                                 console.log(productId + " : body of reply "+productData);
                             });
                     }else {
-                        searchItemAmazonById(prods[prod].productId)
+                        searchItemAmazonItemById(prods[prod].productId)
                     }
                 }
             });
     });*/
 
+
+ function searchItemAmazonItemById(itemId) {
+
+ }
 
     function updateProductPrice(productId,price){
         console.log(productId + "Updating price of product, adding " + price);
@@ -73,7 +77,7 @@ module.exports = function (app,model) {
             );
     }
 
-   function searchEbayItembyId(item) {
+    function searchEbayItembyId(item) {
         console.log(item + ": In search ebay by itemID");
         return new Promise(
             function (resolve, reject) {
@@ -98,10 +102,6 @@ module.exports = function (app,model) {
             });
 
     }
-
-
-
-
 
     function searchItem(req, res) {
         var item = req.params.item;

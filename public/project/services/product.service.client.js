@@ -22,7 +22,7 @@
         return api;
 
 
-        function startTrackingItemPrice(userId,itemId,itemPrice, productProvider, pTitle){
+        function startTrackingItemPrice(userId,itemId,itemPrice, productProvider, pTitle,imageUrl){
 
             var product = {
                 productId:itemId,
@@ -31,7 +31,8 @@
                     price : itemPrice
 
                 },
-                productTitle:  pTitle
+                productTitle:  pTitle,
+                imageUrl :imageUrl
 
             };
             var url="/api/user/"+ userId +"/track/" +itemId ;

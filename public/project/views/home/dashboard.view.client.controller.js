@@ -15,7 +15,21 @@
         var vm = this;
         var uid = $routeParams.uid;
         vm.uid = uid;
-        var product;
+        vm.showProductDetails = showProductDetails;
+
+
+        function showProductDetails(product) {
+            $scope.IsVisible = false;
+            console.log("in show details");
+            console.log(product);
+            $scope.product = product;
+
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.IsVisible = true;
+
+        }
+
+
 
 
 

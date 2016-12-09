@@ -16,9 +16,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--li class="propClone"><a href="#">Home</a></li-->
                         <li class="propClone"><a href="#">About</a></li>
-                        <li class="propClone"><a class="btn" href="#/login">Sign In</a></li>
-                        <li class="propClone"><a class="btn" href="#/register">Sign Up</a></li>
-                        <li class="propClone"><a class="btn" ng-click="model.logout()">Logout</a></li>
+                        <li class="propClone"><a class="btn" href="#/login"  ng-if = "!model.user">Sign In</a></li>
+                        <li class="propClone"><a class="btn" href="#/register" ng-if = "!model.user">Sign Up</a></li>
+                        <li class="propClone"><a class="btn" href="#/user/{{model.user.data._id}}/dashboard" ng-if = "model.user">{{model.user.data.username}}</a></li>
+                        <li class="propClone"><a class="btn" ng-click="model.logout()" ng-if = "model.user">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -27,12 +28,16 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="text-homeimage">
-                        <div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
-                            Track Your Product
+                        <div class="maintext-image">
+                            <div class="input-group">
+                                <input ng-model="itemName" type="text" class="form-control " placeholder="Search for...">
+                                <span class="input-group-btn "><button class="btn btn-secondary" ng-click="model.searchByItem(itemName)" type="button">Go!</button>
+      </span>
+                                    </div>
+
+
                         </div>
-                        <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
-                           Know the variation in price
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -90,22 +95,7 @@
 <!-- LATEST ITEMS =============================-->
 <section class="item content">
     <div class="container">
-        <div class="underlined-title">
-            <div class="editContent">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input ng-model="itemName" type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-        <button class="btn btn-secondary" ng-click="model.searchByItem(itemName)" type="button" id="goBtn">Go!</button>
-      </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-        <br>
         <div class="row">
             <!-- ebay items-->
             <div class="col-md-4 box" id="ebayItem" ng-repeat="item in model.ebayItems">
@@ -117,7 +107,7 @@
                             <h1>{{item.Title}}</h1>
                         </a>
                         <span class="price">
-						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title)"><i class="fa fa-shopping-cart"></i> Track
+						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.GalleryURL)"><i class="fa fa-shopping-cart"></i> Track
                                     Price</button> <button  class="learn-more detailslearn" ng-click="showAdvanced($event, item)"><i class="fa fa-link"></i> More Details</button>${{item.ConvertedCurrentPrice.Value}}</span>
 						</span>
                     </div>
@@ -134,7 +124,7 @@
                             <h1>{ {{item.ItemAttributes[0].Title[0]}}</h1>
                         </a>
                         <span class="price">
-						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title)"><i class="fa fa-shopping-cart"></i> Track
+						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.SmallImage[0].URL[0])"><i class="fa fa-shopping-cart"></i> Track
                                     Price</button> <button  class="learn-more detailslearn" ng-click="showAdvanced($event, item)"><i class="fa fa-link"></i> More Details</button>${{item.ConvertedCurrentPrice.Value}}</span>
 						</span>
 						</span>

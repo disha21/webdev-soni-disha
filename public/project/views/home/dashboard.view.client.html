@@ -1,0 +1,185 @@
+<style>
+
+
+    .product-details {
+      padding-left: 450px;
+        padding-top: 60px;
+    }
+
+    .dashboardHeader{
+        padding-left: 300px;
+
+    }
+
+    a {
+        color: #00f;
+    }
+
+
+
+
+</style>
+
+
+
+<div class="nav-side-menu">
+    <div class="brand">
+        <i class="fa fa-dashboard fa-lg"></i> <a href ="">Back to Search</a>
+    </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <br>
+
+            <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products" class="collapsed active">
+                <button class="title" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="dashboardHeader hidden-xs hidden-sm ">
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-10">
+
+            <h1>Dashboard</h1>
+        </div>
+    </div>
+    <hr>
+</div>
+
+    <div class="row visible-xs visible-sm hidden-md hidden-lg">
+
+        <div class="row">
+            <div class="col-xs-1"></div>
+
+            <div class="col-xs-10">
+
+                <h1>Dashboard</h1>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+
+<div ng-show = "IsVisible"  class="product-detailsMobile hidden-md hidden-lg visible-sm visible-xs">
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-10">
+
+    <div class="row">
+
+
+        <div class="panel panel-success">
+            <div class="panel-body">
+                {{product.productTitle}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" panel panel-success">
+            <div class="panel-body">
+                {{product.productProvider}}
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <img ng-src="{{product.imageUrl}}">
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <table class="table table-bordered " id="productDetailsDataMobile">
+            <thead>
+            <tr>
+                <th>Product Price</th>
+                <th> Date Tracked</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="details in product.productDetails" class="info">
+                <td>{{ details.price }}</td>
+                <td>{{details.dateCreated}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+
+</div>
+    </div>
+</div>
+
+
+
+
+            <div ng-show = "IsVisible"  class="product-details hidden-xs hidden-sm">
+                <div class="col-xs-8">
+                <div class="row">
+                <div class="  panel panel-success">
+                    <div class="panel-body">
+                        {{product.productTitle}}
+                    </div>
+                </div>
+                    </div>
+                <div class="row">
+                <div class="  panel panel-success">
+                    <div class="panel-body">
+                        {{product.productProvider}}
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="  panel panel-success">
+                            <div class="panel-body">
+                                <img ng-src="{{product.imageUrl}}">
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+         <table class="table table-bordered " id="productDetailsData">
+             <thead>
+             <tr>
+                 <th>Product Price</th>
+                 <th> Date Tracked</th>
+
+             </tr>
+             </thead>
+             <tbody>
+             <tr ng-repeat="details in product.productDetails" class="info">
+                 <td>{{ details.price }}</td>
+                 <td>{{details.dateCreated}}</td>
+
+             </tr>
+             </tbody>
+         </table>
+</div>
+
+ </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<canvas id="bar" class="chart chart-bar"
+        chart-data="data" chart-labels="labels" chart-series="series">
+</canvas>

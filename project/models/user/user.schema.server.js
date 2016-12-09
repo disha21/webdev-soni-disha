@@ -15,7 +15,7 @@ module.exports = function () {
         products :[{type: mongoose.Schema.Types.ObjectId,ref:'ProductModel'}],
         dateCreated: {type: Date, default: Date.now}
 
-    },{collection:"user"});
+    },{collection:"project.user"});
 
     return UserSchema;
 };

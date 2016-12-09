@@ -13,6 +13,7 @@ module.exports = function () {
             price : String
         }],
         productTitle:String,
+        imageUrl:String,
         users :[{type: mongoose.Schema.Types.ObjectId,ref:'UserModel'}],
         dateCreated: {type: Date, default: Date.now}
 

@@ -9,7 +9,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/homepage.view.client.html",
+                templateUrl: "views/home/homepage.view.client.html",
                 controller:"HomePageController",
                 controllerAs: "model"
 
@@ -32,18 +32,18 @@
 
             })
             .when("/user/:uid/search", {
-            templateUrl: "views/homepage.view.client.html",
+            templateUrl: "views/home/homepage.view.client.html",
             controller:"HomePageController",
             controllerAs: "model"
         })
             .when("/user/:uid/dashboard", {
-                templateUrl: "views/dashboard.view.client.html",
+                templateUrl: "views/home/dashboard.view.client.html",
                 controller:"DashboardController",
                 controllerAs: "model"
             })
 
             .when("/user/:uid/adminDashboard", {
-                templateUrl: "views/adminDashboard.view.client.html",
+                templateUrl: "views/admin/adminDashboard.view.client.html",
                 controller:"AdminDashboardController",
                 controllerAs: "model"
             })
