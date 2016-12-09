@@ -4,7 +4,7 @@
 
 
 (function() {
-    angular.module("webdevProject",["ngRoute",'ngMaterial'])
+    angular.module("webdevProject",["ngRoute",'ngMaterial','chart.js'])
         .config(Config);
     function Config($routeProvider) {
         $routeProvider
