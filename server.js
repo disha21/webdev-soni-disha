@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport      = require('passport');
+var keypress = require('keypress');
+keypress(process.stdin);
 
 
 app.use(bodyParser.json({type: 'application/json'}));
