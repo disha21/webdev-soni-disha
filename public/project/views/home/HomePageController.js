@@ -9,7 +9,7 @@
 
 
 
-    function HomePageController(HomepageService,UserService, $scope, $mdDialog,$location,ProductService) {
+    function HomePageController(HomepageService,UserService, $scope, $mdDialog,$location,ProductService,$anchorScroll) {
         console.log("in HomePageController");
         var vm = this;
         vm.searchByItem = searchByItem;
@@ -18,10 +18,14 @@
         vm.logout = logout;
 
 
+
+
         function init(){
             UserService.checkLoggedin()
                 .then(function(user){
-                    vm.user = user;
+                    if(user.data!=0){
+                        vm.user = user.data;
+                    }
                     console.log("getcurrentuser");
                     console.log(user);
 
@@ -53,6 +57,7 @@
         }
 
         function startTrackingItemPriceAmazon(itemId, itemPrice,pTitle,imageUrl) {
+            console.log("Amazon title " + pTitle);
             var productProvider = "amazon";
             console.log(productProvider);
             startTrackingItemPrice(itemId, itemPrice,productProvider,pTitle,imageUrl)
@@ -105,11 +110,14 @@
                     vm.itemList = itemList;
                     vm.ebayItems = itemList.ebay;
                     vm.amazonItems = itemList.amazon;
+                    $('#searchItems').stop().animate({scrollTop: $("#searchItems")[0].scrollHeight}, 2000);
                 }).error(function () {
                 console.log("error in controller");
 
             });
         }
+
+
 
         $scope.ebay = vm.ebayItems;
         console.log("$scope.ebay");

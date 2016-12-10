@@ -4,6 +4,15 @@
 }
 
 
+.label-pos{
+    position: absolute;
+    top:1px;
+    right:15px;
+
+}
+
+
+
 
 .background{
     padding-top: 100px;

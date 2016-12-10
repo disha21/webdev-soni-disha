@@ -2,11 +2,11 @@
 
 
     .product-details {
-      padding-left: 450px;
+        padding-left: 450px;
         padding-top: 60px;
     }
 
-    .dashboardHeader{
+    .dashboardHeader {
         padding-left: 300px;
 
     }
@@ -16,15 +16,12 @@
     }
 
 
-
-
 </style>
-
 
 
 <div class="nav-side-menu">
     <div class="brand">
-        <i class="fa fa-dashboard fa-lg"></i> <a href ="">Back to Search</a>
+        <i class="fa fa-dashboard fa-lg"></i> <a href="#/user/{{model.uid}}/search">Back to Search</a>
     </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
@@ -33,7 +30,8 @@
         <ul id="menu-content" class="menu-content collapse out">
             <br>
 
-            <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products" class="collapsed active">
+            <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products"
+                class="collapsed active">
                 <button class="title" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>
             </li>
         </ul>
@@ -52,41 +50,43 @@
     <hr>
 </div>
 
-    <div class="row visible-xs visible-sm hidden-md hidden-lg">
+<div class="row visible-xs visible-sm hidden-md hidden-lg">
 
-        <div class="row">
-            <div class="col-xs-1"></div>
+    <div class="row">
+        <div class="col-xs-1"></div>
 
-            <div class="col-xs-10">
+        <div class="col-xs-10">
 
-                <h1>Dashboard</h1>
-            </div>
+            <h1>Dashboard</h1>
         </div>
-        <hr>
     </div>
+    <hr>
+</div>
+
+{{model.product}}
 
 
-<div ng-show = "IsVisible"  class="product-detailsMobile hidden-md hidden-lg visible-sm visible-xs">
+<div ng-show="IsVisible" class="product-detailsMobile hidden-md hidden-lg visible-sm visible-xs">
+    <div class="row">
+        <div class="col-xs-10"></div>
+        <div class="col-xs-1"><button>Stop tracking</button></div>
+    </div>
     <div class="col-xs-1"></div>
-
     <div class="col-xs-10">
-
-    <div class="row">
-
-
-        <div class="panel panel-success">
-            <div class="panel-body">
-                {{product.productTitle}}
+        <div class="row">
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    {{product.productTitle}}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class=" panel panel-success">
-            <div class="panel-body">
-                {{product.productProvider}}
+        <div class="row">
+            <div class=" panel panel-success">
+                <div class="panel-body">
+                    {{product.productProvider}}
+                </div>
             </div>
         </div>
-    </div>
 
         <div class="row">
             <div class="panel panel-success">
@@ -95,89 +95,108 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <label for="commentInputMobile">Add Comments</label>
+            <div class="input-group">
+                <input type="text" ng-model="model.comment" class="form-control" id="commentInputMobile" placeholder="Add comments">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button"
+                            ng-click="model.addCommentToProduct(product.productId,model.comment)">Submit</button>
+      </span>
+            </div>
+        </div>
 
-    <div class="row">
-        <table class="table table-bordered " id="productDetailsDataMobile">
-            <thead>
-            <tr>
-                <th>Product Price</th>
-                <th> Date Tracked</th>
+        <div class="row">
+            <table class="table table-bordered " id="productDetailsDataMobile">
+                <thead>
+                <tr>
+                    <th>Product Price</th>
+                    <th> Date Tracked</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="details in product.productDetails" class="info">
-                <td>{{ details.price }}</td>
-                <td>{{details.dateCreated}}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="details in product.productDetails" class="info">
+                    <td>{{ details.price }}</td>
+                    <td>{{details.dateCreated}}</td>
 
-            </tr>
-            </tbody>
-        </table>
+                </tr>
+                </tbody>
+            </table>
 
-</div>
+        </div>
     </div>
 </div>
 
 
+<div ng-show="IsVisible" class="product-details hidden-xs hidden-sm">
+    <div class="row">
+        <div class="col-xs-9"></div>
+        <div class="col-xs-2"><button>Stop tracking</button></div>
+    </div>
 
-
-            <div ng-show = "IsVisible"  class="product-details hidden-xs hidden-sm">
-                <div class="col-xs-8">
-                <div class="row">
-                <div class="  panel panel-success">
-                    <div class="panel-body">
-                        {{product.productTitle}}
-                    </div>
+    <div class="col-xs-8">
+        <div class="row">
+            <div class="  panel panel-success">
+                <div class="panel-body">
+                    {{product.productTitle}}
                 </div>
-                    </div>
-                <div class="row">
-                <div class="  panel panel-success">
-                    <div class="panel-body">
-                        {{product.productProvider}}
-                    </div>
-                </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="  panel panel-success">
-                            <div class="panel-body">
-                                <img ng-src="{{product.imageUrl}}">
-                            </div>
-                        </div>
-                    </div>
-
-                <div class="row">
-         <table class="table table-bordered " id="productDetailsData">
-             <thead>
-             <tr>
-                 <th>Product Price</th>
-                 <th> Date Tracked</th>
-
-             </tr>
-             </thead>
-             <tbody>
-             <tr ng-repeat="details in product.productDetails" class="info">
-                 <td>{{ details.price }}</td>
-                 <td>{{details.dateCreated}}</td>
-
-             </tr>
-             </tbody>
-         </table>
-</div>
-
- </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="  panel panel-success">
+                <div class="panel-body">
+                    {{product.productProvider}}
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="  panel panel-success">
+                <div class="panel-body">
+                    <img ng-src="{{product.imageUrl}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" panel panel-success" ng-repeat="comment in product.comments">
+                <div class="panel-body">
+                    {{comment.userName}} : {{comment.comment}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="commentInput">Add Comments</label>
+            <div class="input-group">
+                <input type="text" ng-model="model.comment" id="commentInput" class="form-control" placeholder="Add comments">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button"
+                ng-click="model.addCommentToProduct(product.productId,model.comment)">Submit</button>
+      </span>
+            </div>
+        </div>
 
+        <div class="row">
+            <table class="table table-bordered " id="productDetailsData">
+                <thead>
+                <tr>
+                    <th>Product Price</th>
+                    <th> Date Tracked</th>
 
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="details in product.productDetails" class="info">
+                    <td>{{ details.price }}</td>
+                    <td>{{details.dateCreated}}</td>
 
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-
-
-
-
-
-
+    </div>
+</div>
 
 
 <canvas id="bar" class="chart chart-bar"

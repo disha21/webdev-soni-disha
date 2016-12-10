@@ -16,6 +16,7 @@
         var uid = $routeParams.uid;
         vm.uid = uid;
         vm.showProductDetails = showProductDetails;
+        vm.addCommentToProduct = addCommentToProduct;
 
 
         function showProductDetails(product) {
@@ -30,7 +31,11 @@
         }
 
 
+        function addCommentToProduct(productItemId, comment) {
 
+            ProductService.addCommentToProduct(productItemId,uid, comment);
+
+        }
 
 
         function init() {

@@ -3,6 +3,7 @@
  */
 
 
+
 (function() {
     angular.module("webdevProject",["ngRoute",'ngMaterial'])
         .config(Config);
@@ -32,9 +33,10 @@
 
             })
             .when("/user/:uid/search", {
-            templateUrl: "views/home/homepage.view.client.html",
-            controller:"HomePageController",
-            controllerAs: "model"
+                templateUrl: "views/home/homepage.view.client.html",
+                controller:"HomePageController",
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
         })
             .when("/user/:uid/dashboard", {
                 templateUrl: "views/home/dashboard.view.client.html",

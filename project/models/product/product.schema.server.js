@@ -6,18 +6,22 @@ module.exports = function () {
 
 
     var ProductSchema = mongoose.Schema({
-        productId :String,
-        productProvider :String,
-        productDetails : [{
+        productId: String,
+        productProvider: String,
+        productDetails: [{
             dateCreated: {type: Date, default: Date.now},
-            price : String
+            price: String
         }],
-        productTitle:String,
-        imageUrl:String,
-        users :[{type: mongoose.Schema.Types.ObjectId,ref:'UserModel'}],
+        productTitle: String,
+        imageUrl: String,
+        users: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
+        comments: [{
+            userName: String,
+            comment: String
+        }],
         dateCreated: {type: Date, default: Date.now}
 
-    },{collection:"product"});
+    }, {collection: "product"});
 
     return ProductSchema;
 };

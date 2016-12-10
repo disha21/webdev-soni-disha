@@ -1,4 +1,4 @@
-module.exports = function (app,model) {
+module.exports = function (app, model) {
 
     var cron = require('node-cron');
     app.get('/api/search/:item', searchItem);
@@ -8,12 +8,12 @@ module.exports = function (app,model) {
     var amazon = require('amazon-product-api');
 
     var amazonConfig = {
-        clientId : process.env.AWS_ACCESS_KEY_ID,
-        secret : process.env.AWS_SECRET_KEY,
-        tag : process.env.AWS_ASSOCIATE_TAG
+        clientId: process.env.AWS_ACCESS_KEY_ID,
+        secret: process.env.AWS_SECRET_KEY,
+        tag: process.env.AWS_ASSOCIATE_TAG
     }
     var ebayConfig = {
-        appID : process.env.EBAY_APP_ID
+        appID: process.env.EBAY_APP_ID
     }
 
 
@@ -24,51 +24,62 @@ module.exports = function (app,model) {
     });
 
 
-
-
     var productDetails = {
-        productId:"",
+        productId: "",
         productPrice: ""
     };
 
 
- /*   cron.schedule('* * * * *', function(){
+ /*   cron.schedule('* * * * *', function () {
         console.log('running a task every minute' + Date.now());
         model
             .productModel
             .findAllProductIds()
-            .then(function(prods){
+            .then(function (prods) {
                 console.log(prods);
-                for(var prod in prods){
+                for (var prod in prods) {
                     console.log("prod.." + prod);
                     var productId = prods[prod].productId;
-                    if(prods[prod].productProvider === "ebay"){
+                    if (prods[prod].productProvider === "ebay") {
                         console.log(productId + " :prods[prod]");
-                        // var ebayProducts = prods[prod];
-                        searchEbayItembyId(productId)
-                            .then(function(productDetails){
-                            console.log(productId + " :Got a reply from ebay");
-                                console.log(itemData);
-                               // productData.push(productDetails);
-                                console.log(productId + " : body of reply "+productData);
+                        searchEbayItembyIdAndAddPriceInDB(productId)
+                            .then(function (productDetails) {
+                                console.log(productId + " :Got a reply from ebay");
+
+
                             });
-                    }else {
-                        searchItemAmazonItemById(prods[prod].productId)
+                    } else {
+                        searchItemAmazonItemByIdAndAddInDB(prods[prod].productId)
                     }
                 }
             });
     });*/
 
 
- function searchItemAmazonItemById(itemId) {
+    function searchItemAmazonItemByIdAndAddInDB(itemId) {
+        return client.itemLookup({
+            Service: "AWSECommerceService",
+            Operation: "ItemLookup",
+            ResponseGroup: "Medium",
+            ItemId: itemId
 
- }
+        }).then(function (results) {
+            console.log("got resp for amazon itemlookup ");
+            var amazonApiResult = results;
+            console.log(amazonApiResult);
+            updateProductPrice(itemId, amazonApiResult[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
+            return amazonApiResult;
+        }).catch(function (err) {
+            console.log("got error");
+            console.log(err[0].Error[0]);
+        });
+    }
 
-    function updateProductPrice(productId,price){
+    function updateProductPrice(productId, price) {
         console.log(productId + "Updating price of product, adding " + price);
-        model
+        return model
             .productModel
-            .updateProductPrice(productId,price)
+            .updateProductPrice(productId, price)
             .then(function (product) {
                     res.send(product);
                 }, function (error) {
@@ -77,13 +88,13 @@ module.exports = function (app,model) {
             );
     }
 
-    function searchEbayItembyId(item) {
+    function searchEbayItembyIdAndAddPriceInDB(item) {
         console.log(item + ": In search ebay by itemID");
         return new Promise(
             function (resolve, reject) {
                 http.get({
                     host: "open.api.ebay.com",
-                    path:"/shopping?callname=GetItemStatus&ResponseEncodingType=JSON&appid="+ ebayConfig.appID + "&siteid=0&version=967&ItemID=" +item
+                    path: "/shopping?callname=GetItemStatus&ResponseEncodingType=JSON&appid=" + ebayConfig.appID + "&siteid=0&version=967&ItemID=" + item
                 }, function (response) {
                     var body = '';
                     response.on('data', function (d) {
@@ -95,9 +106,11 @@ module.exports = function (app,model) {
                         productDetails.productId = itemData.Item[0].ItemID;
                         productDetails.productPrice = itemData.Item[0].ConvertedCurrentPrice.Value;
                         console.log(item + ": Getting relevant infor from response. " + productDetails.productPrice);
-                        updateProductPrice(productDetails.productId,productDetails.productPrice );
+                        updateProductPrice(productDetails.productId, productDetails.productPrice);
                         resolve("");
                     });
+                }, function (error) {
+                    reject("Could not get price from ebay " + error);
                 });
             });
 
@@ -105,7 +118,7 @@ module.exports = function (app,model) {
 
     function searchItem(req, res) {
         var item = req.params.item;
-       // var item ="ipod";
+        // var item ="ipod";
         searchItemEbay(item)
             .then(function (ebayResponse) {
                 searchItemAmazon(item).then(function (amazonResponse) {
@@ -125,24 +138,35 @@ module.exports = function (app,model) {
     }
 
     function searchItemEbay(item) {
-        console.log("item"+ item);
+        console.log("Searching item on eaby with name: " + item);
         item = encodeURIComponent(item.trim());
         console.log(item);
         return new Promise(
             function (resolve, reject) {
                 http.get({
                     host: "open.api.ebay.com",
-                    path: "/shopping?version=713&appid="+ ebayConfig.appID +"&callname=FindPopularItems&QueryKeywords=" + item + "&ResponseEncodingType=JSON"
+                    path: "/shopping?version=713" +
+                    "&appid=" + ebayConfig.appID + "" +
+                    "&callname=FindPopularItems" +
+                    "&QueryKeywords=" + item +
+                    "&ResponseEncodingType=JSON" +
+                    "&AvailableItemsOnly=true" +
+                    "&MaxEntries=10" +
+                    "&PictureDetailsType=Gallery"
                 }, function (response) {
                     var body = '';
                     response.on('data', function (d) {
                         body += d;
                     });
                     response.on('end', function () {
+                        console.log("Got a successful response from ebay for item : " + item);
+
                         var ebayApiResult = JSON.parse(body);
+
                         console.log(ebayApiResult);
+                        console.log(ebayApiResult.ItemArray.Item[0]);
                         //return ebayApiResult.ItemArray.Item;
-                       resolve(ebayApiResult.ItemArray.Item);
+                        resolve(ebayApiResult.ItemArray.Item);
                     });
                 });
 
@@ -175,7 +199,7 @@ module.exports = function (app,model) {
         });
     }
 
-    function createProductRecord(req,res) {
+    function createProductRecord(req, res) {
         var userId = req.params.uid;
         console.log("createProductRecord");
         console.log(req.body);
@@ -183,7 +207,7 @@ module.exports = function (app,model) {
         //res.send(200);
         model
             .productModel
-            .createProductRecord(product,userId)
+            .createProductRecord(product, userId)
             .then(function (product) {
                     res.send(product);
                 }, function (error) {

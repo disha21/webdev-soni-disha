@@ -1,7 +1,35 @@
 
+<style>
+    .img-pos{
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
 
 
-<header class="item header margin-top-0">
+
+<script type="application/x-javascript"> addEventListener("load", function () {
+    setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+    window.scrollTo(0, 1);
+} </script>
+<!-- //for-mobile-apps -->
+<!-- js -->
+
+<!-- js -->
+<!-- start-smooth-scrolling -->
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+        });
+    });
+</script>
+<!-- start-smooth-scrolling -->
+<!--header class="item header margin-top-0">
     <div class="wrapper">
         <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
             <div class="container">
@@ -14,11 +42,11 @@
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <!--li class="propClone"><a href="#">Home</a></li-->
-                        <li class="propClone"><a href="#">About</a></li>
+                        <li class="propClone"><a href="#">Home</a></li>
+                        <li class="propClone"><a ng-click="model.gotoAbout()">About</a></li>
                         <li class="propClone"><a class="btn" href="#/login"  ng-if = "!model.user">Sign In</a></li>
                         <li class="propClone"><a class="btn" href="#/register" ng-if = "!model.user">Sign Up</a></li>
-                        <li class="propClone"><a class="btn" href="#/user/{{model.user.data._id}}/dashboard" ng-if = "model.user">{{model.user.data.username}}</a></li>
+                        <li class="propClone"><a class="btn" href="#/user/{{model.user.data._id}}/dashboard" ng-if = "model.user">{{model.user.username}}</a></li>
                         <li class="propClone"><a class="btn" ng-click="model.logout()" ng-if = "model.user">Logout</a></li>
                     </ul>
                 </div>
@@ -29,13 +57,11 @@
                 <div class="col-md-12 text-center">
                     <div class="text-homeimage">
                         <div class="maintext-image">
-                            <div class="input-group">
+                            <div class="input-group" >
                                 <input ng-model="itemName" type="text" class="form-control " placeholder="Search for...">
-                                <span class="input-group-btn "><button class="btn btn-secondary" ng-click="model.searchByItem(itemName)" type="button">Go!</button>
-      </span>
-                                    </div>
-
-
+                                <span class="input-group-btn "><button class="btn btn-secondary"  ng-click="model.searchByItem(itemName)" type="button">Go!</button>
+                                </span>
+                            </div>
                         </div>
 
                     </div>
@@ -43,7 +69,49 @@
             </div>
         </div>
     </div>
-</header>
+</header-->
+<header class="item header margin-top-0">
+    <div class="wrapper">
+<nav class="navbar navbar-inverse  navbar-embossed navbar-lg navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="col-xs-1"></div>
+            <a class=img-pos" class="navbar-brand" href="#"><img  ng-src="./images/smartBrand.gif" height="80px"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="scroll" href="#about"><span>about</span></a></li>
+                <li><a  href="#/register"  ng-if = "!model.user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#/login" ng-if = "!model.user"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#/user/{{model.user._id}}/dashboard" ng-if = "model.user">{{model.user.username}}</a></li>
+                <li><a ng-click="model.logout()" ng-if = "model.user"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <div class="text-homeimage">
+                    <div class="input-group  ">
+                        <input ng-model="itemName" type="text" class="form-control " placeholder="Search for...">
+                        <span class="input-group-btn"><button  class="btn btn-secondary btn-color "  ng-click="model.searchByItem(itemName)" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </span>
+</div>
+            </div>
+            </div>
+        </div>
+            </div>
+
+</div>
+    </header>
 
 
 <!-- STEPS =============================-->
@@ -93,70 +161,75 @@
     <div class="col-xs-1"></div>
 </div>
 <!-- LATEST ITEMS =============================-->
-<section class="item content">
+<section class="item content" id="searchItems">
     <div class="container">
 
         <div class="row">
+            <!-- amazon items-->
+            <div class="col-md-4 box" ng-repeat="item in model.amazonItems">
+                <div class="productbox" id="prod">
+                    <span class="label label-warning label-pos">Amazon</span>
+
+                    <span class="maxproduct " ><img id="itemImage" ng-src="{{item.MediumImage[0].URL[0]}}"  alt=""></span>
+                    <div class="product-details">
+                        <h3><span class="label label-success lb-lg">{{item.ItemAttributes[0].ListPrice[0].FormattedPrice[0]}}</span></h3>
+                        <br>
+                        <a href="#">
+                            <h1>{{item.ItemAttributes[0].Title[0]}}</h1>
+                        </a>
+
+                        <span class="price">
+						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceAmazon(item.ASIN[0], item.ItemAttributes[0].ListPrice[0].FormattedPrice[0], item.ItemAttributes[0].Title[0], item.LargeImage[0].URL[0])">
+                            <i class="fa fa-money" aria-hidden="true"></i> Track Price
+                        </button> <button  class="learn-more detailslearn btn-info" ng-click="showAdvanced($event, item)"><i class="fa fa-info-circle" aria-hidden="true"></i> More Details</button></span>
+						</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             <!-- ebay items-->
             <div class="col-md-4 box" id="ebayItem" ng-repeat="item in model.ebayItems">
                 <div class="productbox ">
-                        <span class="maxproduct "><img ng-src="{{item.GalleryURL}}" alt=""></span>
-
+                    <span class="label label-warning label-pos">ebay</span>
+                        <span class="maxproduct helper "><img ng-src="{{item.GalleryURL}}" alt=""></span>
+                    <br>
+                    <h3><span class="label label-success"> ${{item.ConvertedCurrentPrice.Value}}</span></h3>
                     <div class="product-details">
                         <a href="#">
                             <h1>{{item.Title}}</h1>
                         </a>
                         <span class="price">
-						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.GalleryURL)"><i class="fa fa-shopping-cart"></i> Track
-                                    Price</button> <button  class="learn-more detailslearn" ng-click="showAdvanced($event, item)"><i class="fa fa-link"></i> More Details</button>${{item.ConvertedCurrentPrice.Value}}</span>
+						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.GalleryURL)">
+                                <i class="fa fa-money" aria-hidden="true"></i> Track Price </button>
+                            <button  class="learn-more detailslearn btn-info" ng-click="showAdvanced($event, item)"><i class="fa fa-info-circle" aria-hidden="true"></i>  More Details</button></span>
 						</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 box" ng-repeat="item in model.amazonItems">
-                <div class="productbox ">
 
-                        <span class="maxproduct"><img ng-src="{{item.SmallImage[0].URL[0]}}" alt=""></span>
-
-                    <div class="product-details">
-                        <a href="#">
-                            <h1>{ {{item.ItemAttributes[0].Title[0]}}</h1>
-                        </a>
-                        <span class="price">
-						<span class="edd_price">   <label>ebay</label><button class="learn-more detailslearn" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.SmallImage[0].URL[0])"><i class="fa fa-shopping-cart"></i> Track
-                                    Price</button> <button  class="learn-more detailslearn" ng-click="showAdvanced($event, item)"><i class="fa fa-link"></i> More Details</button>${{item.ConvertedCurrentPrice.Value}}</span>
-						</span>
-						</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     </div>
 </section>
 
-
-
-
-
-
-<!-- TESTIMONIAL =============================-->
-<div class="item content" style="background-color:#00bba7;">
+<div class="item content" id="aboutus" >
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
+            <h2 class="aboutus">About us</h2>
             <div class="slide-text">
                 <div>
-                    <h2><span class="uppercase">About us</span></h2>
-                    <img src="http://wowthemes.net/demo/salique/salique-boxed/images/temp/avatar2.png"
+
+                    <img src="../../images/myPic.jpg"
                          alt="Awesome Support">
-                    <p>
-                        The support... I can only say it's awesome. You make a product and you help people out any way
-                        you can even if it means that you have to log in on their dashboard to sort out any problems
-                        that customer might have. Simply Outstanding!
-                    </p>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h3 class="aboutus">
+                        A passionate web developer and a shopping freak, who is mostly critical of the prices listed after discount.
+                        This is an effort to help like minded buyers, by helping myself get good grade in my masters course work.
+                        <a href="http://portal-cs5610online.rhcloud.com/" WebDev></a>
+                    </h3>
+
+
                     <br><br>
                 </div>
             </div>
@@ -164,17 +237,13 @@
     </div>
 </div>
 
-
-
-
-
 <!-- FOOTER =============================-->
 <div class="footer text-center">
     <div class="container">
         <div class="row">
 
             <p>
-                &copy; 2017 Your Website Name<br/>
+                &copy; 2017 Smart Shoppers<br/>
                 Scorilo - Free template by <a href="https://www.wowthemes.net/">WowThemesNet</a>
             </p>
         </div>

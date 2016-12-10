@@ -14,6 +14,7 @@ module.exports = function(app,model) {
     app.get('/api/user/:uid/search/',findProductsByUser);
     app.get('/api/user/:uid/search/:productId',addUserandProduct);
     app.post('/api/user/:uid/track/:productId',startTrackingItemPrice);
+    app.post('/api/user/:uid/product/:productId/comments', addCommentToProduct )
 
 
     function startTrackingItemPrice(req,res) {
@@ -86,10 +87,8 @@ module.exports = function(app,model) {
                     res.sendStatus(400).send(error);
                 }
             );
-
-
-
     }
+
 
 
     function findProductByProductId(req,res){
@@ -110,5 +109,24 @@ module.exports = function(app,model) {
                 }
             );
 
+    }
+
+
+    function addCommentToProduct(req,res) {
+        console.log("adding comment to product.");
+        var userId = req.params.uid;
+        var productId = req.params.productId;
+        var requestBody = req.body;
+
+        console.log("UserID:" + userId + "ProductID:" + productId);
+        console.log(requestBody);
+        model
+            .productModel
+            .addCommentToProductDAO(productId, userId, requestBody)
+            .then(function (msg) {
+                res.send(msg);
+            },function (error) {
+                res.sendStatus(400).send(error);
+            });
     }
 };

@@ -41,7 +41,7 @@ a:hover {
     background-repeat:no-repeat;
 }
 header .navbar-white a {
-    color:#3D566E;
+    color:black;
     font-weight:700;
 }
 .item.content,.item.portfolio,.item.team,.item.pricing,.item.contact {
@@ -59,24 +59,38 @@ header .navbar-white {
     box-shadow:0px 3px 2px 0px rgba(50,50,50,0.1);
 }
 .item.header {
-    background-image:url(../images/homeimg.jpg);
+    background-image:url(../images/photo-1.jpeg);
     background-repeat:no-repeat;
     background-position:0% top;
     background-size:cover;
     background-attachment:scroll;
     background-color:rgba(0,0,0,0);
 }
+#aboutus {
+    background-image:url(../images/header.jpg);
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment:scroll;
+    background-color:rgba(0,0,0,0);
+
+    /*opacity: 1;*/
+}
+
+h3.aboutus{
+    color:white;
+}
+
+h2.aboutus{
+    color:white;
+    text-align:center;
+}
+
 .navbar-nav,.navbar>.container .navbar-brand {
     font-family:Dosis;
     text-transform:uppercase;
 }
 .text-homeimage {
-    text-align:center;
-    color:#fff;
-    z-index:2;
-    position:relative;
-    font-size:75px;
-    line-height:90px;
     text-transform:uppercase;
     padding-top:190px;
     padding-bottom:190px;
@@ -226,6 +240,7 @@ img {
     padding:13px;
     border:1px solid #e4e4e4;
     margin-bottom:30px;
+    text-align:center;
 
 }
 
@@ -310,7 +325,7 @@ img {
 }
 .slide-text {
     position:relative;
-    color:#666;
+    color:white;
     overflow:hidden;
     text-align:center;
     font-size:22px;
@@ -687,3 +702,6 @@ ul,ol {
         color: #00bba7;
     }
 }
+
+.btn-color{
+background-color :#555555;}
