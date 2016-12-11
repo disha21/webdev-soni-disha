@@ -1,7 +1,33 @@
 module.exports = function(app,model) {
 
     console.log("hello from user service");
+    var passport = require('passport');
+    var session = require('express-session');
+    var cookieParser = require('cookie-parser');
+    var LocalStrategy = require('passport-local').Strategy;
 
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    var FacebookStrategy = require('passport-facebook').Strategy;
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : "http://localhost:3000/auth/facebook/callback"
+    };
+
+    var bcrypt = require("bcrypt-nodejs");
+
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email','profile'] }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: 'assignment/#/user',
+            failureRedirect: 'assignment/#/login'
+        }));
+
+
+    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
     app.post('/api/user',createUser);
@@ -10,6 +36,124 @@ module.exports = function(app,model) {
     app.get('/api/user/:uid',findUserById);
     app.put('/api/user/:uid',updateUser);
     app.delete('/api/user/:uid',deleteUser);
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/checkLoggedin',checkLoggedin);
+    app.post('/api/logout', logout);
+    app.post('/api/register',register);
+
+
+    function register (req, res) {
+        var user = req.body;
+        console.log("user server");
+        console.log(user);
+        user.password = bcrypt.hashSync(user.password);
+        model
+            .userModel
+            .createUser(user)
+    .then(
+            function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
+            }
+        );
+    }
+
+
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
+    }
+
+    function checkLoggedin(req,res){
+        res.send(req.isAuthenticated() ? req.user : '0');
+
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model.
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username,password,done) {
+        console.log("username + password");
+        console.log(username + password);
+        model
+            .userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+
+                },
+                function(err) {
+                    if (err)
+                    { return done(err); }
+                }
+            );
+    }
+
+
+    function login(req,res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        console.log(profile);
+        model.userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function (fbuser) {
+                    if (fbuser) {
+                        return done(null, fbuser);
+                    }
+                    else {
+                        fbuser = {
+                            username: profile.displayName.replace(/ /g, ''),
+                            facebook: {
+                                token: token,
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        };
+                        return userModel
+                            .createUser(fbuser);
+
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    done(null, user);
+                }
+            );
+
+    }
 
     function createUser(req,res) {
         var user = req.body;
@@ -61,10 +205,10 @@ module.exports = function(app,model) {
 
 
     function findUser(req,res) {
-        console.log("hello from api");
+        console.log("hello from find user api");
         var params = req.params;
         var query = req.query;
-        console.log(req);
+       // console.log(req);
         console.log(params);
         console.log(query);
 
@@ -72,6 +216,7 @@ module.exports = function(app,model) {
         if(query.username && query.password){
             findUserByCredentials(req,res);
         }else if(query.username){
+            console.log("findUserByUsername");
             findUserByUsername(req,res);
         }
 
@@ -103,9 +248,11 @@ module.exports = function(app,model) {
         model
             .userModel
             .findUserByUsername(username)
-            .then(function (users) {
-                if(users.length >0){
-                    res.send(users[0]);
+            .then(function (user) {
+                if(user){
+                    console.log("in findUserByUsername");
+                    console.log(user);
+                    res.send(user);
                 }else {
                     res.send("0");
                 }

@@ -12,15 +12,38 @@
     function RegisterController($location, UserService, $routeParams) {
         var vm = this;
         var uid = $routeParams.uid;
-        vm.register = function (newUser) {
+        vm.register = register;
+
+
+
+
+
+        function register (username,password,verifyPassword) {
+                console.log("in register");
+            var newUser = {
+                username:username,
+                password: password
+            };
+                console.log(username + password+ verifyPassword);
+
+                if(username && password && verifyPassword)
+                {
+                    console.log("in first if");
+                    if(password === verifyPassword)
+                    {
+                        console.log("in second if");
             UserService
-                .findUserByUsername(newUser.username)
+                .findUserByUsername(username)
                 .success(function(user) {
+                    console.log("user");
+                    console.log(user);
                     if (user!="0") {
                         vm.error = "User already exists";
+                        console.log("user");
                     } else {
+                        console.log("user in else") ;
                         UserService
-                            .createUser(newUser)
+                            .register(newUser)
                             .success(function(user) {
                                 if (user) {
                                     $location.url("/user/" + user._id);
@@ -33,11 +56,20 @@
                         });
                     }
                 }).error(function() {
-
+console.log("eeee");
             });
-
-
         }
+
+                    else
+                    {
+                        vm.error = "Password do not match!!!";
+                        vm.perror= "Please make sure password and verify password are both same";
+                    }
+                }
+                else {
+                    vm.error = "Please fill required fields!!";
+                }
+            }
     }
 
     function ProfileController($routeParams, UserService,$location) {
@@ -85,6 +117,19 @@
 
         }
 
+        function logout() {
+            UserService.logout()
+                .success(function(){
+                    $location.url("/login");
+                }).error(function(){
+                console.log("error in controller");
+
+
+            });
+
+
+        }
+
     }
 
 
@@ -94,26 +139,32 @@
 
         function login(username, password) {
             console.log("in login");
-            var promise = UserService.findUserByCredentials(username, password);
-            console.log(promise);
-            promise
-                .success(function(user){
-                    console.log("User");
-                    console.log(user);
-                if (user === "0") {
-                    vm.error = "User not found";
-                    console.log("User not found");
+            if (username && password) {
+                console.log("username:" + username + "passowrd:" + password );
+                var promise = UserService.login(username, password);
+                console.log(promise);
+                promise
+                    .success(function (user) {
+                        console.log("User");
+                        console.log(user);
+                        if (user == "0") {
+                            vm.error = "User not found";
+                            console.log("User not found");
 
-                } else {
+                        } else {
+                            console.log("logged in");
+                            $location.url("/user/" + user._id);
 
-                    $location.url("/user/" + user._id);
+                        }
+                    })
+                    .error(function (nnn) {
+                        console.log("nnn" + nnn);
 
-                }
-            })
-                .error(function(nnn){
-                    console.log("nnn" +nnn);
+                    });
 
-                });
+            }else{
+                vm.error ="Please enter username and password!!";
+        }
 
         }
     }

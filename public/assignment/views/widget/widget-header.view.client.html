@@ -21,13 +21,27 @@
     </div>
 </nav>
 <div class="container-fluid">
+    <div class="row">
+        <div class="  col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="  col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+    </div>
+
     <form>
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1"></div>
             <div class="col-xs-10 col-sm-10 col-md-10">
         <div class="form-group">
-            <label for="websitename">Name</label>
-            <input type="text" class="form-control" id="websitename" placeholder="Name" value=" ">
+            <label for="widgetname">Name</label>
+            <input name="name" ng-class="{ 'error-when' : submitted && myForm.model.widget.name.$error.required }"
+                   ng-model="model.widget.name" required type="text" class="form-control" id="widgetname" placeholder="Widget Name">
+            <span ng-show="submitted && myForm.name.$error.required" class="err">
+                                    *Required Field
+                                </span>
         </div>
                 </div>
             <div class="col-xs-1 col-sm-1 col-md-1"></div>

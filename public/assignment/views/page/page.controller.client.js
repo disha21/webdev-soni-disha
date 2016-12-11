@@ -67,22 +67,26 @@
         function addPage(newPage) {
             console.log("In add page" + newPage);
             console.log(uid + ":" + wid);
-            var promise = PageService.createPage(uid,wid ,newPage);
-            promise
-                .success(function(page) {
-                    if (vm.page) {
-                        console.log("In add page success" + page);
-                        console.log(page);
-                        vm.page = page;
-                        $location.url("user/" + uid + "/website/" + wid +"/page/");
-                        // console.log("/user/" + user._id);
+            if (newPage.name != null) {
+                var promise = PageService.createPage(uid, wid, newPage);
+                promise
+                    .success(function (page) {
+                        if (vm.page) {
+                            console.log("In add page success" + page);
+                            console.log(page);
+                            vm.page = page;
+                            $location.url("user/" + uid + "/website/" + wid + "/page/");
+                            // console.log("/user/" + user._id);
 
-                    } else {
-                        vm.error = "Page not created";
-                    }
-                }).error(function () {
+                        } else {
+                            vm.error = "Page not created";
+                        }
+                    }).error(function () {
 
-            });
+                });
+            }else{
+                vm.error = "Page name cannot be blank";
+            }
         }
     }
 
@@ -132,8 +136,13 @@
         function updatePage(newPage){
             console.log(vm.page);
             console.log(uid);
-            PageService.updatePage(uid,wid,vm.page);
-            $location.url("user/" + uid + "/website/" + wid +"/page" );
+            if(vm.page.name!=null){
+                PageService.updatePage(uid,wid,vm.page);
+                $location.url("user/" + uid + "/website/" + wid +"/page" );
+            }else{
+                vm.error= "Please fill the page name field"
+            }
+
 
         }
     }

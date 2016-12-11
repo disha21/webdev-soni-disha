@@ -25,13 +25,14 @@ app.use(passport.session());
 
 
 
+
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
 
  //require ("./test/app.js")(app);
-require ("./project/app.js")(app);
-//require ("./assignment/app.js")(app);
+//require ("./project/app.js")(app);
+require ("./assignment/app.js")(app);
 
 var connectionString = 'mongodb://127.0.0.1:27017/wam-fall-2016';
 

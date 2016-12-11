@@ -242,9 +242,12 @@
 
         function updateWidget(){
             console.log(vm.widget._id);
-            WidgetService.updateWidget(uid,wid,pid,vm.widget);
-            $location.url("user/" + uid + "/website/" + wid +"/page/" +pid +"/widget/" );
-
+            if(vm.widget.name!=null) {
+                WidgetService.updateWidget(uid, wid, pid, vm.widget);
+                $location.url("user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/");
+            }else{
+                vm.error="Please enter the widget name";
+            }
         }
 
         function deleteWidget() {

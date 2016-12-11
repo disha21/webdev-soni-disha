@@ -6,6 +6,10 @@ module.exports = function () {
     var WebsiteSchema = require("../website/website.schema.server")
 
     var UserSchema = mongoose.Schema({
+        facebook: {
+            id:    String,
+            token: String
+        },
         username :String,
         password :String,
         firstName :String,

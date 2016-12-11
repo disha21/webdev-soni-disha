@@ -68,7 +68,7 @@
                     if (user.websites != null) {
                         console.log("in success");
 
-                        vm.websites = user.websites ;
+                        vm.websites = user.websites;
                         console.log(vm.websites);
                     }
                 }).error(function () {
@@ -80,27 +80,29 @@
         init();
 
 
-
-
-
         function addWebsite(newWebsite) {
             console.log("In add website");
             console.log(newWebsite);
 
-            var promise = WebsiteService.createWebsite(uid, newWebsite);
-            promise
-                .success(function (website) {
-                    if (vm.website) {
-                        vm.website = website;
-                        $location.url("user/" + uid + "/website/");
-                        // console.log("/user/" + user._id);
+            if (newWebsite.name!=null) {
+                var promise = WebsiteService.createWebsite(uid, newWebsite);
+                promise
+                    .success(function (website) {
+                        if (vm.website) {
+                            vm.website = website;
+                            $location.url("user/" + uid + "/website/");
+                            // console.log("/user/" + user._id);
 
-                    } else {
-                        vm.error = "Website not created";
-                    }
-                }).error(function () {
+                        } else {
+                            vm.error = "Website not created";
+                        }
+                    }).error(function () {
 
-            });
+                });
+            }
+            else {
+                vm.error = "Please enter the website name";
+            }
         }
     }
 
@@ -150,16 +152,12 @@
             console.log("in update website " + wid);
             console.log(vm.website);
             console.log(uid);
-              WebsiteService.updateWebsite(uid,vm.website);
-               $location.url("user/" + uid + "/website/");
-          /* .success(function () {
-               console.log("in update website ");
-               console.log(vm.website);
-               $location.url("user/" + uid + "/website/");
-
-            }).error(function () {
-
-            });*/
+            if (vm.website.name!=null) {
+                WebsiteService.updateWebsite(uid, vm.website);
+                $location.url("user/" + uid + "/website/");
+            }else{
+                vm.error = "Website name cannot be blank";
+            }
 
 
         }

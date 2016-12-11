@@ -18,10 +18,40 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             createUser: createUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            findUserByUsername: findUserByUsername,
+            login:login,
+            checkLoggedin:checkLoggedin,
+            logout:logout,
+            register: register
         };
 
         return api;
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function register(newUser) {
+            console.log("in register service");
+            return $http.post("/api/register",newUser);
+        }
+
+
+        function checkLoggedin () {
+            console.log("in checked");
+            return $http.post("/api/checkLoggedin");
+        }
+
+        function login(username,password) {
+            var user = {
+                username :username,
+                password:password
+            };
+
+            return $http.post("/api/login",user);
+
+        }
 
         function findUserByCredentials(username, password) {
             /*console.log("hello");
@@ -85,6 +115,7 @@
                  }
              }
              return null;*/
+            console.log("in service" +username );
 
              var url = '/api/user?username='+ username;
              return $http.get(url);
