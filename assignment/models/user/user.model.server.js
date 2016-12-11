@@ -18,7 +18,7 @@ module.exports =function () {
          findUserByUsername :findUserByUsername,
          findAllWebsitesForUser:findAllWebsitesForUser,
          setModel:setModel,
-        findUserByFacebookId:findUserByFacebookId
+         findUserByFacebookId:findUserByFacebookId
     };
 
     return api;

@@ -6,6 +6,11 @@ module.exports = function () {
 
 
     var UserSchema = mongoose.Schema({
+        google: {
+            token: String,
+            id: String,
+            displayName: String
+        },
         username :String,
         password :String,
         name :String,

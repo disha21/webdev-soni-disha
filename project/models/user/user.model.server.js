@@ -18,7 +18,8 @@ module.exports =function () {
          findProductsTrackedByUser:findProductsTrackedByUser,
          setModel:setModel,
          findAllUsers:findAllUsers,
-        findProductTrackerByUserAndProductId:findProductTrackerByUserAndProductId
+        findProductTrackerByUserAndProductId:findProductTrackerByUserAndProductId,
+        findGoogleUser: findGoogleUser
     };
 
     return api;
@@ -27,6 +28,10 @@ module.exports =function () {
         // return ProductModel.find().distinct('productId','productProvider');
          return UserModel.find({});
 
+    }
+
+    function findGoogleUser(id){
+        return UserModel.findOne({"google.id": id});
     }
 
 

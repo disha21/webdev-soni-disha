@@ -6,6 +6,7 @@ module.exports = function(app,model) {
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
 
@@ -19,6 +20,60 @@ module.exports = function(app,model) {
     app.post('/api/login', passport.authenticate('local'), login);
     app.post('/api/checkLoggedin',checkLoggedin);
     app.post('/api/logout', logout);
+
+    app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/project/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/project/#/user',
+            failureRedirect: '/project/#/login'
+        }));
+
+    var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
+    };
+
+    passport.use('google', new GoogleStrategy(googleConfig, googleStrategy));
+
+
+    function googleStrategy(token, refereshToken, profile, done) {
+        console.log("google profile "+profile);
+        model.userModel
+            .findGoogleUser(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return model.userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
 
 
 

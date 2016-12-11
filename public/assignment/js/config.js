@@ -22,6 +22,12 @@
                 controller:"RegisterController",
                 controllerAs: "model"
             })
+            .when("/user", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller:"ProfileController",
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller:"ProfileController",
@@ -84,11 +90,12 @@
                 redirectTo:"/"
             })
 
-        function checkLoggedin($q,UserService,$location) {
+        function checkLoggedin($q,UserService,$location,$rootScope) {
             var deferred = $q.defer();
             UserService.checkLoggedin()
                 .success(function (user) {
                     if(user !='0'){
+                        $rootScope.currentUser = user;
                         deferred.resolve();
                     }else{
                         deferred.reject();

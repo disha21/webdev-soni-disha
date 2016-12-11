@@ -15,9 +15,6 @@
         vm.register = register;
 
 
-
-
-
         function register (username,password,verifyPassword) {
                 console.log("in register");
             var newUser = {
@@ -58,11 +55,8 @@
                 }).error(function() {
 console.log("eeee");
             });
-        }
-
-                    else
-                    {
-                        vm.error = "Password do not match!!!";
+        } else {
+                       vm.error = "Password do not match!!!";
                         vm.perror= "Please make sure password and verify password are both same";
                     }
                 }
@@ -72,9 +66,9 @@ console.log("eeee");
             }
     }
 
-    function ProfileController($routeParams, UserService,$location) {
+    function ProfileController($routeParams, $rootScope,UserService,$location) {
         var vm = this;
-        var uid = $routeParams.uid;
+        var uid = $rootScope.currentUser._id;
         vm.uid = uid;
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
@@ -123,13 +117,8 @@ console.log("eeee");
                     $location.url("/login");
                 }).error(function(){
                 console.log("error in controller");
-
-
             });
-
-
         }
-
     }
 
 

@@ -14,16 +14,16 @@ module.exports = function(app,model) {
     var facebookConfig = {
         clientID     : process.env.FACEBOOK_CLIENT_ID,
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL  : "http://localhost:3000/auth/facebook/callback"
+        callbackURL  : "http://localhost:3000/auth/assignment/facebook/callback"
     };
 
     var bcrypt = require("bcrypt-nodejs");
 
-    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email','profile'] }));
-    app.get('/auth/facebook/callback',
+    app.get ('/auth/assignment/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/assignment/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: 'assignment/#/user',
-            failureRedirect: 'assignment/#/login'
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
         }));
 
 
@@ -141,7 +141,7 @@ module.exports = function(app,model) {
                                 displayName: profile.displayName
                             }
                         };
-                        return userModel
+                        return model.userModel
                             .createUser(fbuser);
 
                     }
@@ -218,6 +218,8 @@ module.exports = function(app,model) {
         }else if(query.username){
             console.log("findUserByUsername");
             findUserByUsername(req,res);
+        }else{
+            res.json(req.user);
         }
 
     }
