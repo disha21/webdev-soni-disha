@@ -131,9 +131,8 @@ module.exports = function(app,model) {
         console.log("hello from api");
         var params = req.params;
         var query = req.query;
-        console.log(req);
-        console.log(params);
-        console.log(query);
+       // console.log(req);
+
 
 
         if(query.username && query.password){
@@ -156,6 +155,7 @@ module.exports = function(app,model) {
                     if(users.length >0){
                         res.send(users[0]);
                     }else{
+                        console.log("No user");
                         res.send("0");
                     }
                 },function (error) {
@@ -172,8 +172,11 @@ module.exports = function(app,model) {
             .findUserByUsername(username)
             .then(function (users) {
                 if(users.length >0){
+                    console.log("users");
+                    console.log(users[0]);
                     res.send(users[0]);
                 }else {
+                    console.log("No user");
                     res.send("0");
                 }
                 },function (error) {

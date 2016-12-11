@@ -9,7 +9,7 @@
 
 
 
-    function HomePageController(HomepageService,UserService, $scope, $mdDialog,$location,ProductService,$anchorScroll) {
+    function HomePageController(HomepageService,UserService, $scope,$location,ProductService) {
         console.log("in HomePageController");
         var vm = this;
         vm.searchByItem = searchByItem;
@@ -154,7 +154,7 @@
     }
 
 
-    function ModalController($scope, $mdDialog, ebay) {
+   /* function ModalController($scope, $mdDialog, ebay) {
 
         console.log("vm");
         console.log($scope);
@@ -173,14 +173,14 @@
             $mdDialog.hide();
 
         };
-       /* $scope.close = function () {
+        $scope.close = function () {
             console.log("close called");
             $mdDialog.close();
 
-        };*/
+        };
 
 
-    }
+    }*/
 
 
 })();
