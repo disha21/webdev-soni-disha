@@ -5,7 +5,7 @@
 
 
 (function() {
-    angular.module("webdevProject",["ngRoute",'ngMaterial'])
+    angular.module("webdevProject",["ngRoute"])
         .config(Config);
     function Config($routeProvider) {
         $routeProvider
