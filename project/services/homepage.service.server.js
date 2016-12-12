@@ -4,6 +4,7 @@ module.exports = function (app, model) {
     app.get('/api/search/:item', searchItem);
     app.post('/api/user/:uid/search/:itemId', createProductRecord);
 
+
     var http = require('http');
     var amazon = require('amazon-product-api');
 
@@ -54,7 +55,6 @@ module.exports = function (app, model) {
                 }
             });
     });*/
-
 
     function searchItemAmazonItemByIdAndAddInDB(itemId) {
         return client.itemLookup({
@@ -216,6 +216,52 @@ module.exports = function (app, model) {
             );
 
 
+    }
+
+
+    module.exports = {
+        getItemFromEbayByItemId : function (itemId) {
+            console.log("getItemFromEbayId by itemId" + itemId)
+            return new Promise(
+                function (resolve, reject) {
+                    http.get({
+                        host: "open.api.ebay.com",
+                        path: "/shopping?callname=GetSingleItem&ResponseEncodingType=JSON&appid=" + ebayConfig.appID + "&siteid=0&version=967&ItemID=" + itemId
+                    }, function (response) {
+                        var body = '';
+                        response.on('data', function (d) {
+                            body += d;
+                        });
+                        response.on('end', function () {
+                            console.log(itemId + "Got all the response from the server.");
+                            var itemData = JSON.parse(body);
+                            resolve(itemData);
+                        });
+                    }, function (error) {
+                        reject("Could not get price from ebay " + error);
+                    });
+                });
+
+        },
+
+        getItemFromAmazonByItemId : function (itemId) {
+            return client.itemLookup({
+                Service: "AWSECommerceService",
+                Operation: "ItemLookup",
+                ResponseGroup: "Medium",
+                ItemId: itemId
+
+            }).then(function (results) {
+                console.log("got resp for amazon itemlookup ");
+                var amazonApiResult = results;
+                console.log(amazonApiResult);
+                // updateProductPrice(itemId, amazonApiResult[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
+                return amazonApiResult;
+            }).catch(function (err) {
+                console.log("got error");
+                console.log(err[0].Error[0]);
+            });
+        }
     }
 
 };

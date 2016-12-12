@@ -84,7 +84,8 @@
             console.log("In add website");
             console.log(newWebsite);
 
-            if (newWebsite.name!=null) {
+            if (newWebsite) {
+                if(newWebsite.name!=null){
                 var promise = WebsiteService.createWebsite(uid, newWebsite);
                 promise
                     .success(function (website) {
@@ -103,6 +104,9 @@
             else {
                 vm.error = "Please enter the website name";
             }
+        }else{
+                vm.error = "Please enter the website name";
+        }
         }
     }
 

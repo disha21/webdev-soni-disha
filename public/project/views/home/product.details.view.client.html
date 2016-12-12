@@ -1,0 +1,124 @@
+<style>
+    .details {
+
+        padding-top: 40px;
+    }
+
+    .button-buffer {
+        padding-top: 10px;
+
+    }
+
+    .wordwrap {
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+</style>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-10">
+
+            <h1>Product Details</h1>
+
+
+        </div>
+    </div>
+    <hr>
+
+
+    <section class="item content ">
+        <div class="container details">
+            <div class="row" ng-show="model.productProvider=='ebay'">
+                <div class="col-md-8">
+                    <div class="productbox">
+                        <h2> {{model.product.productDetails.Item.Title}}</h2>
+                        <img ng-src="{{model.product.productDetails.Item.PictureURL[0]}}" alt="">
+                        <div class="clearfix">
+                        </div>
+                        <br/>
+                        <div class="product-details text-left">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-success btn-block">${{model.product.productDetails.Item.ConvertedCurrentPrice.Value}}</a>
+                    <div class="properties-box">
+                        <ul class="unstyle">
+                            <li><b class="propertyname">Category:</b>
+                                {{model.product.productDetails.Item.PrimaryCategoryName}}
+                            </li>
+                            <li><b class="propertyname">Listing Status:</b>
+                                {{model.product.productDetails.Item.ListingStatus}}
+                            </li>
+                            <li><b class="propertyname">Condition:</b>
+                                {{model.product.productDetails.Item.ConditionDisplayName}}
+                            </li>
+                            <li><b class="propertyname">AutoPay:</b> {{model.product.productDetails.Item.AutoPay}}</li>
+                            <li><b class="propertyname">Quantity:</b>
+                                {{model.product.productDetails.Item.QuantityThreshold}}
+                            </li>
+                            <li><b class="propertyname">Ebay Url:</b> <a target="_blank"
+                                                                         href="{{model.product.productDetails.Item.ViewItemURLForNaturalSearch}}">{{model.product.productDetails.Item.ViewItemURLForNaturalSearch}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="btn btn-info btn-block button-buffer"><b>Start Tracking</b></a>
+                </div>
+            </div>
+
+
+            <div class="row" ng-show="model.productProvider=='amazon'">
+                <div class="col-md-8">
+                    <div class="productbox">
+                        <h3> {{model.product.productDetails[0].ItemAttributes[0].Title[0]}}</h3>
+                        <img ng-src="{{model.product.productDetails[0].LargeImage[0].URL[0]}}" alt="">
+                        <div class="clearfix">
+                        </div>
+                        <br/>
+                        <div class="product-details text-left">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-success btn-block">{{model.product.productDetails[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]}}</a>
+                    <div class="properties-box">
+                        <ul class="unstyle">
+                            <li><b class="propertyname">Category:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].Binding[0]}}
+                            </li>
+                            <li><b class="propertyname">Manufacturer:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].Manufacturer[0]}}
+                            </li>
+                            <li><b class="propertyname">Color:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].Color[0]}}
+                            </li>
+                            <li><b class="propertyname">Warranty:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].ManufacturerPartsWarrantyDescription[0]}}
+                            </li>
+                            <li><b class="propertyname">Product Group:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].ProductGroup[0]}}
+                            </li>
+                            <li><b class="propertyname">Product Type:</b>
+                                {{model.product.productDetails[0].ItemAttributes[0].ProductTypeName[0]}}
+                            </li>
+                            <li><b class="propertyname ">Amazon Url:</b> <a target="_blank" class="wordwrap"
+                                                                            href="{{model.product.productDetails[0].DetailPageURL[0]}}">
+                                {{model.product.productDetails[0].DetailPageURL[0]}}</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="btn btn-info btn-block button-buffer"><b>Start Tracking</b></a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+</div>

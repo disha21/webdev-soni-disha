@@ -8,6 +8,7 @@ module.exports = function(app) {
     require("./services/user.service.server")(app,model);
     require("./services/product.service.server")(app,model);
     require("./services/admin.service.server")(app,model);
+    require("./services/product.details.service.server")(app,model);
 
 
 

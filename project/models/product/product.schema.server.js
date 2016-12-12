@@ -14,7 +14,7 @@ module.exports = function () {
         }],
         productTitle: String,
         imageUrl: String,
-        users: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
+        users: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserProjectModel'}],
         comments: [{
             userName: String,
             comment: String

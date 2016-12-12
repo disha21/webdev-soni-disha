@@ -1,12 +1,23 @@
 module.exports = function(app,model) {
 
     console.log("hello from user service");
-    var passport = require('passport');
-    var session = require('express-session');
     var cookieParser = require('cookie-parser');
+    var session      = require('express-session');
+    var passport = require('passport');
+    app.use(cookieParser());
+    app.use(session({
+        // secret: process.env.APP_SECRET_KEY,
+        secret:"this is assignment secret",
+        resave: true,
+        saveUninitialized: true
+    }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     var LocalStrategy = require('passport-local').Strategy;
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('assignment', new LocalStrategy(localStrategyAssignment));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     var FacebookStrategy = require('passport-facebook').Strategy;
@@ -36,7 +47,7 @@ module.exports = function(app,model) {
     app.get('/api/user/:uid',findUserById);
     app.put('/api/user/:uid',updateUser);
     app.delete('/api/user/:uid',deleteUser);
-    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/login', passport.authenticate('assignment'), login);
     app.post('/api/checkLoggedin',checkLoggedin);
     app.post('/api/logout', logout);
     app.post('/api/register',register);
@@ -72,9 +83,21 @@ module.exports = function(app,model) {
     }
 
     function checkLoggedin(req,res){
+        // console.log("Assignment: " + req);
+        console.log(req)
+
         res.send(req.isAuthenticated() ? req.user : '0');
 
     }
+
+    /*req.isAuthenticated = function() {
+        var property = 'user';
+        if (this._passport && this._passport.instance) {
+            property = this._passport.instance._userProperty || 'user';
+        }
+
+        return (this[property]) ? true : false;
+    };*/
 
     function serializeUser(user, done) {
         done(null, user);
@@ -94,7 +117,7 @@ module.exports = function(app,model) {
             );
     }
 
-    function localStrategy(username,password,done) {
+    function localStrategyAssignment(username,password,done) {
         console.log("username + password");
         console.log(username + password);
         model

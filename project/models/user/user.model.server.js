@@ -5,7 +5,7 @@ module.exports =function () {
     var model ={};
     var mongoose = require('mongoose');
     var UserSchema =  require("./user.schema.server.js")();
-    var UserModel = mongoose.model("UserModel",UserSchema);
+    var UserProjectModel = mongoose.model("UserProjectModel",UserSchema);
 
 
     var api = {
@@ -26,12 +26,12 @@ module.exports =function () {
 
     function findAllUsers(){
         // return ProductModel.find().distinct('productId','productProvider');
-         return UserModel.find({});
+         return UserProjectModel.find({});
 
     }
 
     function findGoogleUser(id){
-        return UserModel.findOne({"google.id": id});
+        return UserProjectModel.findOne({"google.id": id});
     }
 
 
@@ -42,7 +42,7 @@ module.exports =function () {
 
     function findProductsTrackedByUser(userId) {
         console.log( "userId:"+ userId);
-        return UserModel.findById(userId)
+        return UserProjectModel.findById(userId)
             .populate("products")
             .exec();
     }
@@ -51,7 +51,7 @@ module.exports =function () {
     function findProductTrackerByUserAndProductId(userId, productId) {
         console.log( "findProductTrackerByUserAndProductId:"+ userId);
 
-        return UserModel.find({
+        return UserProjectModel.find({
             _id : userId,
             products: { $in: [productId] }
         });
@@ -62,7 +62,7 @@ module.exports =function () {
 
     function updateUser(userId,user) {
         console.log( "userId:"+ userId);
-         return UserModel.update(
+         return UserProjectModel.update(
              {
               _id : userId
               },
@@ -75,33 +75,31 @@ module.exports =function () {
     }
 
     function createUser(user) {
-        return UserModel.create(user);
+        return UserProjectModel.create(user);
     }
 
     function deleteUser(userId) {
-        return UserModel.remove({
+        return UserProjectModel.remove({
             _id : userId
         });
     }
 
 
     function findUserByCredentials(username,password) {
-       // return UserModel.find({_id : userId});
-        return UserModel.findOne({
+        return UserProjectModel.findOne({
             username:username,
             password:password
         });
     }
 
-    function findUserByUsername(username) {
-        // return UserModel.find({_id : userId});
-        return UserModel.find({
+    function findUserByUsername(username){
+        return UserProjectModel.find({
             username:username
         });
     }
 
     function findUserById(userId) {
-        // return UserModel.find({_id : userId});
-        return UserModel.findById(userId);
+
+        return UserProjectModel.findById(userId);
     }
 };

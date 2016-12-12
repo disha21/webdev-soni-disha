@@ -1,25 +1,36 @@
 module.exports = function(app,model) {
 
     console.log("hello from user service");
+
+    var cookieParser = require('cookie-parser');
+    var session      = require('express-session');
     var passport = require('passport');
+    app.use(cookieParser());
+    app.use(session({
+        // secret: process.env.APP_SECRET_KEY,
+        secret:"this is project secret",
+        resave: true,
+        saveUninitialized: true
+    }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
     var LocalStrategy = require('passport-local').Strategy;
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('project',new LocalStrategy(localStrategyProject));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-
-
-    app.post('/api/user',createUser);
-    app.put('/api/user/:uid',updateUser);
-    app.get('/api/user',findUser);
-    app.get('/api/user/:uid',findUserById);
-    app.put('/api/user/:uid',updateUser);
-    app.delete('/api/user/:uid',deleteUser);
-    app.post('/api/login', passport.authenticate('local'), login);
-    app.post('/api/checkLoggedin',checkLoggedin);
-    app.post('/api/logout', logout);
+    app.post('/api/project/user',createUser);
+    app.put('/api/project/user/:uid',updateUser);
+    app.get('/api/project/user',findUser);
+    app.get('/api/project/user/:uid',findUserById);
+    app.put('/api/project/user/:uid',updateUser);
+    app.delete('/api/project/user/:uid',deleteUser);
+    app.post('/api/project/login', passport.authenticate('project'), login);
+    app.post('/api/project/checkLoggedin',checkLoggedin);
+    app.post('/api/project/logout', logout);
 
     app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/project/google/callback',
@@ -105,7 +116,7 @@ module.exports = function(app,model) {
             );
     }
 
-    function localStrategy(username,password,done) {
+    function localStrategyProject(username,password,done) {
         console.log("username + password");
         console.log(username + password);
         model

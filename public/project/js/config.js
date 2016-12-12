@@ -38,6 +38,12 @@
                 controllerAs: "model",
                 resolve: { checkLoggedin: checkLoggedin }
         })
+            .when("/user/search/product/:productId/productProvider/:provider/details", {
+                templateUrl: "views/home/product.details.view.client.html",
+                controller:"ProductDetailsPageController",
+                controllerAs: "model"
+
+            })
             .when("/user/:uid/dashboard", {
                 templateUrl: "views/home/dashboard.view.client.html",
                 controller:"DashboardController",

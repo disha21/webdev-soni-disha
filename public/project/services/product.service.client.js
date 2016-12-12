@@ -14,7 +14,6 @@
             findProductByProductId: findProductByProductId,
             findProductsTrackedByUser: findProductsTrackedByUser,
             findProductsByUser: findProductsByUser,
-            addUserandProduct: addUserandProduct,
             startTrackingItemPrice: startTrackingItemPrice,
             addCommentToProduct: addCommentToProduct
 
@@ -41,12 +40,7 @@
         }
 
 
-        function addUserandProduct(userId, productId) {
-            console.log("addUserandProduct");
 
-            var url = "/api/user/" + userId + "/search/" + productId;
-            return $http.get(url);
-        }
 
         function findProductsByUser(userId) {
             var url = "/api/user/" + userId + "/search/";

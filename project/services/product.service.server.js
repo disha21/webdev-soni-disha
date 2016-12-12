@@ -2,19 +2,13 @@ module.exports = function(app,model) {
 
     console.log("hello from product service");
 
-
-
-
-
-
     app.get('/api/user/:uid/search/:itemId',findProductByProductId);
     app.get('/api/user/:uid/dashboard/',findProductsTrackedByUser);
-
-
     app.get('/api/user/:uid/search/',findProductsByUser);
-    app.get('/api/user/:uid/search/:productId',addUserandProduct);
     app.post('/api/user/:uid/track/:productId',startTrackingItemPrice);
     app.post('/api/user/:uid/product/:productId/comments', addCommentToProduct )
+
+
 
 
     function startTrackingItemPrice(req,res) {
@@ -39,21 +33,6 @@ module.exports = function(app,model) {
 
 
 
-    function addUserandProduct(req,res){
-        console.log("In server addUserandProduct");
-        var userId = req.params.uid;
-        var productId = req.params.productId;
-        console.log("User id :" + userId + "productId:"+productId);
-        model
-            .productModel
-            .addUserandProduct(userId,productId)
-            .then(function (status) {
-                res.send(200);
-            },function (error) {
-                res.sendStatus(400).send(error);
-            }
-        );
-    }
 
 
     function findProductsTrackedByUser(req,res){

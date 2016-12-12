@@ -11,16 +11,7 @@ var passport      = require('passport');
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cookieParser());
-app.use(session({
-   // secret: process.env.APP_SECRET_KEY,
-    secret:"this is secret",
-    resave: true,
-    saveUninitialized: true
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 

@@ -18,6 +18,25 @@
         vm.logout = logout;
 
 
+        vm.showEbayDetails = showEbayDetails;
+        vm.showAmazonDetails = showAmazonDetails;
+
+
+            function showEbayDetails(productId) {
+                console.log("in ebay details");
+                var productProvider = "ebay";
+                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details");
+
+
+            }
+
+            function showAmazonDetails(productId) {
+                console.log("in amazon details");
+                var productProvider = "amazon";
+                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details");
+
+            }
+
 
 
         function init(){

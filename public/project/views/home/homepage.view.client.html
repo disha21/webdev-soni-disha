@@ -14,11 +14,6 @@
 function hideURLbar() {
     window.scrollTo(0, 1);
 } </script>
-<!-- //for-mobile-apps -->
-<!-- js -->
-
-<!-- js -->
-<!-- start-smooth-scrolling -->
 
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
@@ -28,48 +23,7 @@ function hideURLbar() {
         });
     });
 </script>
-<!-- start-smooth-scrolling -->
-<!--header class="item header margin-top-0">
-    <div class="wrapper">
-        <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle"
-                            type="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </button>
-                    <a href="#" class="navbar-brand brand"> Price Tracker </a>
-                </div>
-                <div id="navbar-collapse-02" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="propClone"><a href="#">Home</a></li>
-                        <li class="propClone"><a ng-click="model.gotoAbout()">About</a></li>
-                        <li class="propClone"><a class="btn" href="#/login"  ng-if = "!model.user">Sign In</a></li>
-                        <li class="propClone"><a class="btn" href="#/register" ng-if = "!model.user">Sign Up</a></li>
-                        <li class="propClone"><a class="btn" href="#/user/{{model.user.data._id}}/dashboard" ng-if = "model.user">{{model.user.username}}</a></li>
-                        <li class="propClone"><a class="btn" ng-click="model.logout()" ng-if = "model.user">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="text-homeimage">
-                        <div class="maintext-image">
-                            <div class="input-group" >
-                                <input ng-model="itemName" type="text" class="form-control " placeholder="Search for...">
-                                <span class="input-group-btn "><button class="btn btn-secondary"  ng-click="model.searchByItem(itemName)" type="button">Go!</button>
-                                </span>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header-->
 <header class="item header margin-top-0">
     <div class="wrapper">
 <nav class="navbar navbar-inverse  navbar-embossed navbar-lg navbar-fixed-top">
@@ -181,7 +135,7 @@ function hideURLbar() {
                         <span class="price">
 						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceAmazon(item.ASIN[0], item.ItemAttributes[0].ListPrice[0].FormattedPrice[0], item.ItemAttributes[0].Title[0], item.LargeImage[0].URL[0])">
                             <i class="fa fa-money" aria-hidden="true"></i> Track Price
-                        </button> <button  class="learn-more detailslearn btn-info" ng-click="showAdvanced($event, item)"><i class="fa fa-info-circle" aria-hidden="true"></i> More Details</button></span>
+                        </button> <button  class="learn-more detailslearn btn-info" ng-click="model.showAmazonDetails(item.ASIN[0])"><i class="fa fa-info-circle" aria-hidden="true"></i> More Details</button></span>
 						</span>
                         </span>
                     </div>
@@ -202,7 +156,7 @@ function hideURLbar() {
                         <span class="price">
 						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.GalleryURL)">
                                 <i class="fa fa-money" aria-hidden="true"></i> Track Price </button>
-                            <button  class="learn-more detailslearn btn-info" ng-click="showAdvanced($event, item)"><i class="fa fa-info-circle" aria-hidden="true"></i>  More Details</button></span>
+                            <button  class="learn-more detailslearn btn-info" ng-click="model.showEbayDetails(item.ItemID)"><i class="fa fa-info-circle" aria-hidden="true"></i>  More Details</button></span>
 						</span>
                     </div>
                 </div>
