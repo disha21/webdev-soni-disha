@@ -19,11 +19,48 @@ module.exports = function () {
         findProductsTrackedByUser: findProductsTrackedByUser,
         findAllTrackedProducts: findAllTrackedProducts,
         startTrackingItemPrice: startTrackingItemPrice,
-        addCommentToProductDAO: addCommentToProductDAO
-        // addUserandProduct:addUserandProduct
+        addCommentToProductDAO: addCommentToProductDAO,
+        removeUserFromProduct: removeUserFromProduct,
+        findProductsByIds: findProductsByIds
     };
 
     return api;
+
+    function findProductsByIds(ids) {
+        return ProductModel.find({
+            '_id': { $in: ids}
+        }, function(err, docs){
+            console.log(docs);
+        });
+    }
+
+
+    function removeUserFromProduct(productItemId, userId) {
+        return ProductModel.find({
+            productId : productItemId
+        }).then(function (productObjArray) {
+            var productObj = productObjArray[0];
+
+            for(i in productObj.users ) {
+                if (productObj.users[i] == userId) {
+                    console.log("found the user id at index" + i);
+                    productObj.users.splice(i, 1);
+                }
+            }
+            console.log("length " + productObj.users.length );
+            if(productObj.users.length == 0){
+                return deleteProductByProductItemId(productItemId)
+            }
+            return productObj.save();
+        })
+
+    }
+
+    function deleteProductByProductItemId(productItemId) {
+        return ProductModel.remove({
+            productId : productItemId
+        });
+    }
 
 
     function setModel(_model) {
@@ -55,10 +92,6 @@ module.exports = function () {
                 }
                 else {
                     console.log("Product does not exist" + productId)
-                    //Create a product
-                    //Add user to product
-                    //Add product to user.
-
                     return createProductRecord(product, userId)
                         .then(function (obj) {
                             return {msg: "Started tracking your product."}
@@ -141,7 +174,7 @@ module.exports = function () {
         return model
             .userModel.findUserById(userId)
             .then(function (userObj) {
-                model
+               return model
                     .productModel
                     .findProductByProductId(productItemId)
                     .then(function (product) {

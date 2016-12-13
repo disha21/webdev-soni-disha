@@ -8,15 +8,18 @@
         .controller("ProductDetailsPageController", ProductDetailsPageController)
 
 
-        function ProductDetailsPageController(ProductDetailsPageService,$location,$routeParams) {
+        function ProductDetailsPageController(ProductDetailsPageService,$location,$routeParams,UserService) {
             var vm = this;
-
+           vm.uid = $routeParams.uid;
             var productId = $routeParams.productId;
             vm.productId =productId;
             var productProvider = $routeParams.provider;
             vm.productProvider =productProvider;
+            vm.productName = $routeParams.productName;
 
             function init() {
+
+
                 console.log("product details ");
                 ProductDetailsPageService
                     .showProductDetails(productId, productProvider)

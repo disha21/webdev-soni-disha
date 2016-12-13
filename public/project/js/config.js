@@ -15,6 +15,12 @@
                 controllerAs: "model"
 
             })
+            .when("/search/:itemName", {
+                templateUrl: "views/home/homepage.view.client.html",
+                controller:"HomePageController",
+                controllerAs: "model"
+
+            })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller:"LoginController",
@@ -32,28 +38,47 @@
                 resolve: { checkLoggedin: checkLoggedin }
 
             })
+            .when("/user/:uid/profile/:viewUserName", {
+                templateUrl: "views/user/profile.display.view.client.html",
+                controller:"ProfileDisplayController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/search", {
                 templateUrl: "views/home/homepage.view.client.html",
                 controller:"HomePageController",
                 controllerAs: "model",
                 resolve: { checkLoggedin: checkLoggedin }
         })
+            .when("/user/:uid/search/:itemName", {
+                templateUrl: "views/home/homepage.view.client.html",
+                controller:"HomePageController",
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
+            })
             .when("/user/search/product/:productId/productProvider/:provider/details", {
                 templateUrl: "views/home/product.details.view.client.html",
                 controller:"ProductDetailsPageController",
                 controllerAs: "model"
 
             })
+            .when("/user/search/product/:productId/productProvider/:provider/details/:productName", {
+            templateUrl: "views/home/product.details.view.client.html",
+            controller:"ProductDetailsPageController",
+            controllerAs: "model"
+
+        })
             .when("/user/:uid/dashboard", {
                 templateUrl: "views/home/dashboard.view.client.html",
                 controller:"DashboardController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
             })
 
             .when("/user/:uid/adminDashboard", {
                 templateUrl: "views/admin/adminDashboard.view.client.html",
                 controller:"AdminDashboardController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
             })
 
             .otherwise({

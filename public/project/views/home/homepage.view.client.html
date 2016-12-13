@@ -1,12 +1,4 @@
 
-<style>
-    .img-pos{
-        vertical-align: middle;
-        text-align: center;
-    }
-</style>
-
-
 
 <script type="application/x-javascript"> addEventListener("load", function () {
     setTimeout(hideURLbar, 0);
@@ -39,7 +31,7 @@ function hideURLbar() {
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="scroll" href="#about"><span>about</span></a></li>
+                <li><a class="scroll" href="#aboutus"><span>about</span></a></li>
                 <li><a  href="#/register"  ng-if = "!model.user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="#/login" ng-if = "!model.user"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <li><a href="#/user/{{model.user._id}}/dashboard" ng-if = "model.user">{{model.user.username}}</a></li>
@@ -55,8 +47,8 @@ function hideURLbar() {
 
             <div class="text-homeimage">
                     <div class="input-group  ">
-                        <input ng-model="itemName" type="text" class="form-control " placeholder="Search for...">
-                        <span class="input-group-btn"><button  class="btn btn-secondary btn-color "  ng-click="model.searchByItem(itemName)" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <input ng-model="model.itemName" type="text" class="form-control " placeholder="Search for...">
+                        <span class="input-group-btn"><button  class="btn btn-secondary btn-color "  ng-click="model.searchByItem(model.itemName)" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </span>
 </div>
             </div>
@@ -107,13 +99,7 @@ function hideURLbar() {
     </div>
 </div>
 <br>
-<div class="row">
-    <div class="col-xs-1"></div>
-    <div ng-show="model.success" class="alert-success col-xs-10">
-        {{model.success}}
-    </div>
-    <div class="col-xs-1"></div>
-</div>
+
 <!-- LATEST ITEMS =============================-->
 <section class="item content" id="searchItems">
     <div class="container">
@@ -135,7 +121,7 @@ function hideURLbar() {
                         <span class="price">
 						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceAmazon(item.ASIN[0], item.ItemAttributes[0].ListPrice[0].FormattedPrice[0], item.ItemAttributes[0].Title[0], item.LargeImage[0].URL[0])">
                             <i class="fa fa-money" aria-hidden="true"></i> Track Price
-                        </button> <button  class="learn-more detailslearn btn-info" ng-click="model.showAmazonDetails(item.ASIN[0])"><i class="fa fa-info-circle" aria-hidden="true"></i> More Details</button></span>
+                        </button> <button  class="learn-more detailslearn btn-info" ng-click="model.showAmazonDetails(item.ASIN[0],model.itemName)"><i class="fa fa-info-circle" aria-hidden="true"></i> More Details</button></span>
 						</span>
                         </span>
                     </div>
@@ -156,7 +142,7 @@ function hideURLbar() {
                         <span class="price">
 						<span class="edd_price"> <button class="learn-more detailslearn btn-success" ng-click="model.startTrackingItemPriceEbay(item.ItemID, item.ConvertedCurrentPrice.Value,item.Title,item.GalleryURL)">
                                 <i class="fa fa-money" aria-hidden="true"></i> Track Price </button>
-                            <button  class="learn-more detailslearn btn-info" ng-click="model.showEbayDetails(item.ItemID)"><i class="fa fa-info-circle" aria-hidden="true"></i>  More Details</button></span>
+                            <button  class="learn-more detailslearn btn-info" ng-click="model.showEbayDetails(item.ItemID,model.itemName)"><i class="fa fa-info-circle" aria-hidden="true"></i>  More Details</button></span>
 						</span>
                     </div>
                 </div>

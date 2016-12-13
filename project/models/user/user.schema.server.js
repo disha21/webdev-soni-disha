@@ -18,6 +18,7 @@ module.exports = function () {
         phone :String,
         address:String,
         products :[{type: mongoose.Schema.Types.ObjectId,ref:'ProductModel'}],
+        following : [{type: mongoose.Schema.Types.ObjectId, ref: 'UserProjectModel'}],
         dateCreated: {type: Date, default: Date.now}
 
     },{collection:"project.user"});

@@ -68,7 +68,10 @@
 
         function updateUser() {
             console.log( vm.user);
-            UserService.updateUser(vm.user);
+            UserService.updateUser(vm.user)
+                .success(function (status) {
+                    $location.url("/user/"+ vm.uid + "/search");
+                });
             console.log("in update");
             console.log(vm.user);
 
@@ -129,7 +132,7 @@
                 }
                 else {
 
-                    $location.url("/user/" + user._id + "/search");
+                    $location.url("/user/" + user._id);
 
                 }
             })

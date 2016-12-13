@@ -9,9 +9,13 @@
 
 
 
-    function HomePageController(HomepageService,UserService, $scope,$location,ProductService) {
+    function HomePageController(HomepageService,UserService,$routeParams, $scope,$location,ProductService) {
         console.log("in HomePageController");
         var vm = this;
+        var itemName = $routeParams.itemName;
+        vm.itemName = itemName;
+
+
         vm.searchByItem = searchByItem;
         vm.startTrackingItemPriceEbay = startTrackingItemPriceEbay;
         vm.startTrackingItemPriceAmazon = startTrackingItemPriceAmazon;
@@ -22,18 +26,18 @@
         vm.showAmazonDetails = showAmazonDetails;
 
 
-            function showEbayDetails(productId) {
+            function showEbayDetails(productId,productName) {
                 console.log("in ebay details");
                 var productProvider = "ebay";
-                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details");
+                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details/"+ productName );
 
 
             }
 
-            function showAmazonDetails(productId) {
+            function showAmazonDetails(productId,productName) {
                 console.log("in amazon details");
                 var productProvider = "amazon";
-                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details");
+                $location.url("/user/search/product/" + productId+ "/productProvider/" + productProvider + "/details/" + productName);
 
             }
 
@@ -48,7 +52,33 @@
                     console.log("getcurrentuser");
                     console.log(user);
 
-                })
+                });
+
+            function logout() {
+                console.log("in logout");
+                UserService.logout()
+                    .success(function () {
+                        $location.url("/login");
+                    }).error(function () {
+                    console.log("error in controller");
+
+
+                });
+            }
+
+
+             if(itemName) {
+                console.log(itemName + "itemjhbjbkjhnjkhnjk");
+                $location.url("/search/" + itemName);
+                searchByItem(itemName);
+
+            }
+
+
+
+
+
+
         }
         init();
 
@@ -121,7 +151,7 @@
         $scope.customFullscreen = false;
 
         function searchByItem(itemName) {
-            console.log("searchByItem ");
+            console.log("searchByItem");
             HomepageService
                 .searchItem(itemName)
                 .success(function (itemList) {
@@ -129,7 +159,10 @@
                     vm.itemList = itemList;
                     vm.ebayItems = itemList.ebay;
                     vm.amazonItems = itemList.amazon;
-                    $('#searchItems').stop().animate({scrollTop: $("#searchItems")[0].scrollHeight}, 2000);
+
+                       // $location.url("/user/search/" +itemName);
+
+                        $location.url("/search/" +itemName);
                 }).error(function () {
                 console.log("error in controller");
 
@@ -173,33 +206,6 @@
     }
 
 
-   /* function ModalController($scope, $mdDialog, ebay) {
-
-        console.log("vm");
-        console.log($scope);
-        console.log("ebay");
-        console.log(ebay);
-        $scope.ebay = ebay;
-
-        $scope.hide = function () {
-            console.log("hide called");
-            $mdDialog.cancel();
-
-        };
-
-        $scope.cancel = function () {
-            console.log("cancel called");
-            $mdDialog.hide();
-
-        };
-        $scope.close = function () {
-            console.log("close called");
-            $mdDialog.close();
-
-        };
-
-
-    }*/
 
 
 })();

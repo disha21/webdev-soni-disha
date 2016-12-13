@@ -21,10 +21,30 @@
             findUserByUsername: findUserByUsername,
             login:login,
             checkLoggedin:checkLoggedin,
-            logout:logout
+            logout:logout,
+            getUserProfile:getUserProfile,
+            follow :follow,
+            unfollow:unfollow
         };
 
         return api;
+
+        function unfollow(userId,toFollowUserUsername){
+            var url = '/api/project/user/'+ userId+ '/unfollow/' +toFollowUserUsername;
+            return $http.delete(url);
+        }
+
+
+        function follow(userId,toFollowUserUsername){
+            console.log("in follow");
+            var url = '/api/project/user/'+ userId+ '/follow/' +toFollowUserUsername;
+            return $http.post(url);
+        }
+
+        function getUserProfile(userId,toViewUserUsername) {
+            var url = '/api/project/user/'+ userId+ '/profile/' +toViewUserUsername;
+           return $http.get(url);
+        }
 
         function logout() {
             return $http.post("/api/project/logout");
@@ -76,7 +96,7 @@
          function updateUser(newUser) {
 
             var url = '/api/project/user/'+ newUser._id;
-             $http.put(url,newUser);
+             return $http.put(url,newUser);
              console.log("in service");
              console.log(newUser);
 

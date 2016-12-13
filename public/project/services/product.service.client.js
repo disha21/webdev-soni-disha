@@ -15,11 +15,20 @@
             findProductsTrackedByUser: findProductsTrackedByUser,
             findProductsByUser: findProductsByUser,
             startTrackingItemPrice: startTrackingItemPrice,
-            addCommentToProduct: addCommentToProduct
+            addCommentToProduct: addCommentToProduct,
+            stopTrackingProductForUser:stopTrackingProductForUser
 
         };
 
         return api;
+
+
+
+        function stopTrackingProductForUser(userId,productId){
+            var url = '/api/user/' + userId +'/product/' + productId;
+            return $http.delete(url);
+        }
+
 
 
         function startTrackingItemPrice(userId, itemId, itemPrice, productProvider, pTitle, imageUrl) {
@@ -63,7 +72,7 @@
         function addCommentToProduct(productItemId, userId, comment){
             console.log("going to add a comment..." + productItemId );
             console.log("going to add a comment..." + comment );
-            var url = '/api/user/' + userId + "/product/" + productItemId + "/comments"
+            var url = '/api/user/' + userId + "/product/" + productItemId + "/comments";
             var body = {
                 userName : "blah",
                 comment : comment

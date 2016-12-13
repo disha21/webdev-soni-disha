@@ -31,6 +31,51 @@ module.exports = function(app,model) {
     app.post('/api/project/login', passport.authenticate('project'), login);
     app.post('/api/project/checkLoggedin',checkLoggedin);
     app.post('/api/project/logout', logout);
+    app.get('/api/project/user/:uid/profile/:uName', getUserProfile);
+    app.post('/api/project/user/:uid/follow/:uName', startFollowingUser);
+    app.delete('/api/project/user/:uid/unfollow/:uName', stopFollowingUser);
+
+    function startFollowingUser(req, res) {
+        var userId = req.params.uid;
+        var userToFollow = req.params.uName;
+        model
+            .userModel
+            .findUserByUsername(userToFollow)
+            .then(function (followUserObjArray) {
+                var followUserObj = followUserObjArray[0]
+                model
+                    .userModel
+                    .addFollowerToUser(userId, followUserObj)
+                    .then(function (userObj) {
+                        res.send(200)
+                    })
+
+            }, function (err) {
+                console.log(err);
+            })
+
+    }
+
+    function stopFollowingUser(req, res) {
+        var userId = req.params.uid;
+        var userToUnfollow = req.params.uName;
+        model
+            .userModel
+            .findUserByUsername(userToUnfollow)
+            .then(function (unFollowUserObjArray) {
+                var unFollowUserObj = unFollowUserObjArray[0]
+                model
+                    .userModel
+                    .unFollowUser(userId, unFollowUserObj)
+                    .then(function (uf) {
+                        res.send(200)
+                    })
+
+            }, function (err) {
+                console.log(err);
+            })
+    }
+
 
     app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/project/google/callback',
@@ -86,7 +131,34 @@ module.exports = function(app,model) {
             );
     }
 
-
+    function getUserProfile(req, res) {
+        var userId = (req.params.uid);
+        var userName = (req.params.uName);
+        var responseUserModel = {
+            userName : null,
+            userImage: null,
+            products_following: null,
+            member_since : null
+        };
+         model
+            .userModel
+            .findUserByUsername(userName)
+            .then(function (userObjArray) {
+                var userObj = userObjArray[0];
+                 model
+                    .productModel
+                    .findProductsByIds(userObj.products)
+                    .then(function (products) {
+                        responseUserModel.products_following = products;
+                        responseUserModel.userName = userObj.username;
+                        responseUserModel.member_since = userObj.dateCreated;
+                        responseUserModel.userImage = null;
+                        res.send(responseUserModel);
+                    })
+            }, function (error) {
+                res.send(400)
+            })
+    }
 
     function logout(req, res) {
         req.logout();

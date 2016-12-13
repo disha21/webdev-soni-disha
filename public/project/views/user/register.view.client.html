@@ -1,29 +1,26 @@
 <header class="item header margin-top-0">
     <div class="wrapper">
-        <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-            <div class="container">
+        <nav class="navbar navbar-inverse  navbar-embossed navbar-lg navbar-fixed-top">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle"
-                            type="button">
-                        <span class="sr-only">Toggle navigation</span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                    <a href="#" class="navbar-brand brand"> Price Tracker </a>
+                    <div class="col-xs-1"></div>
+                    <a class=img-pos" class="navbar-brand" href="#"><img  ng-src="./images/smartBrand.gif" height="80px"></a>
                 </div>
-                <div id="navbar-collapse-02" class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <!--li class="propClone"><a href="#">Home</a></li-->
-                        <li class="propClone"><a href="#">About</a></li>
-                        <li class="propClone"><a class="btn" href="#/login"  ng-if = "!model.user">Sign In</a></li>
-                        <li class="propClone"><a class="btn" href="#/register" ng-if = "!model.user">Sign Up</a></li>
-                        <li class="propClone"><a class="btn" href="#/user/{{model.user.data._id}}/dashboard" ng-if = "model.user">{{model.user.data.username}}</a></li>
-                        <li class="propClone"><a class="btn" ng-click="model.logout()" ng-if = "model.user">Logout</a></li>
+                        <li><a class="scroll" href="#about"><span>about</span></a></li>
+                        <li><a href="#/login" ng-if = "!model.user"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 </header>
-
 
 <div class="container-fluid background">
     <div class="card card-container ">

@@ -1,0 +1,88 @@
+<link  href="http://fonts.googleapis.com/css?
+family=Reenie+Beanie:regular"
+       rel="stylesheet"
+       type="text/css">
+
+
+<header class="item header margin-top-0">
+    <div class="wrapper">
+        <nav class="navbar navbar-inverse  navbar-embossed navbar-lg navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="col-xs-1"></div>
+                    <a class=img-pos" class="navbar-brand" href="#"><img  ng-src="./images/smartBrand.gif" height="80px"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="scroll" href="#about"><span>about</span></a></li>
+                        <li><a  href="#/register"  ng-if = "!model.user"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="#/login" ng-if = "!model.user"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#/user/{{model.user._id}}/dashboard" ng-if = "model.user">{{model.user.username}}</a></li>
+                        <li><a ng-click="model.logout()" ng-if = "model.user"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container container-padding">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">About Me
+            </h1>
+            <div class="col-lg-4">
+           <h2>It's Nice to Meet You!</h2>
+                </div>
+            <div class="col-lg-4">
+           <h2><button class="pull-right btn-success" ng-click="model.follow()">Follow</button></h2>
+                </div>
+                <div class="col-lg-4">
+           <h2><button class="btn-danger" ng-click="model.unfollow()">UnFollow</button></h2>
+                </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+    <div class="row">
+            <h2 class="page-header">{{model.responseUserModel.userName}}</h2>
+        </div>
+
+
+        <div class="row">
+            <div class="  panel panel-success">
+                <div class="panel-body">
+                    <p> I am a member of this website since {{model.responseUserModel.member_since| date : "fullDate" }}<p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <p>These are the products that I am tracking:</p>
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <ul>
+                        <div class="col-lg-12">
+                    <li ng-repeat= "prod in model.responseUserModel.products_following ">
+                      {{prod.productTitle}}
+                    </li>
+                            </div>
+                    </ul>
+                </div>
+            </div>
+                </div>
+        </div>
+
+
+
+    </div>
+        </div>
+</div>

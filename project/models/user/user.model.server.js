@@ -19,10 +19,17 @@ module.exports =function () {
          setModel:setModel,
          findAllUsers:findAllUsers,
         findProductTrackerByUserAndProductId:findProductTrackerByUserAndProductId,
-        findGoogleUser: findGoogleUser
+        findGoogleUser: findGoogleUser,
+        deleteProductForUser : deleteProductForUser,
+        addFollowerToUser: addFollowerToUser,
+        unFollowUser: unFollowUser
     };
 
     return api;
+
+    function deleteProductForUser(userId, productId) {
+        return UserProjectModel.update( { _id: userId}, { $pullAll: {products: [productId] } } );
+    }
 
     function findAllUsers(){
         // return ProductModel.find().distinct('productId','productProvider');
@@ -59,6 +66,17 @@ module.exports =function () {
 
     }
 
+    function addFollowerToUser(userId, userToFollow) {
+
+        return UserProjectModel.update(
+            { _id: userId },
+            { $push: { following: userToFollow._id } }
+        );
+    }
+
+    function unFollowUser(userId, unfollowUser) {
+        return UserProjectModel.update( { _id: userId}, { $pullAll: {following: [unfollowUser._id] } } );
+    }
 
     function updateUser(userId,user) {
         console.log( "userId:"+ userId);

@@ -9,18 +9,38 @@
 
     }
 
-    .wordwrap {
-        word-break: break-all;
-        word-wrap: break-word;
+    .img-pos{
+        text-align:center;
+    }
+
+    .btn-pos {
+        display:block;
+        width:120px;
+        margin: 0 auto;
+    }
+
+    .alert{
+        height:60px;
+        text-align: center;
+
+    }
+    .arrow-color{
+        color:#777;
+    }
+
+    .arrow-color a{
+        color:#777;
     }
 </style>
 
 <div class="container">
 
     <div class="row">
-        <div class="col-md-1"></div>
-
-        <div class="col-md-10">
+        <div class="col-md-1 arrow-color">
+            <h1 ng-if ="!model.user"><a href="#/search/{{model.productName}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h1>
+           <h1 ng-if ="model.user"><a href="#/user/{{model.user._id}}/search/{{model.productName}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h1>
+            </div>
+        <div class="col-md-10 arrow-color">
 
             <h1>Product Details</h1>
 
@@ -28,7 +48,29 @@
         </div>
     </div>
     <hr>
+    <section class="item content ">
+        <div class="container details">
+            <div class="row">
+                <div class="col-md-8">
+   <div ng-show="model.product.tracking ==true">
+    <div class="alert alert-success ">
+      <p> <b>{{model.product.numberOfPeopleTracking}} People are tracking this product currently!
+          Click on Start tracking now</b></p>
+        </div>
+    </div>
 
+    <div ng-show="model.product.tracking == false">
+        <div class="alert alert-warning ">
+            <p> Be the first one to track this product!
+                Click on Start tracking now</p>
+        </div>
+    </div>
+    </div>
+</div>
+            </div>
+
+
+</section>
 
     <section class="item content ">
         <div class="container details">
@@ -36,7 +78,9 @@
                 <div class="col-md-8">
                     <div class="productbox">
                         <h2> {{model.product.productDetails.Item.Title}}</h2>
+                        <div class="img-pos">
                         <img ng-src="{{model.product.productDetails.Item.PictureURL[0]}}" alt="">
+                        </div>
                         <div class="clearfix">
                         </div>
                         <br/>
@@ -61,9 +105,9 @@
                             <li><b class="propertyname">Quantity:</b>
                                 {{model.product.productDetails.Item.QuantityThreshold}}
                             </li>
-                            <li><b class="propertyname">Ebay Url:</b> <a target="_blank"
-                                                                         href="{{model.product.productDetails.Item.ViewItemURLForNaturalSearch}}">{{model.product.productDetails.Item.ViewItemURLForNaturalSearch}}</a>
+                            <li> <a target="_blank" class="btn btn-pos btn-info" href="{{model.product.productDetails.Item.ViewItemURLForNaturalSearch}}">View on Ebay</a>
                             </li>
+
                         </ul>
                     </div>
 
@@ -76,7 +120,9 @@
                 <div class="col-md-8">
                     <div class="productbox">
                         <h3> {{model.product.productDetails[0].ItemAttributes[0].Title[0]}}</h3>
+                        <div class="img-pos">
                         <img ng-src="{{model.product.productDetails[0].LargeImage[0].URL[0]}}" alt="">
+                        </div>
                         <div class="clearfix">
                         </div>
                         <br/>
@@ -106,13 +152,10 @@
                             <li><b class="propertyname">Product Type:</b>
                                 {{model.product.productDetails[0].ItemAttributes[0].ProductTypeName[0]}}
                             </li>
-                            <li><b class="propertyname ">Amazon Url:</b> <a target="_blank" class="wordwrap"
-                                                                            href="{{model.product.productDetails[0].DetailPageURL[0]}}">
-                                {{model.product.productDetails[0].DetailPageURL[0]}}</a></li>
+                            <li> <a target="_blank" class=" btn-pos btn btn-info"  href="{{model.product.productDetails[0].DetailPageURL[0]}}">View on Amazon</a></li>
                         </ul>
                     </div>
-
-                    <a href="#" class="btn btn-info btn-block button-buffer"><b>Start Tracking</b></a>
+                    <a href="#" class="btn btn-info btn-block  button-buffer"><b>Start Tracking</b></a>
                 </div>
             </div>
 
