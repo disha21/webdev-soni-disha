@@ -20,12 +20,16 @@
         vm.stopTrackingProductForUser = stopTrackingProductForUser;
         vm.getUserProfile = getUserProfile;
 
+
+
         function getUserProfile(toViewUsername) {
            $location.url("/user/" + uid +"/profile/" + toViewUsername);
 
         }
 
         function init() {
+
+            $('#prodDetails').hide();
             UserService.checkLoggedin()
                 .then(function (user) {
                     if (user.data != 0) {
@@ -54,6 +58,8 @@
 
 
 
+
+
         }
         init();
 
@@ -76,7 +82,9 @@
 
 
         function showProductDetails(product) {
-            $scope.IsVisible = false;
+            $('#prodDetails').show();
+
+           $scope.IsVisible = false;
             console.log("in show details");
             console.log(product);
             $scope.product = product;
@@ -90,13 +98,14 @@
         function addCommentToProduct(productItemId, comment) {
 
             ProductService.addCommentToProduct(productItemId,uid, comment)
-                .success(function (comments) {
+                .success(function (product) {
                     console.log("updated comments");
+                    alert("Your comment has been added");
                     console.log(product);
                     vm.product = product;
-                    console.log(product);
-                    alert("Your comment has been added");
-                   init();
+                    console.log(vm.product);
+                    showProductDetails(product);
+                    vm.comment="";
                 })
 
 
@@ -106,8 +115,13 @@
         function stopTrackingProductForUser(productId) {
             console.log("stopTrackingProductForUser" + productId);
             ProductService.stopTrackingProductForUser(vm.uid, productId)
-                .success(function () {
-                    console.log("product deleted")
+                .success(function (user) {
+                    console.log("product deleted");
+                    console.log(user);
+                    vm.products = user.products;
+                     console.log(vm.products);
+                    $('#prodDetails').hide();
+
                 }).error(function () {
                 console.log("error in controller");
             });
