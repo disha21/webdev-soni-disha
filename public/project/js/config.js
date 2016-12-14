@@ -21,6 +21,20 @@
                 controllerAs: "model"
 
             })
+
+            .when("/user/:uid/search", {
+                templateUrl: "views/home/homepage.view.client.html",
+                controller:"HomePageController",
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
+            })
+
+            .when("/user/:uid/search/:itemName", {
+                templateUrl: "views/home/homepage.view.client.html",
+                controller:"HomePageController",
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
+            })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller:"LoginController",
@@ -43,18 +57,7 @@
                 controller:"ProfileDisplayController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/search", {
-                templateUrl: "views/home/homepage.view.client.html",
-                controller:"HomePageController",
-                controllerAs: "model",
-                resolve: { checkLoggedin: checkLoggedin }
-        })
-            .when("/user/:uid/search/:itemName", {
-                templateUrl: "views/home/homepage.view.client.html",
-                controller:"HomePageController",
-                controllerAs: "model",
-                resolve: { checkLoggedin: checkLoggedin }
-            })
+
             .when("/user/search/product/:productId/productProvider/:provider/details", {
                 templateUrl: "views/home/product.details.view.client.html",
                 controller:"ProductDetailsPageController",
@@ -85,11 +88,12 @@
                 redirectTo:"/"
             })
 
-         function checkLoggedin($q,UserService,$location) {
+         function checkLoggedin($q,UserService,$location,$rootScope) {
              var deferred = $q.defer();
                 UserService.checkLoggedin()
                     .success(function (user) {
                         if(user !='0'){
+                            $rootScope.currentUser = user;
                             deferred.resolve();
                         }else{
                             deferred.reject();

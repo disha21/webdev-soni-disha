@@ -40,9 +40,9 @@
         }
     }
 
-    function ProfileController($routeParams, UserService,$location) {
+    function ProfileController($routeParams, UserService,$location,$rootScope) {
         var vm = this;
-        var uid = $routeParams.uid;
+        var uid = $rootScope.currentUser._id;
         vm.uid = uid;
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;

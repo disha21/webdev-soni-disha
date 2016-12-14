@@ -9,11 +9,13 @@
 
 
 
-    function HomePageController(HomepageService,UserService,$routeParams, $scope,$location,ProductService) {
+    function HomePageController(HomepageService,UserService,$routeParams, $scope,$location,ProductService,$rootScope) {
         console.log("in HomePageController");
         var vm = this;
         var itemName = $routeParams.itemName;
         vm.itemName = itemName;
+        var uid = $rootScope.currentUser._id;
+        console.log("uid" + uid);
 
 
         vm.searchByItem = searchByItem;
@@ -48,6 +50,7 @@
                 .then(function(user){
                     if(user.data!=0){
                         vm.user = user.data;
+
                     }
                     console.log("getcurrentuser");
                     console.log(user);
@@ -65,9 +68,10 @@
 
                 });
             }
+            console.log("vm.user");
+            console.log(vm.user);
 
-
-             if(itemName) {
+          if(itemName) {
                 console.log(itemName + "itemjhbjbkjhnjkhnjk");
                 $location.url("/search/" + itemName);
                 searchByItem(itemName);
@@ -127,8 +131,28 @@
                        ProductService.startTrackingItemPrice(user._id, itemId, itemPrice, productProvider, pTitle,imageUrl)
                            .success(function (msg) {
                              vm.success = msg.msg;
-                               alert("Here's a message");
-                               $location.url("/user/" + user._id + "/dashboard")
+                               console.log("user._id");
+                               console.log(user._id);
+                               swal({
+                                       title: "Congrats!!",
+                                       text: "You are now tracking this product. Click here to go to your dashboard",
+                                       type: "success",
+                                       showCancelButton: true,
+                                       confirmButtonColor: "#28A828",
+                                       confirmButtonText: "Go to dashboard",
+                                       cancelButtonText: "Stay on this page",
+                                       closeOnConfirm: true,
+                                       closeOnCancel: true
+                                   },
+                                   function(isConfirm){
+                                       if (isConfirm) {
+                                           window.location = "#/user/" + user._id + "/dashboard";
+                                          //   $location.url("/user/" + user._id + "/dashboard" )
+                                       } else {
+
+                                       }
+                                   });
+
                            }).error(function (error) {
                            console.log(error);
                        });

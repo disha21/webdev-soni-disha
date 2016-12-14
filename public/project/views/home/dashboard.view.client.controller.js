@@ -28,7 +28,7 @@
         }
 
         function init() {
-
+            $('#product-detailsMobile').hide();
             $('#prodDetails').hide();
             UserService.checkLoggedin()
                 .then(function (user) {
@@ -82,7 +82,9 @@
 
 
         function showProductDetails(product) {
-            $('#prodDetails').show();
+           $('#prodDetails').show();
+            $('#product-detailsMobile').show();
+
 
            $scope.IsVisible = false;
             console.log("in show details");
@@ -100,7 +102,6 @@
             ProductService.addCommentToProduct(productItemId,uid, comment)
                 .success(function (product) {
                     console.log("updated comments");
-                    alert("Your comment has been added");
                     console.log(product);
                     vm.product = product;
                     console.log(vm.product);
@@ -120,7 +121,8 @@
                     console.log(user);
                     vm.products = user.products;
                      console.log(vm.products);
-                    $('#prodDetails').hide();
+                   // $('#prodDetails').hide();
+                    init();
 
                 }).error(function () {
                 console.log("error in controller");

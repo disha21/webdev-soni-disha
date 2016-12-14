@@ -1,123 +1,14 @@
 <style>
-
-
-    .product-details {
-        padding-left: 450px;
-        padding-top: 60px;
+    .btn-posi .btn{
+        display:block;
+        width:auto;
+        margin: 0 auto;
     }
-
-    .dashboardHeader {
-        padding-left: 300px;
-
-    }
-
-    a {
-        color: #00f;
-    }
-
-
-
-    @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
-
-    .detailBox {
-        /*width: 720px;*/
-        border: 1px solid #bbb;
-        margin: 50px;
-    }
-
-    .titleBox {
-        background-color: #fdfdfd;
-        padding: 10px;
-    }
-
-    .titleBox label {
-        color: #444;
-        margin: 0;
-        display: inline-block;
-    }
-
-    .commentBox {
-        padding: 10px;
-        border-top: 1px dotted #bbb;
-    }
-
-    .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-        width: 80%;
-    }
-
-    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-        width: 18%;
-    }
-
-    .actionBox .form-group * {
-        width: 100%;
-    }
-
-    .taskDescription {
-        margin-top: 10px;
-    }
-
-    .commentList {
-        padding: 0;
-        list-style: none;
-        max-height: 200px;
-        overflow: auto;
-    }
-
-    .commentList li {
-        margin: 0;
-        margin-top: 10px;
-    }
-
-    .commentList li > div {
-        display: table-cell;
-    }
-
-    .commenterImage {
-        width: 30px;
-        margin-right: 5px;
-        height: 100%;
-        float: left;
-    }
-
-    .commenterImage img {
-        width: 100%;
-        border-radius: 50%;
-    }
-
-    .commentText p {
-        margin: 0;
-    }
-
-    .sub-text {
-        color: #aaa;
-        font-family: verdana;
-        font-size: 11px;
-    }
-
-    .actionBox {
-        border-top: 1px dotted #bbb;
-        padding: 10px;
-    }
-
-    a{
-        color:white;
-        underline:none;
-    }
-a:hover{
-    color:white;
-    underline:none;
-}
-
-
-
 
 </style>
-
-
 <div class="nav-side-menu">
-    <div class="brand">
-        <i class="fa fa-dashboard fa-lg"></i> <a href="#/user/{{model.uid}}/search">Back to Search</a>
+    <div class="brand dash-color">
+        <i class="fa fa-search" aria-hidden="true"></i> <a  href="#/user/{{model.uid}}/search">Back to Search</a>
     </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
@@ -129,13 +20,15 @@ a:hover{
         <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products"
             class="collapsed active">
             <button class="title btn-lg btn-block" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>
-            <!--<button class="title wordwrap_mobile hidden-lg hidden-md hidden-sm visible-xs" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>-->
+            <!--<button class="title btn-lg hidden-lg hidden-md hidden-sm visible-xs" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>&ndash;&gt;-->
         </li>
     </ul>
 </div>
 </div>
 
-<div class="dashboardHeader hidden-xs visible-sm visible-md visible-lg">
+
+<div class="dashboardHeader">
+<div class=" hidden-xs visible-sm visible-md visible-lg">
     <div class="row">
         <div class="col-md-1"></div>
 
@@ -145,6 +38,7 @@ a:hover{
         </div>
     </div>
     <hr>
+</div>
 </div>
 
 <div class="row visible-xs hidden-md hidden-lg hidden-sm">
@@ -161,8 +55,8 @@ a:hover{
 </div>
 
 
-
-<div  class="product-detailsMobile hidden-md hidden-lg hidden-sm visible-xs">
+<div id="product-detailsMobile">
+<div  class=" hidden-md hidden-lg hidden-sm visible-xs">
 
     <div class="col-xs-1"></div>
     <div class="col-xs-10">
@@ -202,7 +96,7 @@ a:hover{
                                     <a ng-click="model.getUserProfile(comment.userName)"><img src="http://placekitten.com/50/50"/></a>
                                 </div>
                                 <div class="commentText">
-                                    <p class="">{{comment.comment}}</p> <span class="date sub-text"> {{comment.userName}}</span>
+                                    <p>{{comment.comment}}</p> <span class="date sub-text"> {{comment.userName}}</span>
 
                                 </div>
                             </li>
@@ -211,11 +105,11 @@ a:hover{
                     </ul>
                     <form class="form-inline" role="form">
                         <div class="form-group">
-                            <input class="form-control" type="text" ng-model="model.comment"
+                            <input class="form-control " type="text" ng-model="model.comment"
                                    placeholder="Your comments"/>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-default"
+                        <div class="form-group btn-posi">
+                            <button class="btn btn-success "
                                     ng-click="model.addCommentToProduct(product.productId,model.comment)">
                                 Add
                             </button>
@@ -224,7 +118,7 @@ a:hover{
                 </div>
             </div>
         </div>
-
+<br>
         <div class="row">
             <table class="table table-bordered " id="productDetailsDataMobile">
                 <thead>
@@ -248,27 +142,26 @@ a:hover{
         <div class="row">
             <div class="col-xs-3"></div>
             <div class="col-xs-6">
-                <a class="btn btn-danger">Stop tracking</a>
+                <a class="btn btn-danger btn-posi">Stop tracking</a>
             </div>
             <div class="col-xs-3"></div>
         </div>
     </div>
 </div>
+</div>
 
-<div id ="prodDetails">
-<div  class="product-details hidden-xs visible-sm visible-md visible-lg">
-
-
+<div id ="prodDetails" class="product-detailsDesktop">
+<div  class=" hidden-xs visible-sm visible-md visible-lg">
     <div class="col-xs-8">
         <div class="row">
-            <div class="  panel panel-success">
+            <div class="panel panel-success">
                 <div class="panel-body">
                     {{product.productTitle}}
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="  panel panel-success">
+            <div class="panel panel-success">
                 <div class="panel-body">
                     {{product.productProvider}}
                 </div>
@@ -307,8 +200,8 @@ a:hover{
                             <input class="form-control" type="text" ng-model="model.comment"
                                    placeholder="Your comments"/>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-default"
+                        <div class="form-group btn-posi">
+                            <button class="btn btn-success btn-block"
                                     ng-click="model.addCommentToProduct(product.productId,model.comment)">
                                 Add
                             </button>

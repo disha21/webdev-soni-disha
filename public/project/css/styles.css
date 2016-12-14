@@ -169,15 +169,8 @@
     background-color: rgb(12, 97, 33);
 }
 
-.forgot-password {
-    color: rgb(104, 145, 162);
-}
 
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: rgb(12, 97, 33);
-}
+
 
 .button-buffer{
     margin-top: 2em;
@@ -342,3 +335,36 @@ body {
     color:white;
 }
 
+
+.details {
+
+    padding-top: 40px;
+}
+
+.button-buffer {
+    padding-top: 10px;
+
+}
+
+.img-pos{
+    text-align:center;
+}
+
+.btn-pos {
+    display:block;
+    width:120px;
+    margin: 0 auto;
+}
+
+.alert{
+    height:60px;
+    text-align: center;
+
+}
+.arrow-color{
+    color:#777;
+}
+
+.arrow-color a{
+    color:#777;
+}
