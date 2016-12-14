@@ -7,7 +7,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disha's Homepage</title>
     <!--fonts-->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet'
@@ -21,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Kong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+      Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -50,27 +49,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- banner -->
 <div class="banner" id="home">
     <div class="container">
-        <div class="top-header row">
-            <script src="js/classie.js"></script>
-            <!--top-nav---->
-            <div class="top-nav">
-                <div class="menu_box_list">
-                    <ul>
-                        <li><a class="scroll" href="#about"><span>about</span></a></li>
-                        <li><a class="scroll" href="#education"><span>Education</span></a></li>
-                        <li><a class="scroll" href="#workExperience"><span>Work Experience</span></a></li>
-                        <li><a class="scroll" href="#skills"><span>Skills</span></a></li>
-                        <li><a class="scroll" href="#projects"><span>Projects</span></a></li>
-                        <li><a class="scroll" href="#contact"><span>Contact</span></a></li>
-                        <!--- add for project documentation link-->
-                        <div class="clearfix"></div>
-                    </ul>
+        <div class="hidden-xs">
+            <div class="top-header row">
+                <script src="js/classie.js"></script>
+                <!--top-nav---->
+
+                <div class="top-nav">
+                    <div class="menu_box_list">
+                        <ul>
+                            <li><a class="scroll" href="#about"><span>about</span></a></li>
+                            <li><a class="scroll" href="#education"><span>Education</span></a></li>
+                            <li><a class="scroll" href="#workExperience"><span>Work Experience</span></a></li>
+                            <li><a class="scroll" href="#skills"><span>Skills</span></a></li>
+                            <li><a class="scroll" href="#projects"><span>Projects</span></a></li>
+                            <li><a class="scroll" href="#contact"><span>Contact</span></a></li>
+                            <!--- add for project documentation link-->
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
                 </div>
+
+
+                <div class="clearfix"></div>
             </div>
-
-
-            <div class="clearfix"></div>
         </div>
+
         <div class="banner-info">
             <div class="banner-left">
                 <img src="images/myPic.jpg" class="img-circle" alt=""/>
@@ -79,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <h1> Disha Soni</h1>
                 <div class="border"></div>
                 <h2>Software Developer</h2>
-                <a href="#">DownLoad My Resume</a>
+                <a href="/images/Resume_Disha_Soni .pdf"download>DownLoad My Resume</a>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -91,13 +94,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="container">
         <h3>ABOUT ME</h3>
         <div class="strip text-center"><img src="images/about.png" alt=" "/></div>
-        <p>I am a Computer Science Masters student at Northeastern University.I have done an internship at TARA.Inc,San Jose during summer 2016
-            using Front-End technologies and PHP Laravel framework.
-            Prior to my masters,I was working as a software engineer at Accenture for an insurance client. </p>
+        <p>I am a Computer Science student, pursuing Masters at Northeastern University, Boston. I am a passionate software engineer with main interest in front end technologies.
+            I recently did an internship at TARA.Inc, San Jose during summer 2016, helping them build their user dashboard
+            using PHP Laravel framework and Semantic UI.
+            Prior to my masters, I was working as a software engineer at Accenture Inc. </p>
         <ul>
-            <li><a class="fb" href="facebook.com/disha.soni.9"></a></li>
-            <li><a class="twit" href="#"></a></li>
-            <li><a class="in" href="https://www.linkedin.com/in/dishasoni"></a></li>
+            <li><a class="fb" href="https://facebook.com/disha.soni.9"   target="_blank"></a></li>
+            <li><a class="twit" href="https://twitter.com/sonidi1"   target="_blank"></a></li>
+            <li><a class="in" href="https://www.linkedin.com/in/dishasoni"   target="_blank"></a></li>
         </ul>
     </div>
 </div>
@@ -127,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="col-md-2 skills-grid text-center">
                 <div class="circle" id="circles-5"></div>
-                <p>MapReduce</p>
+                <p>Map Reduce</p>
             </div>
             <div class="col-md-2 skills-grid text-center">
                 <div class="circle" id="circles-6"></div>
@@ -140,8 +144,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff']
                 ];
                 for (var i = 1; i < 7; i++) {
+
                     var child = document.getElementById('circles-' + i),
                             percentage = 30 + (i * 10);
+
+                    if(i == 0){
+
+                    } else if (i == 1) {
+                        percentage = 75;
+                    } else if (i == 2) {
+                        percentage = 80;
+                    } else if (i == 3) {
+                        percentage = 70;
+                    } else if (i == 4) {
+                        percentage = 90;
+                    } else if (i == 5) {
+                        percentage = 70;
+                    } else if (i == 6) {
+                        percentage = 68;
+                    }
 
                     Circles.create({
                         id: child.id,
@@ -168,35 +189,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="strip text-center"><img src="images/edu.png" alt=" "/></div>
         <div class="edu-grids">
-            <div class="col-md-6 edu-grid">
-                <p>2015 - Present</p><span>Pursuing</span>
-                <img src="images/arrow.png" alt=""/>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <!--<p>2015 - Present</p><span>Pursuing</span>-->
+                <!--<img src="images/arrow.png" alt=""/>-->
                 <div class="edu-border">
                     <div class="edu-grid-master">
-                        <h3>MASTERS DEGREE IN COMPUTER SCIENCE</h3>
-                        <h4>Northeastern University,Boston</h4>
+                        <h3>Masters in Computer Science</h3>
+                        <h4>Northeastern University, Boston</h4>
+                        <h4>Pursuing</h4>
                     </div>
                     <div class="edu-grid-info">
-                        <h5>This is Photoshop's version Lorem Ipsum.
-                            Well, the way they make shows is, they make one show.</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 edu-grid">
-                <p>2008 - 2012</p><span>Graduated</span>
-                <img src="images/arrow.png" alt=""/>
-                <div class="edu-border">
-                    <div class="edu-grid-master">
-                        <h3>BACHELORS DEGREE IN ELECTRONICS AND COMMUNICATION</h3>
-                        <h4>Jaypee University,India</h4>
-                    </div>
-                    <div class="edu-grid-info">
-                        <h5>This is Photoshop's version Lorem Ipsum.
-                            Well, the way they make shows is, they make one show.</h5>
+                        <h5>Currently pursuing my masters and have taken up courses like Web Development, Map Reduce,
+                            Algorithms, Programming development principles. </h5>
                     </div>
                 </div>
             </div>
 
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <!--<p>2008 - 2012</p><span>Graduated</span>-->
+                <!--<img src="images/arrow.png" alt=""/>-->
+                <div class="edu-border">
+                    <div class="edu-grid-master">
+                        <h3>Bachelors in Electronics & Communication</h3>
+                        <h4>Jaypee University, India</h4>
+                        <h4>2008 - 2012</h4>
+                    </div>
+
+                    <div class="edu-grid-info">
+                        <h5>Undergraduate was focused on electronics and communications with introductory courses on
+                            computer science.</h5>
+                    </div>
+                </div>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -205,7 +229,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//education-->
 <div class="strip-border"><p></p></div>
 <!--work-->
-<div class="work-experience text-center" id="workExperience" >
+<div class="work-experience text-center" id="workExperience">
 
     <div class="container">
         <div class="work-info">
@@ -213,24 +237,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="strip text-center"><img src="images/work.png" alt=" "/></div>
         <div class="work-grids text-center">
-            <div class="col-md-6 w-grid">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                 <div class="work-grid">
                     <h3>June 2016 - August 2016</h3>
                     <div class="work-grid-info">
                         <h4>TARA Inc.</h4>
                         <h5>Software Engineering Intern </h5>
-                        <p>Designed and implemented a job application dashboard for employers and contractors using HTML, CSS, jQuery, Semantic Ui,
+                        <p>Designed and implemented a job application dashboard for employers and contractors using
+                            HTML, CSS, jQuery, Semantic Ui,
                             JavaScript, Laravel PHP framework and gulp build tool.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 w-grid">
+
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                 <div class="work-grid">
                     <h3>2013 - 2015</h3>
                     <div class="work-grid-info">
                         <h4>Accenture</h4>
                         <h5>Software Engineer</h5>
-                        <p>Developed and maintained a client server based distributed application for an insurance client
+                        <p>Developed and maintained a client server based distributed application for an insurance
+                            client
                             using ASP .NET framework with SQL server 2005 as the data store.</p>
                     </div>
                 </div>
@@ -242,39 +269,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 
 
-
 <div class="services-back"></div>
 <!--services-->
-<div class="services text-center" id="services">
+<div class="services text-center" id="projects">
     <div class="container">
         <div class="ser-info">
             <h3>PROJECTS</h3>
         </div>
         <div class="strip text-center"><img src="images/ser.png" alt=" "/></div>
         <div class="ser-grids">
+            <!--<div class="col-md-1"></div>-->
 
-            <div class="col-md-3 ser-grid">
+            <div class="col-md-4  col-sm-4 ser-grid">
                 <div class="ser-imageb"></div>
-                <h3>Graphic Design</h3>
-                <p>I'm gonna shoot you in the head
-                    then and there. Then I'm gonna shoot
-                    that bitch in the kneecaps.</p>
+                <h3>Smart Shopping</h3>
+                <p>A portal to track prices for products from ebay and amazon. Know historic prices for the products
+                    before making a purchase.</p>
+                <p>Built using MEAN stack.</p>
+                <a href="http://webdev-webdevdishasoni.rhcloud.com/project/#/">view here</a>
+                <p></p>
+                <a href="https://github.com/disha21/webdev-soni-disha"> github</a>
             </div>
-            <div class="col-md-3 ser-grid">
-                <div class="ser-imagec"></div>
-                <h3>Content Writer</h3>
-                <p>I'm gonna shoot you in the head
-                    then and there. Then I'm gonna shoot
-                    that bitch in the kneecaps.</p>
-            </div>
-            <div class="col-md-3 ser-grid">
+
+            <div class="col-md-4 col-sm-4 ser-grid">
                 <div class="ser-imaged"></div>
-                <h3>Development</h3>
-                <p>I'm gonna shoot you in the head
-                    then and there. Then I'm gonna shoot
-                    that bitch in the kneecaps.</p>
+                <h3>Web Maker</h3>
+                <p>A MEAN stack based application, which allows users to easily build web apps by selecting available
+                    widgets, customizing them and dragging and resizing them. </p>
+                <a href="http://webdev-webdevdishasoni.rhcloud.com/assignment">view here</a>
+                <p></p>
+                <a href="https://github.com/disha21/webdev-soni-disha/tree/master/assignment">github</a>
             </div>
+
+            <div class="col-md-4 col-sm-4 ser-grid">
+                <div class="ser-imagea"></div>
+                <h3>Whats happening around me!</h3>
+                <p>A portal developed for the Northeastern ITF department, to track events going around the campus. A
+                    minimal user interface for the organizers and attendees to connect.</p>
+                <a href="https://github.com/CS5500Sp16/WHAM">github</a>
+            </div>
+
+            <!--<div class="col-md-1"></div>-->
             <div class="clearfix"></div>
+            <!--<div class="col-md-1"></div>-->
         </div>
     </div>
 </div>
@@ -285,27 +322,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="strip text-center"><img src="images/con1.png" alt=" "/></div>
         </div>
         <div class="contact-grids">
-            <div class="col-md-5 contact-left">
+            <div class="col-md-3 col-xs-1"></div>
+            <div class="col-md-6 col-xs-10 text-center">
                 <h3>Say Hi to Me</h3>
-                <div class="stripb"></div>
+                <a type="button" class="btn-floating btn-large btn-fb"><i class="fa fa-facebook"></i></a>
+                <!--<div class="stripb "></div>-->
                 <ul>
-                    <li><a href="mailto:info@example.com">soni.di@husky.neu.edu</a></li>
+                    <a href="mailto:soni.di@husky.neu.edu">soni.di@husky.neu.edu</a>
                 </ul>
             </div>
-            <div class="col-md-7 contact-right">
-                <h3>Drop Me A Line</h3>
-                <div class="stripb"></div>
-                <form>
-                    <input type="text" value="Name" onfocus="this.value = '';"
-                           onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                    <input type="text" value="E-mail" onfocus="this.value = '';"
-                           onblur="if (this.value == '') {this.value = 'E-mail';}" required="">
-                    <textarea type="text" onfocus="this.value = '';"
-                              onblur="if (this.value == '') {this.value = 'Message';}" required="">Message</textarea>
-                    <input type="submit" value="SEND">
-                </form>
+            <div class="col-md-3 col-xs-1"></div>
+        </div>
+        <div class="about text-center">
+            <div class="container">
+                <ul>
+                    <li><a class="fb" href="https://facebook.com/disha.soni.9" target="_blank"></a></li>
+                    <li><a class="twit" href="https://twitter.com/sonidi1"   target="_blank"></a></li>
+                    <li><a class="in" href="https://www.linkedin.com/in/dishasoni"   target="_blank"></a></li>
+                </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
@@ -315,7 +350,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="resume text-center">
     <div class="container">
         <div class="strip text-center"><a href="#"><img src="images/down.png" alt=" "/></a></div>
-        <div class="down"><a href="#">Download My Resume</a></div>
+        <div class="down"><a href="/images/Resume_Disha_Soni .pdf" download>Download My Resume</a></div>
     </div>
 </div>
 <!--//resume-->
