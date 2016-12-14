@@ -19,7 +19,7 @@
         vm.addCommentToProduct = addCommentToProduct;
         vm.stopTrackingProductForUser = stopTrackingProductForUser;
         vm.getUserProfile = getUserProfile;
-
+        vm.showStats = showStats;
 
 
 
@@ -31,7 +31,7 @@
         }
 
         function init() {
-            $('#product-detailsMobile').hide();
+
             $('#prodDetails').hide();
             UserService.checkLoggedin()
                 .then(function (user) {
@@ -62,6 +62,9 @@
             UserService.getUserFollowers(uid)
                 .then(function (users) {
                     console.log(users);
+                    vm.following = users.data.length;
+                    vm.followingUsers = users.data;
+                    vm.productsTracking =  vm.products.length;
                 })
 
 
@@ -87,11 +90,19 @@
 
         init();
 
+        function showStats(){
+            $('#user-data').show();
+            $('#user-btn').show();
+            $('#prodDetails').hide();
+
+        }
+
 
 
         function showProductDetails(product) {
-           $('#prodDetails').show();
-            $('#product-detailsMobile').show();
+            $('#user-data').hide();
+            $('#user-btn').hide();
+            $('#prodDetails').show();
 
 
            $scope.IsVisible = false;
