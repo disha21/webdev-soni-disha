@@ -54,8 +54,9 @@
             console.log(userId);
             UserService
                 .deleteUser(userId)
-                .success(function(){
+                .success(function(users){
                     console.log("User deleted");
+                    vm.users = users;
                 }).error(function(){
                 console.log("error in controller");
 

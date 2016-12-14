@@ -277,7 +277,11 @@ module.exports = function(app,model) {
             .userModel
             .deleteUser(userId)
             .then(function (status) {
-                    res.send(200);
+                model.userModel
+                    .findAllUsers()
+                    .then(function (users) {
+                        res.send(users);
+                    });
                 },function (error) {
                     res.sendStatus(400).send(error);
                 }
