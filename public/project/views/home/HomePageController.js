@@ -14,7 +14,7 @@
         var vm = this;
         var itemName = $routeParams.itemName;
         vm.itemName = itemName;
-        console.log("uid" + uid);
+
 
 
         vm.searchByItem = searchByItem;
