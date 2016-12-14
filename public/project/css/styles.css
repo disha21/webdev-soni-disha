@@ -190,7 +190,7 @@
     background-color: #3CB371;
     position: fixed;
     top: 0px;
-    width: 300px;
+    width: auto;
     height: 100%;
     color: #e1ffff;
 }
