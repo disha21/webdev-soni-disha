@@ -55,13 +55,15 @@
             .when("/user/:uid/profile/:viewUserName", {
                 templateUrl: "views/user/profile.display.view.client.html",
                 controller:"ProfileDisplayController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin }
             })
 
             .when("/user/search/product/:productId/productProvider/:provider/details", {
                 templateUrl: "views/home/product.details.view.client.html",
                 controller:"ProductDetailsPageController",
                 controllerAs: "model"
+
 
             })
             .when("/user/search/product/:productId/productProvider/:provider/details/:productName", {
