@@ -14,7 +14,6 @@
         var vm = this;
         var itemName = $routeParams.itemName;
         vm.itemName = itemName;
-        var uid = $rootScope.currentUser._id;
         console.log("uid" + uid);
 
 
