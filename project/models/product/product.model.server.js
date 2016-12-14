@@ -77,7 +77,7 @@ module.exports = function () {
                         .then(function (obj) {
                             if (obj.length > 0) {
                                 console.log("User already tracking this item");
-                                return {msg: "User already tracking this item"}
+                                return {msg: "You are already tracking this item"}
                             } else {
                                 console.log("User not tracking this item.")
                                 return addProductToUser(userId, prodObj)

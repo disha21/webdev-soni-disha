@@ -22,6 +22,9 @@
 
 
 
+
+
+
         function getUserProfile(toViewUsername) {
            $location.url("/user/" + uid +"/profile/" + toViewUsername);
 
@@ -55,6 +58,11 @@
                     console.log("error in controller");
 
                 });
+
+            UserService.getUserFollowers(uid)
+                .then(function (users) {
+                    console.log(users);
+                })
 
 
 

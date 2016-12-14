@@ -35,6 +35,26 @@ module.exports = function(app,model) {
     app.post('/api/project/user/:uid/follow/:uName', startFollowingUser);
     app.delete('/api/project/user/:uid/unfollow/:uName', stopFollowingUser);
 
+    app.get('/api/project/user/:uid/followers', getUserFollowers);
+
+
+    function getUserFollowers(req, res) {
+        var userId = req.params.uid;
+        model
+            .userModel
+            .findUserById(userId)
+            .then(function (userObj) {
+                console.log(userObj)
+                model
+                    .userModel
+                    .findUsersByIds(userObj.following)
+                    .then(function (oj) {
+                        res.send(oj)
+                    })
+            })
+    }
+
+
     function startFollowingUser(req, res) {
         var userId = req.params.uid;
         var userToFollow = req.params.uName;

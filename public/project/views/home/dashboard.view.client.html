@@ -1,248 +1,465 @@
 <style>
-    .btn-posi .btn{
-        display:block;
-        width:auto;
+    .btn-posi .btn {
+        display: block;
+        width: auto;
         margin: 0 auto;
     }
 
+    .dash-button {
+        padding-left: 350px;
+        text-align: center;
+    }
+
+
 </style>
-<div class="nav-side-menu">
-    <div class="brand dash-color">
-        <i class="fa fa-search" aria-hidden="true"></i> <a  href="#/user/{{model.uid}}/search">Back to Search</a>
+
+
+<!-- Morris Charts CSS -->
+<link href="css/plugins/morris.css" rel="stylesheet">
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+<!--<left menu>-->
+<div class="col-md-3">
+
+    <div class="nav-side-menu">
+        <div class="brand dash-color">
+            <i class="fa fa-search" aria-hidden="true"></i> <a href="#/user/{{model.uid}}/search">Back to Search</a>
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <br>
+
+                <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products"
+                    class="collapsed active">
+                    <button class="title btn-lg btn-block" ng-click="model.showProductDetails(product)">
+                        {{product.productTitle}}
+                    </button>
+                    <!--<button class="title btn-lg hidden-lg hidden-md hidden-sm visible-xs" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>&ndash;&gt;-->
+                </li>
+            </ul>
+        </div>
+
     </div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-    <div class="menu-list">
-
-    <ul id="menu-content" class="menu-content collapse out">
-        <br>
-
-        <li ng-repeat="product in model.products" data-toggle="collapse" data-target="#products"
-            class="collapsed active">
-            <button class="title btn-lg btn-block" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>
-            <!--<button class="title btn-lg hidden-lg hidden-md hidden-sm visible-xs" ng-click="model.showProductDetails(product)">{{product.productTitle}}</button>&ndash;&gt;-->
-        </li>
-    </ul>
-</div>
 </div>
 
 
-<div class="dashboardHeader">
-<div class=" hidden-xs visible-sm visible-md visible-lg">
+<div class="col-md-9">
+    <!--<header => dashboard></header>-->
     <div class="row">
-        <div class="col-md-1"></div>
-
-        <div class="col-md-10">
-
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 ">
             <h1>Dashboard</h1>
         </div>
+        <div class="col-md-2"></div>
     </div>
-    <hr>
-</div>
-</div>
 
-<div class="row visible-xs hidden-md hidden-lg hidden-sm">
+    <!--<buttons></body>-->
+    <div class="row hidden-xs">
+        <div class="col-md-2 col-xs-1"></div>
+        <div class="col-md-4 col-xs-5">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-gift fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>View Products</div>
+                        </div>
+                    </div>
+                </div>
+                <a ng-click="model.findAllTrackedProducts()">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Products</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-5">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-gift fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>View Products</div>
+                        </div>
+                    </div>
+                </div>
+                <a ng-click="model.findAllTrackedProducts()">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Products</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class=" col-md-2 col-xs-1"></div>
+    </div>
 
+    <!--<buttons></body>-->
+    <div class="row hidden-sm hidden-md hidden-lg">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="alert alert-info">
+                    <p>sffsff</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="alert alert-info">
+                    <p>sffsff</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+    <!--<body-->
     <div class="row">
-        <div class="col-xs-1"></div>
-
-        <div class="col-xs-10">
-
-            <h1>Dashboard</h1>
-        </div>
-    </div>
-    <hr>
-</div>
+        <div class="col-md-2 col-xs-1"></div>
+        <div class="col-md-8 col-xs-10">
 
 
-<div id="product-detailsMobile">
-<div  class=" hidden-md hidden-lg hidden-sm visible-xs">
+            <div id="prodDetails">
 
-    <div class="col-xs-1"></div>
-    <div class="col-xs-10">
-        <div class="row">
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    {{product.productTitle}}
+                <div class="row">
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            {{product.productTitle}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class=" panel panel-success">
-                <div class="panel-body">
-                    {{product.productProvider}}
+                <div class="row">
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            {{product.productProvider}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    <img ng-src="{{product.imageUrl}}">
+                <div class="row">
+                    <div class="panel panel-success" style="text-align: center">
+                        <div class="panel-body">
+                            <img ng-src="{{product.imageUrl}}">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="detailBox">
-                <div class="titleBox">
-                    <label>Comments</label>
-                </div>
-                <div class="actionBox">
-                    <ul class="commentList">
 
-                        <div ng-repeat="comment in product.comments">
-                            <li>
-                                <div class="commenterImage">
-                                    <a ng-click="model.getUserProfile(comment.userName)"><img src="http://placekitten.com/50/50"/></a>
+                <div class="row">
+                    <table class="table table-bordered " id="productDetailsData">
+                        <thead>
+                        <tr>
+                            <th>Product Price</th>
+                            <th> Date Tracked</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="details in product.productDetails" class="info">
+                            <td>{{ details.price }}</td>
+                            <td>{{details.dateCreated | date : "fullDate" }}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="detailBox">
+                        <div class="titleBox">
+                            <label>Comments</label>
+                        </div>
+                        <div class="actionBox">
+                            <ul class="commentList">
+                                <div ng-repeat="comment in product.comments">
+                                    <li>
+                                        <div class="commenterImage">
+                                            <a ng-click="model.getUserProfile(comment.userName)"><img
+                                                    src="http://placekitten.com/50/50"/></a>
+                                        </div>
+                                        <div class="commentText">
+                                            <p class="">{{comment.comment}}</p><span class="date sub-text"> {{comment.userName}}</span>
+                                        </div>
+                                    </li>
                                 </div>
-                                <div class="commentText">
-                                    <p>{{comment.comment}}</p> <span class="date sub-text"> {{comment.userName}}</span>
 
+                            </ul>
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" ng-model="model.comment"
+                                           placeholder="Your comments"/>
                                 </div>
-                            </li>
-                        </div>
-
-                    </ul>
-                    <form class="form-inline" role="form">
-                        <div class="form-group">
-                            <input class="form-control " type="text" ng-model="model.comment"
-                                   placeholder="Your comments"/>
-                        </div>
-                        <div class="form-group btn-posi">
-                            <button class="btn btn-success "
-                                    ng-click="model.addCommentToProduct(product.productId,model.comment)">
-                                Add
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-<br>
-        <div class="row">
-            <table class="table table-bordered " id="productDetailsDataMobile">
-                <thead>
-                <tr>
-                    <th>Product Price</th>
-                    <th> Date Tracked</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="details in product.productDetails" class="info">
-                    <td>{{ details.price }}</td>
-                    <td>{{details.dateCreated}}</td>
-
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        <div class="row">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-6">
-                <a class="btn btn-danger btn-posi">Stop tracking</a>
-            </div>
-            <div class="col-xs-3"></div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div id ="prodDetails" class="product-detailsDesktop">
-<div  class=" hidden-xs visible-sm visible-md visible-lg">
-    <div class="col-xs-8">
-        <div class="row">
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    {{product.productTitle}}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    {{product.productProvider}}
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="  panel panel-success">
-                <div class="panel-body">
-                    <img ng-src="{{product.imageUrl}}">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="detailBox">
-                <div class="titleBox">
-                    <label>Comments</label>
-                </div>
-                <div class="actionBox">
-                    <ul class="commentList">
-                        <div ng-repeat="comment in product.comments">
-                            <li>
-                                <div class="commenterImage">
-                                    <a ng-click="model.getUserProfile(comment.userName)"><img src="http://placekitten.com/50/50"/></a>
+                                <div class="form-group btn-posi">
+                                    <button class="btn btn-success btn-block"
+                                            ng-click="model.addCommentToProduct(product.productId,model.comment)">
+                                        Add
+                                    </button>
                                 </div>
-                                <div class="commentText">
-                                    <p class="">{{comment.comment}}</p><span class="date sub-text"> {{comment.userName}}</span>
-                                </div>
-                            </li>
+                            </form>
                         </div>
-
-                    </ul>
-                    <form class="form-inline" role="form">
-                        <div class="form-group">
-                            <input class="form-control" type="text" ng-model="model.comment"
-                                   placeholder="Your comments"/>
-                        </div>
-                        <div class="form-group btn-posi">
-                            <button class="btn btn-success btn-block"
-                                    ng-click="model.addCommentToProduct(product.productId,model.comment)">
-                                Add
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+
+
+                <br>
+                <div class="row">
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-6">
+                        <a class="btn btn-block btn-danger"
+                           ng-click="model.stopTrackingProductForUser(product.productId)">Stop tracking</a>
+                    </div>
+                    <div class="col-xs-3"></div>
+                </div>
+
             </div>
         </div>
-
-        <div class="row">
-            <table class="table table-bordered " id="productDetailsData">
-                <thead>
-                <tr>
-                    <th>Product Price</th>
-                    <th> Date Tracked</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="details in product.productDetails" class="info">
-                    <td>{{ details.price }}</td>
-                    <td>{{details.dateCreated}}</td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-<br>
-        <div class="row">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-6">
-                <a class="btn btn-block btn-danger" ng-click="model.stopTrackingProductForUser(product.productId)">Stop tracking</a>
-            </div>
-            <div class="col-xs-3"></div>
-        </div>
+        <div class="col-md-2 col-xs-1"></div>
 
     </div>
-</div>
+
 </div>
 
+</div>
+<!--<div class="col-sm-1 col-md-1">-->
 
-<canvas id="bar" class="chart chart-bar"
-        chart-data="data" chart-labels="labels" chart-series="series">
-</canvas>
+<!--</div>-->
+<!--<div class="col-sm-8 col-md-8">-->
+
+
+<!--<div class="row visible-xs hidden-md hidden-lg hidden-sm">-->
+
+<!--<div class="row">-->
+<!--<div class="col-xs-1"></div>-->
+
+<!--<div class="col-xs-10">-->
+
+<!--<h1>Dashboard</h1>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--</div>-->
+
+<!--<div class="dashboardHeader">-->
+<!--<div class=" hidden-xs visible-sm visible-md visible-lg">-->
+<!--<div class="row">-->
+<!--<div class="col-md-1"></div>-->
+
+<!--<div class="col-md-10">-->
+
+<!--<h1>Dashboard</h1>-->
+<!--</div>-->
+<!--<hr>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class=" hidden-md hidden-lg hidden-sm visible-xs">-->
+
+<!--<div class="col-xs-1"></div>-->
+<!--<div class="col-xs-10">-->
+<!--<div class="row">-->
+<!--<div class="panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--{{product.productTitle}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class=" panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--{{product.productProvider}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--<img ng-src="{{product.imageUrl}}">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<table class="table table-bordered " id="productDetailsDataMobile">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Product Price</th>-->
+<!--<th> Date Tracked</th>-->
+
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="details in product.productDetails" class="info">-->
+<!--<td>{{ details.price }}</td>-->
+<!--<td>{{details.dateCreated | date : "fullDate" }}</td>-->
+
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="detailBox">-->
+<!--<div class="titleBox">-->
+<!--<label>Comments</label>-->
+<!--</div>-->
+<!--<div class="actionBox">-->
+<!--<ul class="commentList">-->
+
+<!--<div ng-repeat="comment in product.comments">-->
+<!--<li>-->
+<!--<div class="commenterImage">-->
+<!--<a ng-click="model.getUserProfile(comment.userName)"><img-->
+<!--src="http://placekitten.com/50/50"/></a>-->
+<!--</div>-->
+<!--<div class="commentText">-->
+<!--<p>{{comment.comment}}</p> <span-->
+<!--class="date sub-text"> {{comment.userName}}</span>-->
+
+<!--</div>-->
+<!--</li>-->
+<!--</div>-->
+
+<!--</ul>-->
+<!--<form class="form-inline" role="form">-->
+<!--<div class="form-group">-->
+<!--<input class="form-control " type="text" ng-model="model.comment"-->
+<!--placeholder="Your comments"/>-->
+<!--</div>-->
+<!--<div class="form-group btn-posi">-->
+<!--<button class="btn btn-success "-->
+<!--ng-click="model.addCommentToProduct(product.productId,model.comment)">-->
+<!--Add-->
+<!--</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<br>-->
+
+
+<!--<div class="row">-->
+<!--<div class="col-xs-3"></div>-->
+<!--<div class="col-xs-6">-->
+<!--<a class="btn btn-danger btn-posi">Stop tracking</a>-->
+<!--</div>-->
+<!--<div class="col-xs-3"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div id="prodDetails">-->
+<!--<div class=" hidden-xs visible-sm visible-md visible-lg">-->
+<!--<div class="col-xs-8">-->
+<!--<div class="row">-->
+<!--<div class="panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--{{product.productTitle}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--{{product.productProvider}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="  panel panel-success">-->
+<!--<div class="panel-body">-->
+<!--<img ng-src="{{product.imageUrl}}">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<table class="table table-bordered " id="productDetailsData">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Product Price</th>-->
+<!--<th> Date Tracked</th>-->
+
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="details in product.productDetails" class="info">-->
+<!--<td>{{ details.price }}</td>-->
+<!--<td>{{details.dateCreated | date : "fullDate" }}</td>-->
+
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="detailBox">-->
+<!--<div class="titleBox">-->
+<!--<label>Comments</label>-->
+<!--</div>-->
+<!--<div class="actionBox">-->
+<!--<ul class="commentList">-->
+<!--<div ng-repeat="comment in product.comments">-->
+<!--<li>-->
+<!--<div class="commenterImage">-->
+<!--<a ng-click="model.getUserProfile(comment.userName)"><img-->
+<!--src="http://placekitten.com/50/50"/></a>-->
+<!--</div>-->
+<!--<div class="commentText">-->
+<!--<p class="">{{comment.comment}}</p><span class="date sub-text"> {{comment.userName}}</span>-->
+<!--</div>-->
+<!--</li>-->
+<!--</div>-->
+
+<!--</ul>-->
+<!--<form class="form-inline" role="form">-->
+<!--<div class="form-group">-->
+<!--<input class="form-control" type="text" ng-model="model.comment"-->
+<!--placeholder="Your comments"/>-->
+<!--</div>-->
+<!--<div class="form-group btn-posi">-->
+<!--<button class="btn btn-success btn-block"-->
+<!--ng-click="model.addCommentToProduct(product.productId,model.comment)">-->
+<!--Add-->
+<!--</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<br>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-3"></div>-->
+<!--<div class="col-xs-6">-->
+<!--<a class="btn btn-block btn-danger"-->
+<!--ng-click="model.stopTrackingProductForUser(product.productId)">Stop tracking</a>-->
+<!--</div>-->
+<!--<div class="col-xs-3"></div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--</div>-->

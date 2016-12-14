@@ -22,10 +22,19 @@ module.exports =function () {
         findGoogleUser: findGoogleUser,
         deleteProductForUser : deleteProductForUser,
         addFollowerToUser: addFollowerToUser,
-        unFollowUser: unFollowUser
+        unFollowUser: unFollowUser,
+        findUsersByIds:findUsersByIds
     };
 
     return api;
+
+    function findUsersByIds(ids) {
+        return UserProjectModel.find({
+            '_id': { $in: ids}
+        }, "username", function(err, docs){
+            console.log(docs);
+        });
+    }
 
     function deleteProductForUser(userId, productId) {
         return UserProjectModel.update( { _id: userId}, { $pullAll: {products: [productId] } } );

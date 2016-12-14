@@ -24,10 +24,18 @@
             logout:logout,
             getUserProfile:getUserProfile,
             follow :follow,
-            unfollow:unfollow
+            unfollow:unfollow,
+            getUserFollowers:getUserFollowers
         };
 
         return api;
+
+
+
+        function getUserFollowers (userId) {
+            var url = '/api/project/user/' + userId + '/followers'
+           return $http.get(url);
+        }
 
         function unfollow(userId,toFollowUserUsername){
             var url = '/api/project/user/'+ userId+ '/unfollow/' +toFollowUserUsername;

@@ -129,12 +129,12 @@
 
                        ProductService.startTrackingItemPrice(user._id, itemId, itemPrice, productProvider, pTitle,imageUrl)
                            .success(function (msg) {
-                             vm.success = msg.msg;
+
                                console.log("user._id");
                                console.log(user._id);
                                swal({
-                                       title: "Congrats!!",
-                                       text: "You are now tracking this product. Click here to go to your dashboard",
+                                       title:"Yay!!",
+                                       text: msg.msg,
                                        type: "success",
                                        showCancelButton: true,
                                        confirmButtonColor: "#28A828",
