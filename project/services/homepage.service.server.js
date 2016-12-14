@@ -31,8 +31,8 @@ module.exports = function (app, model) {
     };
 
 
- /*   cron.schedule('* * * * *', function () {
-        console.log('running a task every minute' + Date.now());
+   cron.schedule('30 * * * * *', function () {
+        console.log('running a every half an hour' + Date.now());
         model
             .productModel
             .findAllProductIds()
@@ -54,7 +54,7 @@ module.exports = function (app, model) {
                     }
                 }
             });
-    });*/
+    });
 
     function searchItemAmazonItemByIdAndAddInDB(itemId) {
         return client.itemLookup({
