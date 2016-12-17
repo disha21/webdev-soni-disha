@@ -21,17 +21,22 @@
         };
 
         return api;
-        
-        function sort(start,end) {
-            var url = '/api/user/:uid/website/:wid/page/:pid/widget?start=START&end=END';
-            url = url.replace("START",start)
-                     .replace("END",end);
-            
 
 
-            $http.put(url);
-            
+        function sort(pageId,start,end){
+            var url = "/page/"+pageId+"/widget?start="+start+"&end="+end;
+            return $http.put(url);
         }
+        // function sort(start,end) {
+        //     var url = '/api/user/:uid/website/:wid/page/:pid/widget?start=START&end=END';
+        //     url = url.replace("START",start)
+        //              .replace("END",end);
+        //
+        //
+        //
+        //     $http.put(url);
+        //
+        // }
         function createWidget(userId,websiteId, pageId, newWidget)  {
             console.log("user"+userId+  "website"+ websiteId + pageId);
 

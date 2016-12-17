@@ -35,13 +35,17 @@
 
     }
 
-    function SortableController(WidgetService) {
-       var vm = this;
+    function SortableController(WidgetService,$routeParams) {
+        var vm = this;
         vm.sort = sort;
+        vm.pageId = $routeParams.pid;
+        console.log("pid");
+        console.log( vm.pageId );
+
 
         function sort(start, end) {
             console.log([start,end]);
-            WidgetService.sort(start,end);
+            WidgetService.sort(vm.pageId,start,end);
 
         }
     }
