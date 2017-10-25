@@ -45,4 +45,4 @@ mongoose.connect(connectionString);
 //var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.Port || 3000;
 
-app.listen(port, ipaddress);
+app.listen(port);
