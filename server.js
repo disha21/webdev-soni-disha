@@ -27,7 +27,7 @@ require ("./project/app.js")(app);
 
 //var connectionString = 'mongodb://127.0.0.1:27017/wam-fall-2016';
 //var connectionString = 'mongodb://'+ process.env.HEROKU_MONGODB_DB_USERNAME + ":"
-    + process.env.HEROKU_MONGODB_DB_PASSWORD +'@ds031835.mlab.com:31835/dishadata'
+ //   + process.env.HEROKU_MONGODB_DB_PASSWORD +'@ds031835.mlab.com:31835/dishadata'
 var connectionString = 'mongodb://dishaMongo:08051@ds@ds031835.mlab.com:31835/dishadata';
 
 // if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
