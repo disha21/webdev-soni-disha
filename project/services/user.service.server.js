@@ -90,19 +90,18 @@ module.exports = function(app,model) {
                     .then(function (uf) {
                         res.send(200)
                     })
-
             }, function (err) {
                 console.log(err);
             })
     }
 
 
-    app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/auth/project/google/callback',
-        passport.authenticate('google', {
-            successRedirect: '/project/#/user',
-            failureRedirect: '/project/#/login'
-        }));
+ // //   app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+ // //   app.get('/auth/project/google/callback',
+ //        passport.authenticate('google', {
+ //            successRedirect: '/project/#/user',
+ //            failureRedirect: '/project/#/login'
+ //        }));
 
     // var googleConfig = {
     //     clientID     : process.env.GOOGLE_CLIENT_ID,
