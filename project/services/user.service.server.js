@@ -104,13 +104,13 @@ module.exports = function(app,model) {
             failureRedirect: '/project/#/login'
         }));
 
-    var googleConfig = {
-        clientID     : process.env.GOOGLE_CLIENT_ID,
-        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL
-    };
+    // var googleConfig = {
+    //     clientID     : process.env.GOOGLE_CLIENT_ID,
+    //     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    //     callbackURL  : process.env.GOOGLE_CALLBACK_URL
+    // };
 
-    passport.use('google', new GoogleStrategy(googleConfig, googleStrategy));
+    // passport.use('google', new GoogleStrategy(googleConfig, googleStrategy));
 
 
     function googleStrategy(token, refereshToken, profile, done) {

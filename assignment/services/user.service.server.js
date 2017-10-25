@@ -17,7 +17,7 @@ module.exports = function(app,model) {
 
     var LocalStrategy = require('passport-local').Strategy;
 
-    passport.use('assignment', new LocalStrategy(localStrategyAssignment));
+    passport.use('assignment', new LocalStrategy());
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     var FacebookStrategy = require('passport-facebook').Strategy;
