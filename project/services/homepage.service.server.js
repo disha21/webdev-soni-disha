@@ -31,8 +31,8 @@ module.exports = function (app, model) {
     };
 
 
-   /*cron.schedule('30 * * * * *', function () {
-        console.log('running a every half an hour' + Date.now());
+   cron.schedule('0 9 * * *', function () {
+        console.log('this will run every 9:00am' + Date.now());
         model
             .productModel
             .findAllProductIds()
@@ -54,7 +54,7 @@ module.exports = function (app, model) {
                     }
                 }
             });
-    });*/
+    });
 
     function searchItemAmazonItemByIdAndAddInDB(itemId) {
         return client.itemLookup({
@@ -147,7 +147,7 @@ module.exports = function (app, model) {
                     host: "open.api.ebay.com",
                     path: "/shopping?version=713" +
                     "&appid=" + ebayConfig.appID + "" +
-                    "&callname=FindPopularItems" +
+                    "&callname=findItemsAdvanced" +
                     "&QueryKeywords=" + item +
                     "&ResponseEncodingType=JSON" +
                     "&AvailableItemsOnly=true" +
@@ -164,9 +164,9 @@ module.exports = function (app, model) {
                         var ebayApiResult = JSON.parse(body);
 
                         console.log(ebayApiResult);
-                        console.log(ebayApiResult.ItemArray.Item[0]);
+                     //   console.log(ebayApiResult.ItemArray.Item[0]);
                         //return ebayApiResult.ItemArray.Item;
-                        resolve(ebayApiResult.ItemArray.Item);
+                        resolve(ebayApiResult.SearchResult[0].ItemArray.Item);
                     });
                 });
 

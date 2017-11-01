@@ -19,7 +19,7 @@ module.exports = function(app,model) {
     passport.use('project',new LocalStrategy(localStrategyProject));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+ //   var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
     app.post('/api/project/user',createUser);
@@ -96,59 +96,59 @@ module.exports = function(app,model) {
     }
 
 
- // //   app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
- // //   app.get('/auth/project/google/callback',
- //        passport.authenticate('google', {
- //            successRedirect: '/project/#/user',
- //            failureRedirect: '/project/#/login'
- //        }));
-
+    // app.get('/auth/project/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    // app.get('/auth/project/google/callback',
+    //     passport.authenticate('google', {
+    //         successRedirect: '/project/#/user',
+    //         failureRedirect: '/project/#/login'
+    //     }));
+    //
     // var googleConfig = {
     //     clientID     : process.env.GOOGLE_CLIENT_ID,
     //     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
     //     callbackURL  : process.env.GOOGLE_CALLBACK_URL
     // };
-
+    //
     // passport.use('google', new GoogleStrategy(googleConfig, googleStrategy));
+    //
 
-
-    function googleStrategy(token, refereshToken, profile, done) {
-        console.log("google profile "+profile);
-        model.userModel
-            .findGoogleUser(profile.id)
-            .then(
-                function(user) {
-                    if(user) {
-                        return done(null, user);
-                    } else {
-                        var email = profile.emails[0].value;
-                        var emailParts = email.split("@");
-                        var newGoogleUser = {
-                            username:  emailParts[0],
-                            firstName: profile.name.givenName,
-                            lastName:  profile.name.familyName,
-                            email:     email,
-                            google: {
-                                id:    profile.id,
-                                token: token
-                            }
-                        };
-                        return model.userModel.createUser(newGoogleUser);
-                    }
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            )
-            .then(
-                function(user){
-                    return done(null, user);
-                },
-                function(err){
-                    if (err) { return done(err); }
-                }
-            );
-    }
+    // function googleStrategy(token, refereshToken, profile, done) {
+    //     console.log("google profile "+profile);
+    //     model.userModel
+    //         .findGoogleUser(profile.id)
+    //         .then(
+    //             function(user) {
+    //                 if(user) {
+    //                     return done(null, user);
+    //                 } else {
+    //                     var email = profile.emails[0].value;
+    //                     var emailParts = email.split("@");
+    //                     var newGoogleUser = {
+    //                         username:  emailParts[0],
+    //                         firstName: profile.name.givenName,
+    //                         lastName:  profile.name.familyName,
+    //                         email:     email,
+    //                         google: {
+    //                             id:    profile.id,
+    //                             token: token
+    //                         }
+    //                     };
+    //                     return model.userModel.createUser(newGoogleUser);
+    //                 }
+    //             },
+    //             function(err) {
+    //                 if (err) { return done(err); }
+    //             }
+    //         )
+    //         .then(
+    //             function(user){
+    //                 return done(null, user);
+    //             },
+    //             function(err){
+    //                 if (err) { return done(err); }
+    //             }
+    //         );
+    // }
 
     function getUserProfile(req, res) {
         var userId = (req.params.uid);
